@@ -1,6 +1,6 @@
 oroshi:
   logger:
-    class: Oroshi\Logging\LoggingService
+    class: Oroshi\Core\Logging\LoggingService
     provisioner: Oroshi\Core\Service\Provisioner\MonologProvisioner
     settings:
       location: ${app.log_dir}/oroshi.log
@@ -10,7 +10,7 @@ oroshi:
         transport: inproc
 
   crate_map:
-    class: Oroshi\Crate\CrateMap
+    class: Oroshi\Core\Crate\CrateMap
     provisioner: Oroshi\Core\Service\Provisioner\CrateMapProvisioner
 
   connector_map:
@@ -49,7 +49,7 @@ oroshi:
         transport: inproc
 
   command_router:
-    class: Oroshi\MessageBus\CommandRouter
+    class: Oroshi\Core\MessageBus\CommandRouter
     provisioner: Oroshi\Core\Service\Provisioner\CommandRouterProvisioner
     commands: []
     subscriptions:
@@ -70,7 +70,7 @@ oroshi:
             connector: oroshi.message_queue
 
   routing:
-    class: Oroshi\Middleware\AuraRouting
+    class: Oroshi\Core\Middleware\AuraRouting
     provisioner: Oroshi\Core\Service\Provisioner\RoutingProvisioner
 
   job_definition_map:
@@ -78,7 +78,7 @@ oroshi:
     provisioner: Oroshi\Core\Service\Provisioner\JobDefinitionMapProvisioner
 
   http_pipeline:
-    class: Oroshi\Middleware\DefaultPipeline
+    class: Oroshi\Core\Middleware\DefaultPipeline
     settings:
       _share: true
-      _alias: Oroshi\Middleware\PipelineBuilderInterface
+      _alias: Oroshi\Core\Middleware\PipelineBuilderInterface

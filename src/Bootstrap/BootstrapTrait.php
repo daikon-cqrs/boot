@@ -15,6 +15,7 @@ trait BootstrapTrait
 {
     private function loadConfiguration(array $bootParams): ConfigProviderInterface
     {
+        $bootParams['oroshi'] = ['config_dir' => dirname(dirname(__DIR__)) . "/config"];
         return new ConfigProvider(
             new ConfigProviderParams(
                 array_merge(
@@ -34,7 +35,7 @@ trait BootstrapTrait
                     ],
                     (new YamlConfigLoader)->load(
                         [
-                            dirname(dirname(__DIR__)) . "/config",
+                            $bootParams['oroshi']['config_dir'],
                             $bootParams['config_dir']
                         ],
                         [ 'loaders.yml' ]

@@ -7,8 +7,8 @@ namespace Oroshi\Core\Service;
 use Auryn\ConfigException;
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
-use Psr\Container\ContainerInterface;
 use Oroshi\Core\Service\Provisioner\ProvisionerInterface;
+use Psr\Container\ContainerInterface;
 
 final class ServiceProvisioner implements ServiceProvisionerInterface
 {
