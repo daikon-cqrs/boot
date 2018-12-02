@@ -1,0 +1,73 @@
+project:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${app.config_dir}
+  sources:
+    - project.yml
+    - project.${app.context}.yml
+    - project.${app.env}.yml
+    - project.${app.context}.${app.env}.yml
+
+secrets:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${app.secrets_dir}
+  sources:
+    - "*.yml"
+
+services:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - services.yml
+    - services.${app.context}.yml
+    - services.${app.env}.yml
+    - services.${app.context}.${app.env}.yml
+
+connectors:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - connectors.yml
+    - connectors.${app.context}.yml
+    - connectors.${app.env}.yml
+    - connectors.${app.context}.${app.env}.yml
+
+databases:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - databases.yml
+    - databases.*.yml
+    - databases.${app.context}.yml
+    - databases.${app.env}.yml
+    - databases.${app.context}.${app.env}.yml
+
+jobs:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${app.oroshi.config_dir}
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - jobs.yml
+    - jobs.${app.context}.yml
+    - jobs.${app.env}.yml
+    - jobs.${app.context}.${app.env}.yml
+
+migrations:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - migrations.yml
+    - migrations.${app.context}.yml
+    - migrations.${app.env}.yml
+    - migrations.${app.context}.${app.env}.yml

@@ -1,0 +1,84 @@
+oroshi:
+  logger:
+    class: Oroshi\Logging\LoggingService
+    provisioner: Oroshi\Service\Provisioner\MonologProvisioner
+    settings:
+      location: ${app.log_dir}/oroshi.log
+    subscriptions:
+      logging_sub:
+        channel: logging
+        transport: inproc
+
+  crate_map:
+    class: Oroshi\Crate\CrateMap
+    provisioner: Oroshi\Service\Provisioner\CrateMapProvisioner
+
+  connector_map:
+    class: Daikon\Dbal\Connector\ConnectorMap
+    provisioner: Oroshi\Service\Provisioner\ConnectorMapProvisioner
+
+  storage_adapter_map:
+    class: Daikon\Dbal\Storage\StorageAdapterMap
+    provisioner: Oroshi\Service\Provisioner\StorageAdapterMapProvisioner
+
+  stream_storage_map:
+    class: Daikon\EventSourcing\EventStore\Storage\StreamStorageMap
+    provisioner: Oroshi\Service\Provisioner\StreamStorageMapProvisioner
+
+  unit_of_work_map:
+    class: Daikon\EventSourcing\EventStore\UnitOfWorkMap
+    provisioner: Oroshi\Service\Provisioner\UnitOfWorkMapProvisioner
+
+  repository_map:
+    class: Daikon\ReadModel\Repository\RepositoryMap
+    provisioner: Oroshi\Service\Provisioner\RepositoryMapProvisioner
+
+  migration_target_map:
+    class: Daikon\Dbal\Migration\MigrationTargetMap
+    provisioner: Oroshi\Service\Provisioner\MigrationTargetMapProvisioner
+
+  projector_map:
+    class: Daikon\ReadModel\Projector\EventProjectorMap
+    provisioner: Oroshi\Service\Provisioner\EventProjectorMapProvisioner
+
+  projector_service:
+    class: Daikon\ReadModel\Projector\ProjectorService
+    subscriptions:
+      commits_sub:
+        channel: commits
+        transport: inproc
+
+  command_router:
+    class: Oroshi\MessageBus\CommandRouter
+    provisioner: Oroshi\Service\Provisioner\CommandRouterProvisioner
+    commands: []
+    subscriptions:
+      command_sub:
+        channel: commands
+        transport: inproc
+
+  message_bus:
+    class: Daikon\MessageBus\MessageBus
+    provisioner: Oroshi\Service\Provisioner\MessageBusProvisioner
+    settings:
+      transports:
+        inproc:
+          class: Daikon\MessageBus\Channel\Subscription\Transport\InProcessTransport
+        message_queue:
+          class: Daikon\RabbitMq3\Transport\RabbitMq3Transport
+          dependencies:
+            connector: oroshi.message_queue
+
+  routing:
+    class: Oroshi\Middleware\AuraRouting
+    provisioner: Oroshi\Service\Provisioner\RoutingProvisioner
+
+  job_definition_map:
+    class: Daikon\AsyncJob\Job\JobDefinitionMap
+    provisioner: Oroshi\Service\Provisioner\JobDefinitionMapProvisioner
+
+  http_pipeline:
+    class: Oroshi\Middleware\DefaultPipeline
+    settings:
+      _share: true
+      _alias: Oroshi\Middleware\PipelineBuilderInterface
