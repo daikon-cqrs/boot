@@ -33,7 +33,10 @@ trait BootstrapTrait
                         ]
                     ],
                     (new YamlConfigLoader)->load(
-                        [ $bootParams['config_dir'] ],
+                        [
+                            dirname(dirname(__DIR__)) . "/config",
+                            $bootParams['config_dir']
+                        ],
                         [ 'loaders.yml' ]
                     )
                 )
