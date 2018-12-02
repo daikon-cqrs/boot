@@ -15,7 +15,7 @@ trait BootstrapTrait
 {
     private function loadConfiguration(array $bootParams): ConfigProviderInterface
     {
-        $bootParams['oroshi'] = ['config_dir' => dirname(dirname(__DIR__)) . "/config"];
+        $bootParams['oroshi'] = ['config_dir' => dirname(dirname(__DIR__)) . '/config'];
         return new ConfigProvider(
             new ConfigProviderParams(
                 array_merge(
@@ -27,10 +27,10 @@ trait BootstrapTrait
                         'crates' => [
                             'loader' => new CratesConfigLoader([
                                 'crates:' => $bootParams['crates_dir'],
-                                'vendor:' => $bootParams['base_dir']."/vendor"
+                                'vendor:' => $bootParams['base_dir'].'/vendor'
                             ]),
-                            'locations' => [ $bootParams['config_dir'] ],
-                            'sources' => [ 'crates.yml' ]
+                            'locations' => [$bootParams['config_dir']],
+                            'sources' => ['crates.yml']
                         ]
                     ],
                     (new YamlConfigLoader)->load(
@@ -38,7 +38,7 @@ trait BootstrapTrait
                             $bootParams['oroshi']['config_dir'],
                             $bootParams['config_dir']
                         ],
-                        [ 'loaders.yml' ]
+                        ['loaders.yml']
                     )
                 )
             )

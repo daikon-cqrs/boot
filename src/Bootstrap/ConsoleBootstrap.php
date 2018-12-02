@@ -32,7 +32,7 @@ final class ConsoleBootstrap implements BootstrapInterface
             ->alias(ContainerInterface::class, get_class($container))
             ->defineParam(
                 'consoleCommands',
-                array_map([ $container, 'get' ], [
+                array_map([$container, 'get'], [
                     ListCrates::class,
                     ListTargets::class,
                     MigrateUp::class,
