@@ -79,6 +79,5 @@ oroshi:
 
   http_pipeline:
     class: Oroshi\Core\Middleware\DefaultPipeline
-    settings:
-      _share: true
-      _alias: Oroshi\Core\Middleware\PipelineBuilderInterface
+    provisioner: Oroshi\Core\Service\Provisioner\HttpPipelineProvisioner
+

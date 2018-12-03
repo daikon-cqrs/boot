@@ -11,17 +11,23 @@ use Middlewares\ContentType;
 use Middlewares\Cors;
 use Middlewares\RequestHandler;
 use Middlewares\Whoops;
-use Neomerx\Cors\Analyzer;
-use Neomerx\Cors\Strategies\Settings;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Relay\Relay;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 final class DefaultPipeline implements PipelineBuilderInterface
 {
+    /** @var array */
+    private static $defaultPipeline = [
+        ContentType::class,
+        ContentLanguage::class,
+        ContentEncoding::class,
+        JwtDecoder::class,
+        AuraRouting::class,
+        AuthHandler::class,
+        RequestHandler::class
+    ];
+
     /** @var ContainerInterface */
     private $container;
 
@@ -37,29 +43,14 @@ final class DefaultPipeline implements PipelineBuilderInterface
     public function __invoke(): RequestHandlerInterface
     {
         $middlewares = [];
-        $this->addDev(
-            $middlewares,
-            new Whoops(
-                (new Run)->pushHandler(new PrettyPageHandler)
-            )
-        )->add(
-            $middlewares,
-            new ContentType,
-            new ContentLanguage(['en', 'gl', 'es']),
-            new ContentEncoding(['gzip', 'deflate'])
-        );
-
-        if ($this->configProvider->get('cors.enabled', false)) {
-            $this->add($middlewares, $this->buildCorsMiddleware());
+        $this->addDev($middlewares, $this->container->get(Whoops::class));
+        if ($this->configProvider->get('cors.enabled', true)) {
+            $this->add($middlewares, $this->container->get(Cors::class));
         }
-
         $this->add(
             $middlewares,
-            $this->container->get(AuraRouting::class),
-            $this->container->get(AuthenticationHandler::class),
-            new RequestHandler($this->container)
+            ...array_map([$this->container, 'get'], self::$defaultPipeline)
         );
-
         return new Relay($middlewares);
     }
 
@@ -75,16 +66,5 @@ final class DefaultPipeline implements PipelineBuilderInterface
     {
         array_push($middlewares, ...$middleware);
         return $this;
-    }
-
-    private function buildCorsMiddleware(): Cors
-    {
-        $settings = new Settings();
-        $settings->setServerOrigin([
-            'scheme' => 'http',
-            'host' => $this->configProvider->get('cors.host'),
-            'port' => $this->configProvider->get('cors.port'),
-        ]);
-        return new Cors(Analyzer::instance($settings));
     }
 }
