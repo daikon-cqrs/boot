@@ -6,12 +6,12 @@ namespace Oroshi\Core\Middleware;
 
 use Middlewares\Utils\Factory;
 use Middlewares\Utils\Traits\HasResponseFactory;
-use Oroshi\Core\Logging\LoggingService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerInterface;
 
 class AuthenticationHandler implements MiddlewareInterface
 {
@@ -20,10 +20,10 @@ class AuthenticationHandler implements MiddlewareInterface
     /** @var string */
     private static $attribute = '_user';
 
-    /** @var LoggingService */
+    /** @var LoggerInterface */
     private $logger;
 
-    public function __construct(LoggingService $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->responseFactory = Factory::getResponseFactory();
         $this->logger = $logger;
@@ -32,10 +32,7 @@ class AuthenticationHandler implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $user = null;
-        if (!$user) {
-            // 405 NOT ALLOWED
-            return $this->createResponse(405);
-        }
+
         $request = $request->withAttribute(self::$attribute, $user);
 
         return $handler->handle($request);

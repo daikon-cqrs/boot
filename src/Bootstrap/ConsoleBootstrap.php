@@ -9,6 +9,7 @@ use Daikon\Config\ConfigProvider;
 use Daikon\Config\ConfigProviderInterface;
 use Oroshi\Core\Console\Command\ListCrates;
 use Oroshi\Core\Console\Command\ListProjectors;
+use Oroshi\Core\Console\Command\Migrate\CreateMigration;
 use Oroshi\Core\Console\Command\Migrate\ListTargets;
 use Oroshi\Core\Console\Command\Migrate\MigrateDown;
 use Oroshi\Core\Console\Command\Migrate\MigrateUp;
@@ -38,7 +39,8 @@ final class ConsoleBootstrap implements BootstrapInterface
                     MigrateUp::class,
                     MigrateDown::class,
                     ListProjectors::class,
-                    RunWorker::class
+                    RunWorker::class,
+                    CreateMigration::class
                 ])
             );
         return $container;

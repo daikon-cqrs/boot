@@ -8,10 +8,10 @@ use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Psr\Log\LoggerInterface;
 use Oroshi\Core\Exception\ConfigException;
 use Oroshi\Core\Logging\LoggingService;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
+use Psr\Log\LoggerInterface;
 
 final class MonologProvisioner implements ProvisionerInterface
 {

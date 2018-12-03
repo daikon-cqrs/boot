@@ -6,12 +6,12 @@ namespace Oroshi\Core\Middleware;
 
 use Middlewares\Utils\Factory;
 use Middlewares\Utils\Traits\HasResponseFactory;
-use Oroshi\Infrastructure\Logging\LoggingService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerInterface;
 
 class JwtHandler implements MiddlewareInterface
 {
@@ -20,10 +20,10 @@ class JwtHandler implements MiddlewareInterface
     /** @var string */
     private static $attribute = '_token';
 
-    /** @var LoggingService */
+    /** @var LoggerInterface */
     private $logger;
 
-    public function __construct(LoggingService $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->responseFactory = Factory::getResponseFactory();
         $this->logger = $logger;
@@ -33,10 +33,7 @@ class JwtHandler implements MiddlewareInterface
     {
         $user = $request->getAttribute('_user');
         $jwtToken = null;
-        if (!$jwtToken) {
-            // 405 NOT ALLOWED
-            return $this->createResponse(405);
-        }
+        $this->logger->info(__METHOD__);
         $request = $request->withAttribute(self::$attribute, $jwtToken);
 
         return $handler->handle($request);
