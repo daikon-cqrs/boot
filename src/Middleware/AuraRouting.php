@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Oroshi\Core\Middleware;
 
 use Aura\Router\RouterContainer;
-use Middlewares\Utils\Factory;
 use Middlewares\Utils\Traits\HasResponseFactory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -23,10 +22,9 @@ class AuraRouting implements MiddlewareInterface
     /** @var RouterContainer */
     private $router;
 
-    public function __construct(RouterContainer $router, ResponseFactoryInterface $responseFactory = null)
+    public function __construct(RouterContainer $router)
     {
         $this->router = $router;
-        $this->responseFactory = $responseFactory ?: Factory::getResponseFactory();
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

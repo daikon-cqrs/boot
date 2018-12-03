@@ -10,7 +10,6 @@ use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use function GuzzleHttp\Psr7\parse_query;
-use Middlewares\Utils\Factory;
 use Middlewares\Utils\Traits\HasResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,7 +34,6 @@ class JwtDecoder implements MiddlewareInterface
     {
         $this->logger = $logger;
         $this->configProvider = $configProvider;
-        $this->responseFactory = Factory::getResponseFactory();
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

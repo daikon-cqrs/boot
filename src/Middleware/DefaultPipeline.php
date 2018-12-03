@@ -14,6 +14,7 @@ use Middlewares\Whoops;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Relay\Relay;
 
 final class DefaultPipeline implements PipelineBuilderInterface
 {

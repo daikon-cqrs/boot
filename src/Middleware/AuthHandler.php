@@ -33,6 +33,7 @@ class AuthHandler implements MiddlewareInterface
 
     public function __construct(LoggerInterface $logger, ConfigProviderInterface $configProvider)
     {
+        $this->logger = $logger;
         if ($loginAction = $configProvider->get(self::CONF_LOGIN)) {
             Assertion::classExists($loginAction);
             $this->loginAction = $loginAction;
