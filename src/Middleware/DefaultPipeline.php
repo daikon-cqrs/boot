@@ -55,9 +55,8 @@ final class DefaultPipeline implements PipelineBuilderInterface
 
         $this->add(
             $middlewares,
-            $this->container->get(JwtHandler::class),
-            $this->container->get(AuthenticationHandler::class),
             $this->container->get(AuraRouting::class),
+            $this->container->get(AuthenticationHandler::class),
             new RequestHandler($this->container)
         );
 

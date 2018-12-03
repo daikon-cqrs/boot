@@ -17,22 +17,16 @@ class AuraRouting implements MiddlewareInterface
 {
     use HasResponseFactory;
 
+    /** @var string */
+    const REQ_ATTR = 'request-handler';
+
     /** @var RouterContainer */
     private $router;
-
-    /** @var string */
-    private $attribute = 'request-handler';
 
     public function __construct(RouterContainer $router, ResponseFactoryInterface $responseFactory = null)
     {
         $this->router = $router;
         $this->responseFactory = $responseFactory ?: Factory::getResponseFactory();
-    }
-
-    public function attribute(string $attribute): self
-    {
-        $this->attribute = $attribute;
-        return $this;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -58,7 +52,7 @@ class AuraRouting implements MiddlewareInterface
         foreach ($route->attributes as $name => $value) {
             $request = $request->withAttribute($name, $value);
         }
-        $request = $request->withAttribute($this->attribute, $route->handler);
+        $request = $request->withAttribute(self::REQ_ATTR, $route->handler);
 
         return $handler->handle($request);
     }
