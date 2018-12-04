@@ -47,15 +47,16 @@ class AuthHandler implements MiddlewareInterface
             if (!$this->loginAction) {
                 return $this->createResponse(401);
             }
-            $request = $request->withAttribute(AuraRouting::ATTR_HANDLER, $this->loginAction);
+            $request = $request->withAttribute(RoutingHandler::ATTR_HANDLER, $this->loginAction);
         }
         return $handler->handle($request);
     }
 
     private function isSecure(ServerRequestInterface $request): bool
     {
-        $routedAction = $request->getAttribute(AuraRouting::ATTR_HANDLER);
-        // @todo figure out if action requires authentication
-        return true;
+        $requestHandler = $request->getAttribute(RoutingHandler::ATTR_HANDLER);
+        return !empty($requestHandler) && $requestHandler instanceof ActionInterface
+            ? $requestHandler->isSecure()
+            : false;
     }
 }

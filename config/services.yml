@@ -69,10 +69,6 @@ oroshi:
           dependencies:
             connector: oroshi.message_queue
 
-  routing:
-    class: Oroshi\Core\Middleware\AuraRouting
-    provisioner: Oroshi\Core\Service\Provisioner\RoutingProvisioner
-
   job_definition_map:
     class: Daikon\AsyncJob\Job\JobDefinitionMap
     provisioner: Oroshi\Core\Service\Provisioner\JobDefinitionMapProvisioner
@@ -80,4 +76,3 @@ oroshi:
   http_pipeline:
     class: Oroshi\Core\Middleware\DefaultPipeline
     provisioner: Oroshi\Core\Service\Provisioner\HttpPipelineProvisioner
-

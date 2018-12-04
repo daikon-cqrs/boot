@@ -24,8 +24,9 @@ final class DefaultPipeline implements PipelineBuilderInterface
         ContentLanguage::class,
         ContentEncoding::class,
         JwtDecoder::class,
-        AuraRouting::class,
+        RoutingHandler::class,
         AuthHandler::class,
+        ActionHandler::class,
         RequestHandler::class
     ];
 
