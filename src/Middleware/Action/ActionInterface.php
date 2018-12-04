@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Oroshi\Core\Middleware;
+namespace Oroshi\Core\Middleware\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,7 +14,7 @@ interface ActionInterface
 
     public function handleError(ServerRequestInterface $request): ResponseInterface;
 
-    public function getValidation(): ?ValidationInterface;
+    public function registerValidator(ServerRequestInterface $request): ServerRequestInterface;
 
     public function isSecure(): bool;
 }

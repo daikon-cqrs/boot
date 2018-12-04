@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Oroshi\Core\Middleware;
+namespace Oroshi\Core\Middleware\Action;
 
 use Psr\Http\Message\ServerRequestInterface;
 
-interface ValidationInterface
+interface ValidatorInterface
 {
-    const ATTR_ERRORS = 'error';
-
     public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
 }
