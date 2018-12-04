@@ -18,6 +18,7 @@
         "daikon/flysystem-adapter": "master@dev",
         "daikon/rabbitmq3-adapter": "master@dev",
         "danielstjules/stringy": "^3.1",
+        "firebase/php-jwt": "^v5.0",
         "middlewares/cors": "^v1.1",
         "middlewares/negotiation": "^v1.1",
         "middlewares/request-handler": "^v1.3",
