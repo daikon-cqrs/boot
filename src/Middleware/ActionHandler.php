@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Middleware;
 
+use Assert\Assertion;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -24,15 +25,15 @@ class ActionHandler implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $requestHandler = $request->getAttribute(RoutingHandler::ATTR_HANDLER);
-        return !empty($requestHandler) && $requestHandler instanceof ActionInterface
+        return $requestHandler instanceof ActionInterface
             ? $this->executeAction($requestHandler, $request)
             : $handler->handle($request);
     }
 
-    private function executeAction(ActionInterface $action, RequestInterface $request): ResponseInterface
+    private function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
     {
-        if ($validator = $action->getValidator()) {
-            $request = $validator($request);
+        if ($validation = $action->getValidation()) {
+            $request = $validation($request);
         }
         return $action($request);
     }

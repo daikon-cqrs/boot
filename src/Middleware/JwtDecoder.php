@@ -22,7 +22,7 @@ class JwtDecoder implements MiddlewareInterface
 {
     use HasResponseFactory;
 
-    const ATTR_TOKEN = 'jwt';
+    const ATTR_TOKEN = '_jwt';
 
     /** @var LoggerInterface */
     private $logger;
@@ -39,7 +39,7 @@ class JwtDecoder implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $queryParams = parse_query($request->getUri()->getQuery());
-        $encodedToken = $queryParams['jwt']
+        $encodedToken = $queryParams[self::ATTR_TOKEN]
             ?? $this->parseAuthHeader($request->getHeaderLine('Authorization'));
         $jwtToken = null;
         if ($encodedToken) {

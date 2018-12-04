@@ -12,7 +12,7 @@ interface ActionInterface
 {
     public function __invoke(ServerRequestInterface $request): ResponseInterface;
 
-    public function getValidator(): ?callable;
+    public function getValidation(): ?ValidationInterface;
 
     public function isSecure(): bool;
 }
