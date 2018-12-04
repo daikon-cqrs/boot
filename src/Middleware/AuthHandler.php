@@ -18,8 +18,6 @@ class AuthHandler implements MiddlewareInterface
 {
     use HasResponseFactory;
 
-    const ATTR_USER = 'user';
-
     const CONF_LOGIN = 'services.oroshi.http_pipeline.default_actions.login';
 
     /** @var LoggerInterface */
