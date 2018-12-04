@@ -35,6 +35,10 @@ class ActionHandler implements MiddlewareInterface
         if ($validation = $action->getValidation()) {
             $request = $validation($request);
         }
+        $errors = $request->getAttribute(ValidationInterface::ATTR_ERRORS);
+        if (!empty($errors)) {
+            return $action->handleError($request);
+        }
         return $action($request);
     }
 }

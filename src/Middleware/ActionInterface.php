@@ -12,6 +12,8 @@ interface ActionInterface
 {
     public function __invoke(ServerRequestInterface $request): ResponseInterface;
 
+    public function handleError(ServerRequestInterface $request): ResponseInterface;
+
     public function getValidation(): ?ValidationInterface;
 
     public function isSecure(): bool;
