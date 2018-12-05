@@ -10,9 +10,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 interface ActionInterface
 {
-    public function __invoke(ServerRequestInterface $request): ResponseInterface;
+    public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
 
-    public function handleError(ServerRequestInterface $request): ResponseInterface;
+    public function handleError(ServerRequestInterface $request): ServerRequestInterface;
 
     public function registerValidator(ServerRequestInterface $request): ServerRequestInterface;
 
