@@ -18,7 +18,7 @@ trait ValidatorTrait
         $output = [];
         $input = $this->getFields($this->getInput($request), $errors, $fields);
         foreach ($input as $fieldname => $rawInput) {
-            $validationMethod = 'validate'.Stringy::create($fieldname)->toTitleCase();
+            $validationMethod = 'validate'.Stringy::create($fieldname)->camelize()->toTitleCase();
             $validationCallback = [$this, $validationMethod];
             if (!is_callable($validationCallback)) {
                 throw new RuntimeException("Missing required validation callback: $validationMethod");
