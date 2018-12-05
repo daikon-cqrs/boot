@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oroshi\Core\Middleware\Action;
 
 use function GuzzleHttp\json_decode;
+use function GuzzleHttp\Psr7\parse_query;
 use Oroshi\Core\Middleware\ValidationInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RuntimeException;
@@ -51,6 +52,7 @@ trait ValidatorTrait
         if (!is_array($data)) {
             throw new RuntimeException('Failed to parse data from request body.');
         }
+        $data = array_merge(parse_query($request->getUri()->getQuery()), $data);
         $trimStrings = function ($value) {
             if (is_string($value)) {
                 return trim($value);
