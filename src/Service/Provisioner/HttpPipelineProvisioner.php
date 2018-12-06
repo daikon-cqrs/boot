@@ -38,7 +38,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             // Exception Handling
             ->define(Whoops::class, [':whoops' => (new Run)->pushHandler(new PrettyPageHandler)])
             // Content Negotiation
-            ->define(ContentLanguage::class, [':languages' => ['en', 'gl', 'es']])
+            ->define(ContentLanguage::class, [':languages' => $configProvider->get('app.i18n.languages', ['en'])])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
             // Cors
             ->share(AnalyzerInterface::class)
@@ -46,9 +46,9 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->delegate(Analyzer::class, function () use ($configProvider): AnalyzerInterface {
                 $corsSettings = new Settings;
                 $corsSettings->setServerOrigin([
-                    'scheme' => 'http',
-                    'host' => $configProvider->get('cors.host'),
-                    'port' => $configProvider->get('cors.port'),
+                    'scheme' => $configProvider->get('project.cors.scheme'),
+                    'host' => $configProvider->get('project.cors.host'),
+                    'port' => $configProvider->get('project.cors.port'),
                 ]);
                 return Analyzer::instance($corsSettings);
             })

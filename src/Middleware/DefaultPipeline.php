@@ -45,8 +45,8 @@ final class DefaultPipeline implements PipelineBuilderInterface
     public function __invoke(): RequestHandlerInterface
     {
         $middlewares = [];
-        $this->addDev($middlewares, $this->container->get(Whoops::class));
-        if ($this->configProvider->get('cors.enabled', true)) {
+        $this->addDebug($middlewares, $this->container->get(Whoops::class));
+        if ($this->configProvider->get('project.cors.enabled', true)) {
             $this->add($middlewares, $this->container->get(Cors::class));
         }
         $this->add(
@@ -56,9 +56,9 @@ final class DefaultPipeline implements PipelineBuilderInterface
         return new Relay($middlewares);
     }
 
-    private function addDev(array &$middlewares, MiddlewareInterface ...$middleware): self
+    private function addDebug(array &$middlewares, MiddlewareInterface ...$middleware): self
     {
-        if ($this->configProvider->get('env') === 'development') {
+        if ($this->configProvider->get('app.debug') === true) {
             return $this->add($middlewares, ...$middleware);
         }
         return $this;

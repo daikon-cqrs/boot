@@ -52,7 +52,7 @@ class JwtDecoder implements MiddlewareInterface
 
     private function decodeToken(string $token): ?stdClass
     {
-        $secretKey = $this->configProvider->get('jwt.secret', 'foobar');
+        $secretKey = $this->configProvider->get('project.jwt.secret', 'foobar');
         try {
             return JWT::decode($token, $secretKey, ['HS256']);
         } catch (BeforeValidException $err) {
