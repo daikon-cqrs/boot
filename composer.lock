@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0a93ffa309454d85cc6d4cded04b42c",
+    "content-hash": "4c4e466ad1027a4f4fad0335a1ad829b",
     "packages": [
         {
             "name": "aura/router",
@@ -336,23 +336,23 @@
             "time": "2018-12-01T19:51:25+00:00"
         },
         {
-            "name": "daikon/elasticsearch5-adapter",
+            "name": "daikon/elasticsearch6-adapter",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/daikon-cqrs/elasticsearch5-adapter.git",
-                "reference": "29eb23d013be3502a393a39160bd2a152acd3aca"
+                "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
+                "reference": "288c2b4ca805c19af2e0618fcabb7d30d3fbb1a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch5-adapter/zipball/29eb23d013be3502a393a39160bd2a152acd3aca",
-                "reference": "29eb23d013be3502a393a39160bd2a152acd3aca",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/288c2b4ca805c19af2e0618fcabb7d30d3fbb1a4",
+                "reference": "288c2b4ca805c19af2e0618fcabb7d30d3fbb1a4",
                 "shasum": ""
             },
             "require": {
                 "daikon/dbal": "master@dev",
                 "daikon/read-model": "master@dev",
-                "elasticsearch/elasticsearch": "^5.0",
+                "elasticsearch/elasticsearch": "^6.0",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -364,20 +364,20 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Daikon\\Elasticsearch5\\": "src"
+                    "Daikon\\Elasticsearch6\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MPL-2.0"
             ],
-            "description": "Elasticsearch5 adapter for Daikon projects.",
-            "homepage": "https://github.com/daikon-cqrs/elasticsearch5-adapter",
+            "description": "Elasticsearch6 adapter for Daikon projects.",
+            "homepage": "https://github.com/daikon-cqrs/elasticsearch6-adapter",
             "keywords": [
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2018-12-01T19:58:10+00:00"
+            "time": "2018-12-08T13:15:05+00:00"
         },
         {
             "name": "daikon/entity",
@@ -644,12 +644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "4a41783340152c42eae94650128b6f6b7412e942"
+                "reference": "528f4f5551f2df50e32efd884ec0be52b865b888"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/4a41783340152c42eae94650128b6f6b7412e942",
-                "reference": "4a41783340152c42eae94650128b6f6b7412e942",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/528f4f5551f2df50e32efd884ec0be52b865b888",
+                "reference": "528f4f5551f2df50e32efd884ec0be52b865b888",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2018-12-01T19:49:26+00:00"
+            "time": "2018-12-04T21:16:07+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -744,29 +744,31 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v5.3.2",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "4b29a4121e790bbfe690d5ee77da348b62d48eb8"
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/4b29a4121e790bbfe690d5ee77da348b62d48eb8",
-                "reference": "4b29a4121e790bbfe690d5ee77da348b62d48eb8",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
                 "shasum": ""
             },
             "require": {
+                "ext-json": ">=1.3.7",
                 "guzzlehttp/ringphp": "~1.0",
-                "php": "^5.6|^7.0",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
                 "cpliakas/git-wrapper": "~1.0",
                 "doctrine/inflector": "^1.1",
                 "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "^4.7|^5.4",
-                "sami/sami": "~3.2",
+                "phpstan/phpstan-shim": "0.8.3",
+                "phpunit/phpunit": "6.3.0",
+                "squizlabs/php_codesniffer": "3.0.2",
                 "symfony/finder": "^2.8",
                 "symfony/yaml": "^2.8"
             },
@@ -795,7 +797,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2017-11-08T17:04:47+00:00"
+            "time": "2017-12-05T14:15:58+00:00"
         },
         {
             "name": "filp/whoops",
@@ -1022,16 +1024,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.0",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "53662d6688033a5eccde987bdd5a4a98ebe2d952"
+                "reference": "9f83dded91781a01c63574e387eaa769be769115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/53662d6688033a5eccde987bdd5a4a98ebe2d952",
-                "reference": "53662d6688033a5eccde987bdd5a4a98ebe2d952",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+                "reference": "9f83dded91781a01c63574e387eaa769be769115",
                 "shasum": ""
             },
             "require": {
@@ -1085,7 +1087,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-03T05:07:51+00:00"
+            "time": "2018-12-04T20:46:45+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -2495,7 +2497,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -2564,16 +2566,16 @@
         },
         {
             "name": "symfony/contracts",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "3edf0ab943d1985a356721952cba36ff31bd6e5f"
+                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/3edf0ab943d1985a356721952cba36ff31bd6e5f",
-                "reference": "3edf0ab943d1985a356721952cba36ff31bd6e5f",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/1aa7ab2429c3d594dd70689604b5cf7421254cdf",
+                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf",
                 "shasum": ""
             },
             "require": {
@@ -2628,11 +2630,11 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2018-11-24T09:35:08+00:00"
+            "time": "2018-12-05T08:06:11+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -2798,7 +2800,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4133,16 +4135,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.4.5",
+            "version": "7.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "61d34e8dd6eb3555900f0f2a2fa9e7e570730102"
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/61d34e8dd6eb3555900f0f2a2fa9e7e570730102",
-                "reference": "61d34e8dd6eb3555900f0f2a2fa9e7e570730102",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c23d78776ad415d5506e0679723cb461d71f488f",
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f",
                 "shasum": ""
             },
             "require": {
@@ -4187,7 +4189,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.4-dev"
+                    "dev-master": "7.5-dev"
                 }
             },
             "autoload": {
@@ -4213,7 +4215,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-12-03T05:01:24+00:00"
+            "time": "2018-12-12T07:20:32+00:00"
         },
         {
             "name": "sabre/event",
@@ -4997,7 +4999,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
@@ -5334,7 +5336,7 @@
     "stability-flags": {
         "daikon/config": 20,
         "daikon/couchdb-adapter": 20,
-        "daikon/elasticsearch5-adapter": 20,
+        "daikon/elasticsearch6-adapter": 20,
         "daikon/entity": 20,
         "daikon/event-sourcing": 20,
         "daikon/flysystem-adapter": 20,
