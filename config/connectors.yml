@@ -7,8 +7,8 @@ oroshi.event_store:
     user: ${secrets.couchdb.user}
     password: ${secrets.couchdb.password}
 
-oroshi.projection_store.standard:
-  class: Daikon\Elasticsearch5\Connector\Elasticsearch5Connector
+oroshi.projection_store:
+  class: Daikon\Elasticsearch6\Connector\Elasticsearch6Connector
   settings:
     scheme: ${secrets.elasticsearch.scheme}
     host: ${secrets.elasticsearch.host}
@@ -28,7 +28,7 @@ oroshi.filesystem:
         location: ${app.base_dir}/data/tmp_files
       migration:
         adapter: League\Flysystem\Adapter\Local
-        location: ${app.base_dir}/migration
+        location: ${app.base_dir}/app/migration
 
 oroshi.message_queue:
   class: Daikon\RabbitMq3\Connector\RabbitMq3Connector
