@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "5f25a8272fa82d91742d9883386fc74df430ccce"
+                "reference": "43c8aa0278a6fc007286d19d4740f7686b56e05c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/5f25a8272fa82d91742d9883386fc74df430ccce",
-                "reference": "5f25a8272fa82d91742d9883386fc74df430ccce",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/43c8aa0278a6fc007286d19d4740f7686b56e05c",
+                "reference": "43c8aa0278a6fc007286d19d4740f7686b56e05c",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2018-12-13T22:54:41+00:00"
+            "time": "2018-12-14T00:34:46+00:00"
         },
         {
             "name": "daikon/entity",
