@@ -33,8 +33,8 @@ final class CommandRouterProvisioner implements ProvisionerInterface
     {
         return function (UnitOfWorkMap $uowMap) use ($injector, $cmdRoutingConfig): CommandRouter {
             $handlerMap = [];
-            foreach ($cmdRoutingConfig as $uowKey => $handlerMap) {
-                foreach ($handlerMap as $commandFqcn => $handlerFqcn) {
+            foreach ($cmdRoutingConfig as $uowKey => $registeredHandlers) {
+                foreach ($registeredHandlers as $commandFqcn => $handlerFqcn) {
                     $handlerMap[$commandFqcn] = function () use (
                         $injector,
                         $handlerFqcn,
