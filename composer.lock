@@ -644,12 +644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "3cd238fea20af2c4d28f17a8f2d0264edf99f79f"
+                "reference": "7be1b9eaf404a6667c6fc027c0ed6593b4218596"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/3cd238fea20af2c4d28f17a8f2d0264edf99f79f",
-                "reference": "3cd238fea20af2c4d28f17a8f2d0264edf99f79f",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/7be1b9eaf404a6667c6fc027c0ed6593b4218596",
+                "reference": "7be1b9eaf404a6667c6fc027c0ed6593b4218596",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-01-29T15:29:05+00:00"
+            "time": "2019-01-29T18:01:16+00:00"
         },
         {
             "name": "danielstjules/stringy",
