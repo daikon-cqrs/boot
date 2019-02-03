@@ -12,6 +12,7 @@ use Middlewares\ContentLanguage;
 use Middlewares\Whoops;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
+use Neomerx\Cors\Contracts\Constants\CorsResponseHeaders;
 use Neomerx\Cors\Strategies\Settings;
 use Oroshi\Core\Config\RoutingConfigLoader;
 use Oroshi\Core\Middleware\PipelineBuilderInterface;
@@ -50,6 +51,10 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                     'host' => $configProvider->get('project.cors.host'),
                     'port' => $configProvider->get('project.cors.port'),
                 ]);
+                $corsSettings->setRequestAllowedOrigins(
+                    array_fill_keys($configProvider->get('project.cors.allowed_origins'), true)
+                );
+                $corsSettings->setResponseExposedHeaders([CorsResponseHeaders::ALLOW_ORIGIN => true]);
                 return Analyzer::instance($corsSettings);
             })
             // Routing
