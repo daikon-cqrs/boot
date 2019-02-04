@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Console\Command;
 
-use Daikon\Config\ConfigProviderInterface;
 use Oroshi\Core\Crate\CrateMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

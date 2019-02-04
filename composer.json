@@ -55,9 +55,9 @@
     },
     "scripts": {
         "build": [ "@sniff", "@tests" ],
-        "code-sniffer": "phpcs -p -s --extensions=php --standard='PSR1,PSR2' app/lib tests/",
+        "code-sniffer": "phpcs -p -s --extensions=php --standard='PSR1,PSR2' src/ tests/",
         "code-sniffer-autofix": "phpcbf --standard=PSR2 -d tabWidth=4 src/ tests/",
-        "copy-paste-detector": "phpcpd app/lib tests/ || true",
+        "copy-paste-detector": "phpcpd src/ tests/ || true",
         "sniff": [
             "@code-sniffer",
             "@copy-paste-detector",

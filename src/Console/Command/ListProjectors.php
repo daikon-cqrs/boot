@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Console\Command;
 
-use Daikon\Config\ConfigProviderInterface;
 use Daikon\ReadModel\Projector\EventProjectorMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

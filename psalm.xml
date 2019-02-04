@@ -18,9 +18,7 @@
     rememberPropertyAssignmentsAfterCall="true"
 >
     <projectFiles>
-        <directory name="app/lib" />
-        <file name="bin/oroshi.php" />
-        <file name="web/index.php" />
+        <directory name="src/" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>

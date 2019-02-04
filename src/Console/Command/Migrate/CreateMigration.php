@@ -52,7 +52,7 @@ final class CreateMigration extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         if (!count($this->crateMap) || !count($this->migrationTargetMap)) {
-            $output->writeln('<error>There are no crates|migration-targets available to generate migrations for.</error>');
+            $output->writeln('<error>There are no targets available to generate migrations for.</error>');
             $output->writeln('');
             exit;
         }

@@ -23,7 +23,7 @@ trait ValidatorTrait
             if (!is_callable($validationCallback)) {
                 throw new RuntimeException("Missing required validation callback: $validationMethod");
             }
-            $output[$fieldname] = call_user_func_array($validationCallback, [$rawInput, &$errors]);
+            $output[$fieldname] = $validationCallback($rawInput, $errors);
         }
         return $output;
     }
