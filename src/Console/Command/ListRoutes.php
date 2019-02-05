@@ -2,6 +2,7 @@
 
 namespace Oroshi\Core\Console\Command;
 
+use Aura\Router\RouterContainer;
 use Oroshi\Core\Middleware\RoutingHandler;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,7 +20,7 @@ class ListRoutes extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('route:ls')
@@ -29,7 +30,8 @@ class ListRoutes extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $getRouter = \Closure::bind(
-            function (RoutingHandler $routingHandler) {
+            function (RoutingHandler $routingHandler): RouterContainer {
+                /** @psalm-suppress InaccessibleProperty */
                 return $routingHandler->router;
             },
             null,

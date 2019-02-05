@@ -16,6 +16,7 @@ class RunWorker extends Command
 {
     use DialogTrait;
 
+    /** @var WorkerMap */
     protected $workerMap;
 
     public function __construct(WorkerMap $workerMap)
@@ -24,7 +25,7 @@ class RunWorker extends Command
         $this->workerMap = $workerMap;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('worker:run')
@@ -41,7 +42,7 @@ class RunWorker extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         if (!$workerName = $input->getArgument('worker')) {
             $workerName = $this->listWorkers($input, $output);
@@ -50,7 +51,7 @@ class RunWorker extends Command
         $worker->run(['queue' => $input->getArgument('queue')]);
     }
 
-    protected function listWorkers(InputInterface $input, OutputInterface $output)
+    protected function listWorkers(InputInterface $input, OutputInterface $output): string
     {
         if (!count($this->workerMap)) {
             $output->writeln('<error>There are no workers available.</error>');

@@ -11,6 +11,7 @@ use Aura\Router\Rule\Allows;
 use Aura\Router\Rule\Host;
 use Aura\Router\Rule\Path;
 use Middlewares\Utils\Traits\HasResponseFactory;
+use Oroshi\Core\Middleware\Action\ActionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -67,10 +68,13 @@ class RoutingHandler implements MiddlewareInterface
             case Host::class:
             case Path::class:
                 return $this->createResponse(404);
+            default:
+                return $this->createResponse(500);
         }
     }
 
-    private function initHandler($requestHandler)
+    /** @param string|ActionInterface $requestHandler */
+    private function initHandler($requestHandler): ActionInterface
     {
         if (is_string($requestHandler)) {
             $requestHandler = $this->container->get($requestHandler);

@@ -68,6 +68,7 @@ class ActionHandler implements MiddlewareInterface
             : null;
     }
 
+    /** @param mixed $dependency */
     private function resolve($dependency, string $stereoType): ?callable
     {
         if (is_string($dependency)) {

@@ -30,10 +30,11 @@ final class FlysystemFixtureLoader implements FixtureLoaderInterface
             return isset($fileinfo['extension']) && $fileinfo['extension'] === 'php';
         });
 
+        // @todo better way to include fixture classes
         $fixtures = [];
         foreach ($fixtureFiles as $fixtureFile) {
-            // @todo better way to include fixture classes
             $declaredClasses = get_declared_classes();
+            /** @psalm-suppress UnresolvableInclude */
             require_once $this->getBaseDir().'/'.$fixtureFile['path'];
             $fixtureClass = current(array_diff(get_declared_classes(), $declaredClasses));
             $fixtures[] = new $fixtureClass;

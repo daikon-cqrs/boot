@@ -85,7 +85,7 @@ final class CreateMigration extends Command
         }
     }
 
-    private function promptCrate(InputInterface $input, OutputInterface $output)
+    private function promptCrate(InputInterface $input, OutputInterface $output): string
     {
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
@@ -95,7 +95,7 @@ final class CreateMigration extends Command
         return $helper->ask($input, $output, $question);
     }
 
-    private function promptDir(string $parent, InputInterface $input, OutputInterface $output)
+    private function promptDir(string $parent, InputInterface $input, OutputInterface $output): string
     {
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
@@ -109,7 +109,7 @@ final class CreateMigration extends Command
         return $helper->ask($input, $output, $question);
     }
 
-    private function promptName(InputInterface $input, OutputInterface $output)
+    private function promptName(InputInterface $input, OutputInterface $output): string
     {
         $name = $this->getHelper('question')->ask($input, $output, new Question(
             'Please provide a short migration description: '

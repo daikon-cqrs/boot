@@ -51,7 +51,7 @@ class JwtDecoder implements MiddlewareInterface
         );
     }
 
-    private function decodeToken(string $token): ?stdClass
+    private function decodeToken(string $token): ?object
     {
         $secretKey = $this->configProvider->get('project.jwt.secret', 'oroshi');
         try {

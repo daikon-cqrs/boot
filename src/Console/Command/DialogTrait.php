@@ -10,7 +10,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 trait DialogTrait
 {
-    protected function confirm(InputInterface $input, OutputInterface $output)
+    protected function confirm(InputInterface $input, OutputInterface $output): bool
     {
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('Are you sure? [y\N]: ', false);

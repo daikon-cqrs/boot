@@ -28,9 +28,9 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
         $this->delegateWorkerMap($injector, $workerConfigs);
     }
 
-    private function delegateJobDefinitionMap(Injector $injector, array $jobConfigs)
+    private function delegateJobDefinitionMap(Injector $injector, array $jobConfigs): void
     {
-        $factory = function (JobStrategyMap $strategyMap) use ($injector, $jobConfigs) {
+        $factory = function (JobStrategyMap $strategyMap) use ($injector, $jobConfigs): JobDefinitionMap {
             $jobs = [];
             foreach ($jobConfigs as $jobName => $jobConfig) {
                 $jobs[$jobName] = $injector->make(
@@ -47,9 +47,9 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
         $injector->share(JobDefinitionMap::class)->delegate(JobDefinitionMap::class, $factory);
     }
 
-    private function delegateJobStrategyMap(Injector $injector, array $strategyConfigs)
+    private function delegateJobStrategyMap(Injector $injector, array $strategyConfigs): void
     {
-        $factory = function () use ($injector, $strategyConfigs) {
+        $factory = function () use ($injector, $strategyConfigs): JobStrategyMap {
             $strategies = [];
             foreach ($strategyConfigs as $strategyName => $strategyConfig) {
                 $strategies[$strategyName] = $injector->make(
@@ -72,7 +72,7 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
         $injector->share(JobStrategyMap::class)->delegate(JobStrategyMap::class, $factory);
     }
 
-    private function delegateWorkerMap(Injector $injector, array $workerConfigs)
+    private function delegateWorkerMap(Injector $injector, array $workerConfigs): void
     {
         $factory = function (
             ConnectorMap $connectorMap,
@@ -80,7 +80,7 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
         ) use (
             $injector,
             $workerConfigs
-        ) {
+        ): WorkerMap {
             $workers = [];
             foreach ($workerConfigs as $workerName => $workerConfig) {
                 $workers[$workerName] = $injector->make(

@@ -35,6 +35,7 @@ final class RoutingConfigLoader implements ConfigLoaderInterface
             foreach ($sources as $source) {
                 $filepath = $location.$source;
                 if (is_file($filepath) && is_readable($filepath)) {
+                    /** @psalm-suppress UnresolvableInclude */
                     require_once $filepath;
                     $loadedConfigs[] = $filepath;
                 }

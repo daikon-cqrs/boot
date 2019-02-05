@@ -20,7 +20,7 @@ final class ImportFixture extends Command
         $this->fixtureTargetMap = $fixtureTargetMap;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('fixture:import')
