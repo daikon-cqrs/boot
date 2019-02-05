@@ -33,8 +33,10 @@ final class CratesConfigLoader implements ConfigLoaderInterface
         foreach ($this->yamlLoader->load($locations, $sources) as $crateName => $crateConfig) {
             $configDir = $crateConfig['config_dir'];
             $migrationDir = $crateConfig['migration_dir'];
+            $fixtureDir = $crateConfig['fixture_dir'];
             $crateConfig['config_dir'] = $this->expandPath($configDir);
             $crateConfig['migration_dir'] = $this->expandPath($migrationDir);
+            $crateConfig['fixture_dir'] = $this->expandPath($fixtureDir);
             $config[$crateName] = $crateConfig;
         }
         return $config;

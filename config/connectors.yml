@@ -29,6 +29,9 @@ oroshi.filesystem:
       migration:
         adapter: League\Flysystem\Adapter\Local
         location: ${app.base_dir}/app/migration
+      fixture:
+        adapter: League\Flysystem\Adapter\Local
+        location: ${app.base_dir}/app/fixture
 
 oroshi.message_queue:
   class: Daikon\RabbitMq3\Connector\RabbitMq3Connector

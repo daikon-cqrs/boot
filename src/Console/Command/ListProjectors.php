@@ -33,6 +33,7 @@ final class ListProjectors extends Command
         foreach ($this->eventProjectorMap as $projectorKey => $eventProjector) {
             $projectorFqcn = get_class($eventProjector->getProjector());
             $output->writeln("Projector <options=bold>$projectorKey</> implemented by $projectorFqcn");
+            //@todo use closure binding instead of getter on EventProjector
             $output->writeln('  Responds to: '.implode(" | ", $eventProjector->getEventExpressions()));
         }
     }

@@ -32,7 +32,7 @@ final class MigrateUp extends Command
                 'target',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Name of the target to migrate (if omitted all targets will be migrated).'
+                'Name of the target to migrate (if omitted all enabled targets will be migrated).'
             )
             ->addOption(
                 'to',

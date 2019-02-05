@@ -7,6 +7,7 @@ namespace Oroshi\Core\Bootstrap;
 use Auryn\Injector;
 use Daikon\Config\ConfigProvider;
 use Daikon\Config\ConfigProviderInterface;
+use Oroshi\Core\Console\Command\ImportFixture;
 use Oroshi\Core\Console\Command\ListCrates;
 use Oroshi\Core\Console\Command\ListProjectors;
 use Oroshi\Core\Console\Command\ListRoutes;
@@ -36,6 +37,7 @@ final class ConsoleBootstrap implements BootstrapInterface
                 'consoleCommands',
                 array_map([$container, 'get'], [
                     CreateMigration::class,
+                    ImportFixture::class,
                     ListCrates::class,
                     ListProjectors::class,
                     ListRoutes::class,

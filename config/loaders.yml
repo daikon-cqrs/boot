@@ -75,3 +75,15 @@ migrations:
     - migrations.${app.context}.yml
     - migrations.${app.env}.yml
     - migrations.${app.context}.${app.env}.yml
+
+fixtures:
+  loader: Daikon\Config\YamlConfigLoader
+  locations:
+    - ${app.oroshi.config_dir}
+    - ${crates.*.config_dir}
+    - ${app.config_dir}
+  sources:
+    - fixtures.yml
+    - fixtures.${app.context}.yml
+    - fixtures.${app.env}.yml
+    - fixtures.${app.context}.${app.env}.yml

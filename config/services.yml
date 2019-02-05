@@ -37,6 +37,10 @@ oroshi:
     class: Daikon\Dbal\Migration\MigrationTargetMap
     provisioner: Oroshi\Core\Service\Provisioner\MigrationTargetMapProvisioner
 
+  fixture_target_map:
+    class: Oroshi\Core\Fixture\FixtureTargetMap
+    provisioner: Oroshi\Core\Service\Provisioner\FixtureTargetMapProvisioner
+
   projector_map:
     class: Daikon\ReadModel\Projector\EventProjectorMap
     provisioner: Oroshi\Core\Service\Provisioner\EventProjectorMapProvisioner
