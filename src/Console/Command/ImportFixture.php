@@ -35,12 +35,18 @@ final class ImportFixture extends Command
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Name of the target to import (if omitted all enabled targets will be imported).'
+            )->addOption(
+                'from',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The version to import from (if omitted all fixtures will be imported).'
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $target = $input->getOption('target');
+        $version = intval($input->getOption('from'));
 
         foreach ($this->fixtureTargetMap->getEnabledTargets() as $targetName => $fixtureTarget) {
             if ($target && $target !== $targetName) {
@@ -48,7 +54,7 @@ final class ImportFixture extends Command
             }
 
             $output->writeln(sprintf('Importing fixtures for target <options=bold>%s</>', $targetName));
-            $importedFixtures = $fixtureTarget->import($this->messageBus);
+            $importedFixtures = $fixtureTarget->import($this->messageBus, $version);
             if ($importedFixtures->count() > 0) {
                 foreach ($importedFixtures as $fixture) {
                     $output->writeln(sprintf(

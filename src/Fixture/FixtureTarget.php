@@ -49,7 +49,7 @@ final class FixtureTarget implements FixtureTargetInterface
         return $this->fixtureList;
     }
 
-    public function import(MessageBusInterface $messageBus): FixtureList
+    public function import(MessageBusInterface $messageBus, int $version = null): FixtureList
     {
         Assertion::true($this->isEnabled());
 
@@ -57,6 +57,9 @@ final class FixtureTarget implements FixtureTargetInterface
 
         $completedImports = [];
         foreach ($fixtureList as $fixture) {
+            if ($fixture->getVersion() < $version) {
+                continue;
+            }
             $fixture->import($messageBus);
             $completedImports[] = $fixture;
         }
