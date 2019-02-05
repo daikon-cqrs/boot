@@ -38,21 +38,22 @@ class JwtDecoder implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        $cookieParams = $request->getCookieParams();
         $queryParams = parse_query($request->getUri()->getQuery());
-        $encodedToken = $queryParams[self::ATTR_TOKEN]
+        $encodedToken = array_merge($cookieParams, $queryParams)[self::ATTR_TOKEN]
             ?? $this->parseAuthHeader($request->getHeaderLine('Authorization'));
-        $jwtToken = null;
+        $jwt = null;
         if ($encodedToken) {
-            $jwtToken = $this->decodeToken($encodedToken);
+            $jwt = $this->decodeToken($encodedToken);
         }
         return $handler->handle(
-            $request->withAttribute(self::ATTR_TOKEN, $jwtToken)
+            $request->withAttribute(self::ATTR_TOKEN, $jwt)
         );
     }
 
     private function decodeToken(string $token): ?stdClass
     {
-        $secretKey = $this->configProvider->get('project.jwt.secret', 'foobar');
+        $secretKey = $this->configProvider->get('project.jwt.secret', 'oroshi');
         try {
             return JWT::decode($token, $secretKey, ['HS256']);
         } catch (BeforeValidException $err) {
