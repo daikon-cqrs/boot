@@ -14,5 +14,5 @@ interface FixtureTargetInterface
 
     public function getFixtureList(): FixtureList;
 
-    public function import(MessageBusInterface $messageBus, int $version = null): FixtureList;
+    public function import(int $version = null): FixtureList;
 }

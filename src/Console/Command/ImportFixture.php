@@ -2,7 +2,6 @@
 
 namespace Oroshi\Core\Console\Command;
 
-use Daikon\MessageBus\MessageBusInterface;
 use Oroshi\Core\Fixture\FixtureTargetMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,15 +13,11 @@ final class ImportFixture extends Command
     /** @var FixtureTargetMap */
     private $fixtureTargetMap;
 
-    /** @var MessageBusInterface */
-    private $messageBus;
-
-    public function __construct(FixtureTargetMap $fixtureTargetMap, MessageBusInterface $messageBus)
+    public function __construct(FixtureTargetMap $fixtureTargetMap)
     {
         parent::__construct();
 
         $this->fixtureTargetMap = $fixtureTargetMap;
-        $this->messageBus = $messageBus;
     }
 
     protected function configure()
@@ -54,7 +49,7 @@ final class ImportFixture extends Command
             }
 
             $output->writeln(sprintf('Importing fixtures for target <options=bold>%s</>', $targetName));
-            $importedFixtures = $fixtureTarget->import($this->messageBus, $version);
+            $importedFixtures = $fixtureTarget->import($version);
             if ($importedFixtures->count() > 0) {
                 foreach ($importedFixtures as $fixture) {
                     $output->writeln(sprintf(
