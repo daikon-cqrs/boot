@@ -6,9 +6,10 @@ namespace Oroshi\Core\Middleware\Action;
 
 use function GuzzleHttp\json_decode;
 use function GuzzleHttp\Psr7\parse_query;
+use Assert\InvalidArgumentException;
+use Assert\LazyAssertionException;
 use Oroshi\Core\Middleware\ValidationInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use RuntimeException;
 use Stringy\Stringy;
 
 trait ValidatorTrait
@@ -17,14 +18,26 @@ trait ValidatorTrait
     {
         $output = [];
         $input = $this->getFields($this->getInput($request), $errors, $fields);
+
         foreach ($input as $fieldname => $rawInput) {
             $validationMethod = 'validate'.Stringy::create($fieldname)->camelize()->toTitleCase();
             $validationCallback = [$this, $validationMethod];
             if (!is_callable($validationCallback)) {
-                throw new RuntimeException("Missing required validation callback: $validationMethod");
+                throw new \RuntimeException("Missing required validation callback: $validationMethod");
             }
-            $output[$fieldname] = $validationCallback($rawInput, $errors);
+
+            try {
+                //Allow validation by assertion and transformation based on return
+                $$output[$fieldname] = $validationCallback($fieldname, $rawInput, $errors);
+            } catch(LazyAssertionException $exception) {
+                foreach ($exception->getErrorExceptions() as $error) {
+                    $errors[$error->getPropertyPath()][] = $error->getMessage();
+                }
+            } catch(InvalidArgumentException $error) {
+                $errors[$error->getPropertyPath()][] = $error->getMessage();
+            }
         }
+
         return $output;
     }
 
@@ -35,7 +48,7 @@ trait ValidatorTrait
             if (isset($input[$fieldname])) {
                 $output[$fieldname] = $input[$fieldname];
             } elseif ($required) {
-                $errors[] = "Required input for field '$fieldname' is missing.";
+                $errors['_'] = ["Required input for field '$fieldname' is missing."];
             }
         }
         return $output;
@@ -50,8 +63,9 @@ trait ValidatorTrait
             $data = $request->getParsedBody();
         }
         if (!is_array($data)) {
-            throw new RuntimeException('Failed to parse data from request body.');
+            throw new \RuntimeException('Failed to parse data from request body.');
         }
+
         $data = array_merge(parse_query($request->getUri()->getQuery()), $data);
         $trimStrings = function ($value) {
             if (is_string($value)) {
@@ -62,6 +76,7 @@ trait ValidatorTrait
             }
             return $value;
         };
+
         return $trimStrings($data);
     }
 }
