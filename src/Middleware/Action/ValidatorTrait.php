@@ -28,12 +28,12 @@ trait ValidatorTrait
 
             try {
                 //Allow validation by assertion and transformation based on return
-                $$output[$fieldname] = $validationCallback($fieldname, $rawInput, $errors);
-            } catch(LazyAssertionException $exception) {
+                $output[$fieldname] = $validationCallback($fieldname, $rawInput, $errors);
+            } catch (LazyAssertionException $exception) {
                 foreach ($exception->getErrorExceptions() as $error) {
                     $errors[$error->getPropertyPath()][] = $error->getMessage();
                 }
-            } catch(InvalidArgumentException $error) {
+            } catch (InvalidArgumentException $error) {
                 $errors[$error->getPropertyPath()][] = $error->getMessage();
             }
         }
