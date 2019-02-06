@@ -39,7 +39,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             // Exception Handling
             ->define(Whoops::class, [':whoops' => (new Run)->pushHandler(new PrettyPageHandler)])
             // Content Negotiation
-            ->define(ContentLanguage::class, [':languages' => $configProvider->get('app.i18n.languages', ['en'])])
+            ->define(ContentLanguage::class, [':languages' => $configProvider->get('project.i18n.languages', ['en'])])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
             // Cors
             ->share(AnalyzerInterface::class)

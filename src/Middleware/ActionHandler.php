@@ -88,7 +88,7 @@ class ActionHandler implements MiddlewareInterface
             return $dependency;
         }
         throw new \RuntimeException(
-            sprintf("Given type: '%s' is not a $stereoType.", gettype($dependency))
+            sprintf("Given type '%s' is not a $stereoType.", gettype($dependency))
         );
     }
 }
