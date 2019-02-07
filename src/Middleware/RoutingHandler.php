@@ -13,7 +13,6 @@ use Aura\Router\Rule\Path;
 use Middlewares\Utils\Traits\HasResponseFactory;
 use Oroshi\Core\Middleware\Action\ActionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -24,7 +23,7 @@ class RoutingHandler implements MiddlewareInterface
     use HasResponseFactory;
 
     /** @var string */
-    const ATTR_HANDLER = 'request-handler';
+    const ATTR_HANDLER = '_request-handler';
 
     /** @var RouterContainer */
     private $router;

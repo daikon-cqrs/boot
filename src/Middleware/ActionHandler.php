@@ -17,11 +17,11 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ActionHandler implements MiddlewareInterface
 {
-    const ATTR_VALIDATOR = '_validator';
+    const ATTR_ERRORS = '_errors';
 
     const ATTR_RESPONDER = '_responder';
 
-    const ATTR_ERRORS = 'errors';
+    const ATTR_VALIDATOR = '_validator';
 
     /** @var ContainerInterface */
     private $container;

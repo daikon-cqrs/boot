@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Middleware;
 
+use function GuzzleHttp\Psr7\parse_query;
 use Daikon\Config\ConfigProviderInterface;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
-use function GuzzleHttp\Psr7\parse_query;
 use Middlewares\Utils\Traits\HasResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
-use stdClass;
 
 class JwtDecoder implements MiddlewareInterface
 {

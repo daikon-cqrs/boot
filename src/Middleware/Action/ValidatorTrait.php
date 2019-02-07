@@ -19,23 +19,20 @@ trait ValidatorTrait
         $output = [];
         $input = $this->getFields($this->getInput($request), $errors, $fields);
 
-        foreach ($input as $fieldname => $rawInput) {
-            $validationMethod = 'validate'.Stringy::create($fieldname)->camelize()->toTitleCase();
-            $validationCallback = [$this, $validationMethod];
-            if (!is_callable($validationCallback)) {
-                throw new \RuntimeException("Missing required validation callback: $validationMethod");
-            }
+        foreach ($input as $name => $value) {
+            $output = array_merge($output, $this->validate($name, $value, $errors));
+        }
 
-            try {
-                //Allow validation by assertion and transformation based on return
-                $output[$fieldname] = $validationCallback($fieldname, $rawInput, $errors);
-            } catch (LazyAssertionException $exception) {
-                foreach ($exception->getErrorExceptions() as $error) {
-                    $errors[$error->getPropertyPath()][] = $error->getMessage();
-                }
-            } catch (InvalidArgumentException $error) {
-                $errors[$error->getPropertyPath()][] = $error->getMessage();
-            }
+        return $output;
+    }
+
+    private function validateAttributes(array $attributes, ServerRequestInterface $request, array &$errors): array
+    {
+        $output = [];
+        $input = $this->getFields($request->getAttributes(), $errors, $attributes);
+
+        foreach ($input as $name => $value) {
+            $output = array_merge($output, $this->validate($name, $value, $errors));
         }
 
         return $output;
@@ -78,5 +75,26 @@ trait ValidatorTrait
         };
 
         return $trimStrings($data);
+    }
+
+    private function validate(string $name, $value, array &$errors): array
+    {
+        $validationMethod = 'validate'.Stringy::create($name)->camelize()->toTitleCase();
+        $validationCallback = [$this, $validationMethod];
+        if (!is_callable($validationCallback)) {
+            throw new \RuntimeException("Missing required validation callback: $validationMethod");
+        }
+
+        try {
+            //Allow validation by assertion and transformation based on return
+            $output[$name] = $validationCallback($name, $value, $errors);
+        } catch (LazyAssertionException $exception) {
+            foreach ($exception->getErrorExceptions() as $error) {
+                $errors[$error->getPropertyPath()][] = $error->getMessage();
+            }
+        } catch (InvalidArgumentException $error) {
+            $errors[$error->getPropertyPath()][] = $error->getMessage();
+        }
+        return $output ?? [];
     }
 }
