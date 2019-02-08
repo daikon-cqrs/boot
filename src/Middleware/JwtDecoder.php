@@ -21,7 +21,9 @@ class JwtDecoder implements MiddlewareInterface
 {
     use HasResponseFactory;
 
-    const ATTR_TOKEN = '_jwt';
+    const ATTR_TOKEN = '_Host-_jwt';
+
+    const ATTR_XSRF = '_Host-_xsrf';
 
     /** @var LoggerInterface */
     private $logger;
@@ -38,15 +40,18 @@ class JwtDecoder implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $cookieParams = $request->getCookieParams();
-        $queryParams = parse_query($request->getUri()->getQuery());
-        $encodedToken = array_merge($cookieParams, $queryParams)[self::ATTR_TOKEN]
+        $encodedToken = $cookieParams[self::ATTR_TOKEN]
             ?? $this->parseAuthHeader($request->getHeaderLine('Authorization'));
+        $xsrfToken = $cookieParams[self::ATTR_XSRF] ?? $request->getHeaderLine('X-XSRF-TOKEN');
+
         $jwt = null;
         if ($encodedToken) {
             $jwt = $this->decodeToken($encodedToken);
         }
-        return $handler->handle(
-            $request->withAttribute(self::ATTR_TOKEN, $jwt)
+
+        return $handler->handle($request
+            ->withAttribute(self::ATTR_TOKEN, $jwt)
+            ->withAttribute(self::ATTR_XSRF, $xsrfToken)
         );
     }
 
