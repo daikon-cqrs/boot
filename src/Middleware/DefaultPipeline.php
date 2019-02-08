@@ -23,9 +23,7 @@ final class DefaultPipeline implements PipelineBuilderInterface
         ContentType::class,
         ContentLanguage::class,
         ContentEncoding::class,
-        JwtDecoder::class,
         RoutingHandler::class,
-        AuthenticationHandler::class,
         ActionHandler::class,
         RequestHandler::class
     ];
@@ -36,22 +34,32 @@ final class DefaultPipeline implements PipelineBuilderInterface
     /** @var ConfigProviderInterface */
     private $configProvider;
 
-    public function __construct(ContainerInterface $container, ConfigProviderInterface $configProvider)
-    {
+    /** @var array */
+    private $settings;
+
+    public function __construct(
+        ContainerInterface $container,
+        ConfigProviderInterface $configProvider,
+        array $settings = []
+    ) {
         $this->container = $container;
         $this->configProvider = $configProvider;
+        $this->settings = $settings;
     }
 
     public function __invoke(): RequestHandlerInterface
     {
         $middlewares = [];
         $this->addDebug($middlewares, $this->container->get(Whoops::class));
-        if ($this->configProvider->get('project.cors.enabled', true)) {
+        if ($this->configProvider->get('project.cors.enabled', false)) {
             $this->add($middlewares, $this->container->get(Cors::class));
         }
         $this->add(
             $middlewares,
-            ...array_map([$this->container, 'get'], self::$defaultPipeline)
+            ...array_map(
+                [$this->container, 'get'],
+                $this->settings['pipeline'] ?? self::$defaultPipeline
+            )
         );
         return new Relay($middlewares);
     }
