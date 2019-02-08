@@ -52,15 +52,20 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                     'port' => $configProvider->get('project.cors.port'),
                 ]);
                 $corsSettings->setRequestAllowedOrigins(
-                    array_fill_keys($configProvider->get('project.cors.allowed_origins', []), true)
-                );
-                $corsSettings->setRequestAllowedMethods(
-                    array_fill_keys($configProvider->get('project.cors.allowed_methods', []), true)
+                    array_fill_keys($configProvider->get('project.cors.request.allowed_origins', []), true)
                 );
                 $corsSettings->setRequestAllowedHeaders(
-                    array_fill_keys($configProvider->get('project.cors.allowed_headers', []), true)
+                    array_fill_keys($configProvider->get('project.cors.request.allowed_headers', []), true)
                 );
-                $corsSettings->setResponseExposedHeaders([CorsResponseHeaders::ALLOW_ORIGIN => true]);
+                $corsSettings->setRequestAllowedMethods(
+                    array_fill_keys($configProvider->get('project.cors.request.allowed_methods', []), true)
+                );
+                $corsSettings->setRequestCredentialsSupported(
+                    $configProvider->get('project.cors.request.allowed_credentials', false)
+                );
+                $corsSettings->setResponseExposedHeaders(
+                    array_fill_keys($configProvider->get('project.cors.response.exposed_headers', []), true)
+                );
                 return Analyzer::instance($corsSettings);
             })
             // Routing
