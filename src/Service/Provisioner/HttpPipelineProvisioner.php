@@ -63,6 +63,9 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                 $corsSettings->setRequestCredentialsSupported(
                     $configProvider->get('project.cors.request.allowed_credentials', false)
                 );
+                $corsSettings->setPreFlightCacheMaxAge(
+                    $configProvider->get('project.cors.response.preflight_cache_max_age', 0)
+                );
                 $corsSettings->setResponseExposedHeaders(
                     array_fill_keys($configProvider->get('project.cors.response.exposed_headers', []), true)
                 );
