@@ -79,7 +79,7 @@ trait ValidatorTrait
 
     private function validate(string $name, $value, array &$errors): array
     {
-        $validationMethod = 'validate'.Stringy::create($name)->camelize()->toTitleCase();
+        $validationMethod = 'validate'.Stringy::create($name)->upperCamelize();
         $validationCallback = [$this, $validationMethod];
         if (!is_callable($validationCallback)) {
             throw new \RuntimeException("Missing required validation callback: $validationMethod");
