@@ -26,7 +26,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
 {
     public function provision(
         Injector $injector,
-        ConfigProviderInterface $configProvider,
+        ConfigProviderInterface $config,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
         $serviceClass = $serviceDefinition->getServiceClass();
@@ -39,35 +39,35 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             // Exception Handling
             ->define(Whoops::class, [':whoops' => (new Run)->pushHandler(new PrettyPageHandler)])
             // Content Negotiation
-            ->define(ContentLanguage::class, [':languages' => $configProvider->get('project.i18n.languages', ['en'])])
+            ->define(ContentLanguage::class, [':languages' => $config->get('project.i18n.languages', ['en'])])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
             // Cors
             ->share(AnalyzerInterface::class)
             ->alias(AnalyzerInterface::class, Analyzer::class)
-            ->delegate(Analyzer::class, function () use ($configProvider): AnalyzerInterface {
+            ->delegate(Analyzer::class, function () use ($config): AnalyzerInterface {
                 $corsSettings = new Settings;
                 $corsSettings->setServerOrigin([
-                    'scheme' => $configProvider->get('project.cors.scheme'),
-                    'host' => $configProvider->get('project.cors.host'),
-                    'port' => $configProvider->get('project.cors.port'),
+                    'scheme' => $config->get('project.cors.scheme'),
+                    'host' => $config->get('project.cors.host'),
+                    'port' => $config->get('project.cors.port'),
                 ]);
                 $corsSettings->setRequestAllowedOrigins(
-                    array_fill_keys($configProvider->get('project.cors.request.allowed_origins', []), true)
+                    array_fill_keys($config->get('project.cors.request.allowed_origins', []), true)
                 );
                 $corsSettings->setRequestAllowedHeaders(
-                    array_fill_keys($configProvider->get('project.cors.request.allowed_headers', []), true)
+                    array_fill_keys($config->get('project.cors.request.allowed_headers', []), true)
                 );
                 $corsSettings->setRequestAllowedMethods(
-                    array_fill_keys($configProvider->get('project.cors.request.allowed_methods', []), true)
+                    array_fill_keys($config->get('project.cors.request.allowed_methods', []), true)
                 );
                 $corsSettings->setRequestCredentialsSupported(
-                    $configProvider->get('project.cors.request.allowed_credentials', false)
+                    $config->get('project.cors.request.allowed_credentials', false)
                 );
                 $corsSettings->setPreFlightCacheMaxAge(
-                    $configProvider->get('project.cors.response.preflight_cache_max_age', 0)
+                    $config->get('project.cors.response.preflight_cache_max_age', 0)
                 );
                 $corsSettings->setResponseExposedHeaders(
-                    array_fill_keys($configProvider->get('project.cors.response.exposed_headers', []), true)
+                    array_fill_keys($config->get('project.cors.response.exposed_headers', []), true)
                 );
                 return Analyzer::instance($corsSettings);
             })
@@ -75,23 +75,23 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->share(RoutingHandler::class)
             ->delegate(
                 RoutingHandler::class,
-                function (ContainerInterface $container) use ($configProvider): RoutingHandler {
+                function (ContainerInterface $container) use ($config): RoutingHandler {
                     return new RoutingHandler(
-                        $this->routerFactory($configProvider),
+                        $this->routerFactory($config),
                         $container
                     );
                 }
             );
     }
 
-    private function routerFactory(ConfigProviderInterface $configProvider): RouterContainer
+    private function routerFactory(ConfigProviderInterface $config): RouterContainer
     {
-        $appContext = $configProvider->get('app.context');
-        $appEnv = $configProvider->get('app.env');
-        $appConfigDir = $configProvider->get('app.config_dir');
+        $appContext = $config->get('app.context');
+        $appEnv = $config->get('app.env');
+        $appConfigDir = $config->get('app.config_dir');
         $router = new RouterContainer;
-        (new RoutingConfigLoader($router, $configProvider))->load(
-            array_merge([$appConfigDir], $configProvider->get('crates.*.config_dir')),
+        (new RoutingConfigLoader($router, $config))->load(
+            array_merge([$appConfigDir], $config->get('crates.*.config_dir', [])),
             [
                 'routing.php',
                 "routing.$appContext.php",
