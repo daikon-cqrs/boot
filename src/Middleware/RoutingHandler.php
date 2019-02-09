@@ -23,7 +23,7 @@ class RoutingHandler implements MiddlewareInterface
     use HasResponseFactory;
 
     /** @var string */
-    const ATTR_HANDLER = '_request-handler';
+    const ATTR_HANDLER = 'request-handler';
 
     /** @var RouterContainer */
     private $router;
@@ -72,8 +72,8 @@ class RoutingHandler implements MiddlewareInterface
         }
     }
 
-    /** @param string|ActionInterface $requestHandler */
-    private function initHandler($requestHandler): ActionInterface
+    /** @param callable|ActionInterface $requestHandler */
+    private function initHandler($requestHandler): callable
     {
         if (is_string($requestHandler)) {
             $requestHandler = $this->container->get($requestHandler);
