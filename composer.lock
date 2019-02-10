@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/async-job.git",
-                "reference": "2439950b57bb1a49aa90f53d7fecc981b1ba147d"
+                "reference": "c48cb3f6c1f87cae9c75b693e23c13ab4796d8b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/2439950b57bb1a49aa90f53d7fecc981b1ba147d",
-                "reference": "2439950b57bb1a49aa90f53d7fecc981b1ba147d",
+                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/c48cb3f6c1f87cae9c75b693e23c13ab4796d8b3",
+                "reference": "c48cb3f6c1f87cae9c75b693e23c13ab4796d8b3",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 "job",
                 "worker"
             ],
-            "time": "2019-01-29T15:27:34+00:00"
+            "time": "2019-02-10T17:11:09+00:00"
         },
         {
             "name": "daikon/config",
@@ -163,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/config.git",
-                "reference": "b1bfe5391e45b592ebe4d77f352adf70fcf9017d"
+                "reference": "cf1bb2ff4aba0eb8756ce6d16863fe2434deb68f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/config/zipball/b1bfe5391e45b592ebe4d77f352adf70fcf9017d",
-                "reference": "b1bfe5391e45b592ebe4d77f352adf70fcf9017d",
+                "url": "https://api.github.com/repos/daikon-cqrs/config/zipball/cf1bb2ff4aba0eb8756ce6d16863fe2434deb68f",
+                "reference": "cf1bb2ff4aba0eb8756ce6d16863fe2434deb68f",
                 "shasum": ""
             },
             "require": {
@@ -198,7 +198,7 @@
             "keywords": [
                 "config"
             ],
-            "time": "2019-01-29T15:10:28+00:00"
+            "time": "2019-02-10T14:13:52+00:00"
         },
         {
             "name": "daikon/couchdb-adapter",
@@ -206,12 +206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "b0511ada242cbfdb577f427cac07eb7d56a6e1d7"
+                "reference": "2c6ce7fa4dbe65115d6a435fe99ccc610ca56163"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/b0511ada242cbfdb577f427cac07eb7d56a6e1d7",
-                "reference": "b0511ada242cbfdb577f427cac07eb7d56a6e1d7",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/2c6ce7fa4dbe65115d6a435fe99ccc610ca56163",
+                "reference": "2c6ce7fa4dbe65115d6a435fe99ccc610ca56163",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2019-01-29T15:36:13+00:00"
+            "time": "2019-02-10T17:27:44+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/data-structure.git",
-                "reference": "8a5afa2ad19cefc72ea3beada310aac81e7311c0"
+                "reference": "f14a2317779da182006c358646c5f84e6e9e0d14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/8a5afa2ad19cefc72ea3beada310aac81e7311c0",
-                "reference": "8a5afa2ad19cefc72ea3beada310aac81e7311c0",
+                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/f14a2317779da182006c358646c5f84e6e9e0d14",
+                "reference": "f14a2317779da182006c358646c5f84e6e9e0d14",
                 "shasum": ""
             },
             "require": {
@@ -286,7 +286,7 @@
                 "list",
                 "map"
             ],
-            "time": "2019-01-29T15:17:14+00:00"
+            "time": "2019-02-10T17:04:30+00:00"
         },
         {
             "name": "daikon/dbal",
@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "7d1904f68260b6f3ccbb2304eee15e63366e8abc"
+                "reference": "f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/7d1904f68260b6f3ccbb2304eee15e63366e8abc",
-                "reference": "7d1904f68260b6f3ccbb2304eee15e63366e8abc",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f",
+                "reference": "f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f",
                 "shasum": ""
             },
             "require": {
@@ -333,7 +333,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2019-01-29T15:34:15+00:00"
+            "time": "2019-02-10T17:18:12+00:00"
         },
         {
             "name": "daikon/elasticsearch6-adapter",
@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "c67a6669f2a4cc8f4b7ab0e3e16076cfd34ec40d"
+                "reference": "9c95c22f09a89dc1d2badc176e1378ce54b74e62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/c67a6669f2a4cc8f4b7ab0e3e16076cfd34ec40d",
-                "reference": "c67a6669f2a4cc8f4b7ab0e3e16076cfd34ec40d",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/9c95c22f09a89dc1d2badc176e1378ce54b74e62",
+                "reference": "9c95c22f09a89dc1d2badc176e1378ce54b74e62",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-01-29T15:37:42+00:00"
+            "time": "2019-02-10T17:28:41+00:00"
         },
         {
             "name": "daikon/entity",
@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "93b33d520bbbfcb717ea41494c5b6fea4d81e0da"
+                "reference": "bb988788d9e37c9a506ea9404a840ab52e0091be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/93b33d520bbbfcb717ea41494c5b6fea4d81e0da",
-                "reference": "93b33d520bbbfcb717ea41494c5b6fea4d81e0da",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/bb988788d9e37c9a506ea9404a840ab52e0091be",
+                "reference": "bb988788d9e37c9a506ea9404a840ab52e0091be",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "generic",
                 "value-object"
             ],
-            "time": "2019-01-29T15:22:24+00:00"
+            "time": "2019-02-10T17:08:10+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -432,12 +432,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "46e2c932cdc7ec0d99355124466ebe28201f6edf"
+                "reference": "df7fde08b4a11c2e331e5d96af3ab3f7fb023da9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/46e2c932cdc7ec0d99355124466ebe28201f6edf",
-                "reference": "46e2c932cdc7ec0d99355124466ebe28201f6edf",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/df7fde08b4a11c2e331e5d96af3ab3f7fb023da9",
+                "reference": "df7fde08b4a11c2e331e5d96af3ab3f7fb023da9",
                 "shasum": ""
             },
             "require": {
@@ -469,7 +469,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-01-29T15:26:35+00:00"
+            "time": "2019-02-10T17:12:35+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -477,12 +477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/flysystem-adapter.git",
-                "reference": "6b81dd9220192516ada20b68b92e028c7dc641f7"
+                "reference": "f2cbc55230905284c401f32cd2fcaa029933cec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/6b81dd9220192516ada20b68b92e028c7dc641f7",
-                "reference": "6b81dd9220192516ada20b68b92e028c7dc641f7",
+                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/f2cbc55230905284c401f32cd2fcaa029933cec1",
+                "reference": "f2cbc55230905284c401f32cd2fcaa029933cec1",
                 "shasum": ""
             },
             "require": {
@@ -512,7 +512,7 @@
                 "Flysystem",
                 "adapter"
             ],
-            "time": "2019-01-29T15:38:28+00:00"
+            "time": "2019-02-10T17:36:22+00:00"
         },
         {
             "name": "daikon/interop",
@@ -520,12 +520,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/interop.git",
-                "reference": "36660eb7c7a7c9d739f14b079582c73e849d7cc7"
+                "reference": "88776fc3ef955e2ab88b5296ed331be039d7fd58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/36660eb7c7a7c9d739f14b079582c73e849d7cc7",
-                "reference": "36660eb7c7a7c9d739f14b079582c73e849d7cc7",
+                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/88776fc3ef955e2ab88b5296ed331be039d7fd58",
+                "reference": "88776fc3ef955e2ab88b5296ed331be039d7fd58",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +547,7 @@
             ],
             "description": "Interop traits used across Daikon components.",
             "homepage": "https://github.com/daikon-cqrs/interop",
-            "time": "2019-01-29T15:15:23+00:00"
+            "time": "2019-02-10T16:18:55+00:00"
         },
         {
             "name": "daikon/message-bus",
@@ -555,12 +555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/message-bus.git",
-                "reference": "4d64c78810aa92b2bc9a666efd21e8d65ae2a6e5"
+                "reference": "875561fd445e9f915bda04a1c2c60b832d40c9fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/4d64c78810aa92b2bc9a666efd21e8d65ae2a6e5",
-                "reference": "4d64c78810aa92b2bc9a666efd21e8d65ae2a6e5",
+                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/875561fd445e9f915bda04a1c2c60b832d40c9fc",
+                "reference": "875561fd445e9f915bda04a1c2c60b832d40c9fc",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +591,7 @@
                 "message-bus",
                 "messaging"
             ],
-            "time": "2019-01-29T15:24:12+00:00"
+            "time": "2019-02-10T17:09:02+00:00"
         },
         {
             "name": "daikon/rabbitmq3-adapter",
@@ -599,12 +599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "623b9ef60a34c235a09cb9158457e7bd4fe8b6fd"
+                "reference": "ed3665d81828845faecd49b693a52690715ec6ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/623b9ef60a34c235a09cb9158457e7bd4fe8b6fd",
-                "reference": "623b9ef60a34c235a09cb9158457e7bd4fe8b6fd",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/ed3665d81828845faecd49b693a52690715ec6ed",
+                "reference": "ed3665d81828845faecd49b693a52690715ec6ed",
                 "shasum": ""
             },
             "require": {
@@ -636,7 +636,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2019-01-29T15:39:16+00:00"
+            "time": "2019-02-10T17:37:23+00:00"
         },
         {
             "name": "daikon/read-model",
@@ -644,12 +644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "7be1b9eaf404a6667c6fc027c0ed6593b4218596"
+                "reference": "e52d2b7e04cffc2d4b936955e9803a6a81b26cc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/7be1b9eaf404a6667c6fc027c0ed6593b4218596",
-                "reference": "7be1b9eaf404a6667c6fc027c0ed6593b4218596",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/e52d2b7e04cffc2d4b936955e9803a6a81b26cc9",
+                "reference": "e52d2b7e04cffc2d4b936955e9803a6a81b26cc9",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-01-29T18:01:16+00:00"
+            "time": "2019-02-10T17:15:21+00:00"
         },
         {
             "name": "danielstjules/stringy",
