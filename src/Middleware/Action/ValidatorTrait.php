@@ -64,7 +64,7 @@ trait ValidatorTrait
         }
 
         $data = array_merge(parse_query($request->getUri()->getQuery()), $data);
-        $trimStrings = function ($value) {
+        $trimStrings = function ($value) use (&$trimStrings) {
             if (is_string($value)) {
                 return trim($value);
             }
