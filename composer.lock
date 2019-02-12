@@ -555,12 +555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/message-bus.git",
-                "reference": "875561fd445e9f915bda04a1c2c60b832d40c9fc"
+                "reference": "2cf0c9674462f120105808da7c11f12a4bc758c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/875561fd445e9f915bda04a1c2c60b832d40c9fc",
-                "reference": "875561fd445e9f915bda04a1c2c60b832d40c9fc",
+                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/2cf0c9674462f120105808da7c11f12a4bc758c3",
+                "reference": "2cf0c9674462f120105808da7c11f12a4bc758c3",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +591,7 @@
                 "message-bus",
                 "messaging"
             ],
-            "time": "2019-02-10T17:09:02+00:00"
+            "time": "2019-02-12T17:57:20+00:00"
         },
         {
             "name": "daikon/rabbitmq3-adapter",
