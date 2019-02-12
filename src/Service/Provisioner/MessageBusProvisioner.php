@@ -84,7 +84,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
         ServiceDefinitionMap $serviceDefinitionMap,
         TransportMap $transportMap
     ): array {
-        $channelSubs = [ 'commands' => [], 'commits' => [], 'events' => [] ];
+        $channelSubs = ['commands' => [], 'commits' => [], 'events' => []];
         foreach ($serviceDefinitionMap as $serviceDefinition) {
             $this->registerServiceSubs($injector, $serviceDefinition, $transportMap, $channelSubs);
         }
@@ -129,7 +129,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
                 return $transportMap->get($transportName);
             },
             function () use ($injector, $serviceFqcn): MessageHandlerList {
-                return new MessageHandlerList([ $injector->make($serviceFqcn) ]);
+                return new MessageHandlerList([$injector->make($serviceFqcn)]);
             },
             null,
             function () use ($injector, $subscriptionConfig): MetadataEnricherList {

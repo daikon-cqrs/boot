@@ -6,7 +6,7 @@ oroshi:
       location: ${app.log_dir}/oroshi.log
     subscriptions:
       logging_sub:
-        channel: logging
+        channel: events
         transport: inproc
 
   crate_map:

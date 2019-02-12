@@ -599,12 +599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "ed3665d81828845faecd49b693a52690715ec6ed"
+                "reference": "138f38084b88f53ab77f8d7d20649f3fddfa260c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/ed3665d81828845faecd49b693a52690715ec6ed",
-                "reference": "ed3665d81828845faecd49b693a52690715ec6ed",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/138f38084b88f53ab77f8d7d20649f3fddfa260c",
+                "reference": "138f38084b88f53ab77f8d7d20649f3fddfa260c",
                 "shasum": ""
             },
             "require": {
@@ -636,7 +636,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2019-02-10T17:37:23+00:00"
+            "time": "2019-02-12T21:47:44+00:00"
         },
         {
             "name": "daikon/read-model",
