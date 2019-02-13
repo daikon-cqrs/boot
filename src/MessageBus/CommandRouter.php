@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\MessageBus;
 
-use Assert\Assertion;
 use Auryn\Injector;
 use Daikon\EventSourcing\Aggregate\AggregateAlias;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
 use Daikon\EventSourcing\EventStore\UnitOfWorkMap;
-use Daikon\MessageBus\Channel\Subscription\MessageHandler\MessageHandlerInterface;
 use Daikon\MessageBus\EnvelopeInterface;
+use Daikon\MessageBus\Channel\Subscription\MessageHandler\MessageHandlerInterface;
 
 final class CommandRouter implements MessageHandlerInterface
 {
@@ -26,10 +25,14 @@ final class CommandRouter implements MessageHandlerInterface
         $this->spawnedHandlers = [];
     }
 
-    public function handle(EnvelopeInterface $envelope): bool
+    public function handle(EnvelopeInterface $envelope): void
     {
+        /** @var CommandInterface $command */
         $command = $envelope->getMessage();
-        Assertion::implementsInterface($command, CommandInterface::class);
+        if (!is_a($command, CommandInterface::class)) {
+            return;
+        }
+
         $commandFqcn = get_class($command);
         if (!isset($this->handlerMap[$commandFqcn])) {
             throw new \RuntimeException("No handler assigned to given command $commandFqcn");
@@ -37,6 +40,7 @@ final class CommandRouter implements MessageHandlerInterface
         if (!isset($this->spawnedHandlers[$commandFqcn])) {
             $this->spawnedHandlers[$commandFqcn] = $this->handlerMap[$commandFqcn]();
         }
-        return $this->spawnedHandlers[$commandFqcn]->handle($envelope);
+
+        $this->spawnedHandlers[$commandFqcn]->handle($envelope);
     }
 }

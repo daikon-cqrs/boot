@@ -1,13 +1,9 @@
 oroshi:
   logger:
-    class: Oroshi\Core\Logging\LoggingService
+    class: Monolog\Logger
     provisioner: Oroshi\Core\Service\Provisioner\MonologProvisioner
     settings:
       location: ${app.log_dir}/oroshi.log
-    subscriptions:
-      logging_sub:
-        channel: events
-        transport: inproc
 
   crate_map:
     class: Oroshi\Core\Crate\CrateMap

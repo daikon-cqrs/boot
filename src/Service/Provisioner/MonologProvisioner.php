@@ -6,10 +6,9 @@ namespace Oroshi\Core\Service\Provisioner;
 
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
-use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use Oroshi\Core\Exception\ConfigException;
-use Oroshi\Core\Logging\LoggingService;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 use Psr\Log\LoggerInterface;
 
@@ -20,6 +19,7 @@ final class MonologProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $className = $serviceDefinition->getServiceClass();
         $settings = $serviceDefinition->getSettings();
         if (!isset($settings['location'])) {
             throw new ConfigException('Please provide a logging service output location.');
@@ -28,16 +28,16 @@ final class MonologProvisioner implements ProvisionerInterface
         $settings['name'] = $settings['name'] ?? 'default-logger';
 
         $injector
-            ->alias(LoggerInterface::class, LoggingService::class)
-            ->share(LoggingService::class)
+            ->alias(LoggerInterface::class, $className)
+            ->share($className)
             ->delegate(
-                LoggingService::class,
-                function () use ($settings): LoggingService {
-                    $logger = new Logger($settings['name']);
+                $className,
+                function () use ($className, $settings): LoggerInterface {
+                    $logger = new $className($settings['name']);
                     $logger->pushHandler(
                         new StreamHandler($settings['location'], $settings['level'])
                     );
-                    return new LoggingService($logger);
+                    return $logger;
                 }
             );
     }
