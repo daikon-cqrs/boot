@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f"
+                "reference": "5a61e488a94e513dbc1986859b42e619cd0d9b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f",
-                "reference": "f0cac45f1347b2ac87d2987e3c4b7bb9829d7e8f",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/5a61e488a94e513dbc1986859b42e619cd0d9b0e",
+                "reference": "5a61e488a94e513dbc1986859b42e619cd0d9b0e",
                 "shasum": ""
             },
             "require": {
@@ -333,7 +333,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2019-02-10T17:18:12+00:00"
+            "time": "2019-02-13T16:54:06+00:00"
         },
         {
             "name": "daikon/elasticsearch6-adapter",
@@ -644,12 +644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "a0ce885b6382959c580d7b168825cf4b6b2c7ba5"
+                "reference": "e1423e75c067e0b13fc51bd82d748226806288c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/a0ce885b6382959c580d7b168825cf4b6b2c7ba5",
-                "reference": "a0ce885b6382959c580d7b168825cf4b6b2c7ba5",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/e1423e75c067e0b13fc51bd82d748226806288c9",
+                "reference": "e1423e75c067e0b13fc51bd82d748226806288c9",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-02-13T13:38:58+00:00"
+            "time": "2019-02-13T16:48:26+00:00"
         },
         {
             "name": "danielstjules/stringy",

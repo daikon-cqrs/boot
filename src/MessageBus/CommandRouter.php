@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\MessageBus;
 
+use Assert\Assertion;
 use Auryn\Injector;
 use Daikon\EventSourcing\Aggregate\AggregateAlias;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
@@ -29,9 +30,7 @@ final class CommandRouter implements MessageHandlerInterface
     {
         /** @var CommandInterface $command */
         $command = $envelope->getMessage();
-        if (!is_a($command, CommandInterface::class)) {
-            return;
-        }
+        Assertion::implementsInterface($command, CommandInterface::class);
 
         $commandFqcn = get_class($command);
         if (!isset($this->handlerMap[$commandFqcn])) {

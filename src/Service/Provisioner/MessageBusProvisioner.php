@@ -7,6 +7,7 @@ namespace Oroshi\Core\Service\Provisioner;
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Channel;
 use Daikon\MessageBus\Channel\ChannelMap;
 use Daikon\MessageBus\Channel\Subscription\LazySubscription;
@@ -16,7 +17,6 @@ use Daikon\MessageBus\Channel\Subscription\Transport\TransportInterface;
 use Daikon\MessageBus\Channel\Subscription\Transport\TransportMap;
 use Daikon\MessageBus\MessageBusInterface;
 use Daikon\MessageBus\Metadata\MetadataEnricherList;
-use Psr\Container\ContainerInterface;
 use Oroshi\Core\Exception\ConfigException;
 use Oroshi\Core\Service\ServiceDefinition;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
@@ -123,6 +123,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
         TransportMap $transportMap
     ): LazySubscription {
         $transportName = $subscriptionConfig['transport'];
+        $guard = (array)$subscriptionConfig['guard'] ?? [];
         return new LazySubscription(
             $subscriptionName,
             function () use ($transportMap, $transportName): TransportInterface {
@@ -131,7 +132,10 @@ final class MessageBusProvisioner implements ProvisionerInterface
             function () use ($injector, $serviceFqcn): MessageHandlerList {
                 return new MessageHandlerList([$injector->make($serviceFqcn)]);
             },
-            null,
+            function (EnvelopeInterface $envelope) use ($guard): bool {
+                $interfaces = class_implements($envelope->getMessage());
+                return count(array_intersect($guard, $interfaces)) > 0;
+            },
             function () use ($injector, $subscriptionConfig): MetadataEnricherList {
                 $enrichers = [];
                 foreach ($subscriptionConfig['enrichers'] ?? [] as $enricherConfig) {
