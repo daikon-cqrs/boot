@@ -40,10 +40,10 @@ final class ConnectorMapProvisioner implements ProvisionerInterface
                     );
                 }
                 $connectorClass = $connectorConfig['class'];
-                $connectors[$connectorName] = $injector->make(
+                $connectors[$connectorName] = $injector->define(
                     $connectorClass,
                     [':settings' => $connectorConfig['settings'] ?? []]
-                );
+                )->make($connectorClass);
             }
             return new ConnectorMap($connectors);
         };
