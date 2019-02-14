@@ -9,7 +9,6 @@ use Daikon\Config\ConfigProviderInterface;
 use Oroshi\Core\Crate\Crate;
 use Oroshi\Core\Crate\CrateMap;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
-use Stringy\Stringy;
 
 final class CrateMapProvisioner implements ProvisionerInterface
 {
