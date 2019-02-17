@@ -19,6 +19,8 @@ class ActionHandler implements MiddlewareInterface
 {
     const ATTR_ERRORS = '_errors';
 
+    const ATTR_ERROR_CODE = '_error_code';
+
     const ATTR_RESPONDER = '_responder';
 
     const ATTR_VALIDATOR = '_validator';
