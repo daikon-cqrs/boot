@@ -123,7 +123,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
         TransportMap $transportMap
     ): LazySubscription {
         $transportName = $subscriptionConfig['transport'];
-        $guard = (array)$subscriptionConfig['guard'] ?? [];
+        $guards = (array)($subscriptionConfig['guards'] ?? []);
         return new LazySubscription(
             $subscriptionName,
             function () use ($transportMap, $transportName): TransportInterface {
@@ -132,9 +132,15 @@ final class MessageBusProvisioner implements ProvisionerInterface
             function () use ($injector, $serviceFqcn): MessageHandlerList {
                 return new MessageHandlerList([$injector->make($serviceFqcn)]);
             },
-            function (EnvelopeInterface $envelope) use ($guard): bool {
-                $interfaces = class_implements($envelope->getMessage());
-                return count(array_intersect($guard, $interfaces)) > 0;
+            function (EnvelopeInterface $envelope) use ($guards): bool {
+                $message = $envelope->getMessage();
+                $interfaces = class_implements($message);
+                foreach ($guards as $guard) {
+                    if ($message instanceof $guard || isset($interfaces[$guard])) {
+                        return true;
+                    }
+                }
+                return false;
             },
             function () use ($injector, $subscriptionConfig): MetadataEnricherList {
                 $enrichers = [];

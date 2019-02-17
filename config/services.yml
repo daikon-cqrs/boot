@@ -47,7 +47,7 @@ oroshi:
       commits_sub:
         channel: commits
         transport: inproc
-        guard: Daikon\EventSourcing\EventStore\Commit\CommitInterface
+        guards: Daikon\EventSourcing\EventStore\Commit\CommitInterface
 
   command_router:
     class: Oroshi\Core\MessageBus\CommandRouter
@@ -57,7 +57,7 @@ oroshi:
       command_sub:
         channel: commands
         transport: inproc
-        guard: Daikon\EventSourcing\Aggregate\Command\CommandInterface
+        guards: Daikon\EventSourcing\Aggregate\Command\CommandInterface
 
   message_bus:
     class: Daikon\MessageBus\MessageBus
