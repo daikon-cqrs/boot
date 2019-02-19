@@ -45,7 +45,7 @@ trait ValidatorTrait
             if (isset($input[$fieldname])) {
                 $output[$fieldname] = $input[$fieldname];
             } elseif ($required) {
-                $errors['_'] = ["Required input for field '$fieldname' is missing."];
+                $errors['_'][] = "Required input for field '$fieldname' is missing.";
             }
         }
         return $output;
