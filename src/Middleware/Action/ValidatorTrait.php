@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Middleware\Action;
 
-use function GuzzleHttp\json_decode;
 use function GuzzleHttp\Psr7\parse_query;
 use Assert\InvalidArgumentException;
 use Assert\LazyAssertionException;
-use Oroshi\Core\Middleware\ValidationInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Stringy\Stringy;
 
