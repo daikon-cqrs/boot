@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Oroshi\Core\MessageBus;
 
 use Assert\Assertion;
-use Auryn\Injector;
-use Daikon\EventSourcing\Aggregate\AggregateAlias;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
-use Daikon\EventSourcing\EventStore\UnitOfWorkMap;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Subscription\MessageHandler\MessageHandlerInterface;
 

@@ -9,7 +9,6 @@ use Oroshi\Core\Middleware\Action\ActionInterface;
 use Oroshi\Core\Middleware\Action\ResponderInterface;
 use Oroshi\Core\Middleware\Action\ValidatorInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -46,13 +45,16 @@ class ActionHandler implements MiddlewareInterface
         if ($validator = $this->getValidator($action->registerValidator($request))) {
             $request = $validator($request);
         }
+
         $errors = $request->getAttribute(self::ATTR_ERRORS);
         $request = empty($errors)
             ? $action($request)
             : $action->handleError($request);
+
         if (!$responder = $this->getResponder($request)) {
             throw new \RuntimeException('Unable to determine responder for '.get_class($action));
         }
+
         return $responder($request);
     }
 
@@ -75,7 +77,7 @@ class ActionHandler implements MiddlewareInterface
     {
         if (is_string($dependency)) {
             Assertion::classExists($dependency);
-            $responder = $this->container->get($dependency);
+            $dependency = $this->container->get($dependency);
         } elseif (is_array($dependency) && count($dependency) === 2) {
             $fqcn = $dependency[0];
             $params = $dependency[1];
