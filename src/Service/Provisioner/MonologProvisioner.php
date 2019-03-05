@@ -32,7 +32,8 @@ final class MonologProvisioner implements ProvisionerInterface
             ->share($className)
             ->delegate(
                 $className,
-                function () use ($className, $settings): LoggerInterface {
+                function () use ($className, $settings): Logger {
+                    /** @var Logger $logger */
                     $logger = new $className($settings['name']);
                     $logger->pushHandler(
                         new StreamHandler($settings['location'], $settings['level'])

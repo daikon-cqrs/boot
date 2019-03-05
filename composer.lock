@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f1304b150c15dca01fc71fa1c47d5ec",
+    "content-hash": "7b26e7f02057b9a6a404cace67e67a21",
     "packages": [
         {
             "name": "aura/router",
@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/async-job.git",
-                "reference": "f03e73385d957e275a723b5a706de024eb1b916f"
+                "reference": "cd95895ef7b977711d5da5cbf2ae957e393c12fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/f03e73385d957e275a723b5a706de024eb1b916f",
-                "reference": "f03e73385d957e275a723b5a706de024eb1b916f",
+                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/cd95895ef7b977711d5da5cbf2ae957e393c12fa",
+                "reference": "cd95895ef7b977711d5da5cbf2ae957e393c12fa",
                 "shasum": ""
             },
             "require": {
@@ -131,7 +131,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -155,7 +155,7 @@
                 "job",
                 "worker"
             ],
-            "time": "2019-02-13T13:29:33+00:00"
+            "time": "2019-03-05T09:15:09+00:00"
         },
         {
             "name": "daikon/config",
@@ -206,12 +206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "2c6ce7fa4dbe65115d6a435fe99ccc610ca56163"
+                "reference": "3e725588232a90e47cadafaf679e144389f36ecc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/2c6ce7fa4dbe65115d6a435fe99ccc610ca56163",
-                "reference": "2c6ce7fa4dbe65115d6a435fe99ccc610ca56163",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/3e725588232a90e47cadafaf679e144389f36ecc",
+                "reference": "3e725588232a90e47cadafaf679e144389f36ecc",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -242,7 +242,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2019-02-10T17:27:44+00:00"
+            "time": "2019-03-05T09:36:58+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/data-structure.git",
-                "reference": "f14a2317779da182006c358646c5f84e6e9e0d14"
+                "reference": "9eac3ec4b1b3f8f00ef5c53d4b2e760acba6519b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/f14a2317779da182006c358646c5f84e6e9e0d14",
-                "reference": "f14a2317779da182006c358646c5f84e6e9e0d14",
+                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/9eac3ec4b1b3f8f00ef5c53d4b2e760acba6519b",
+                "reference": "9eac3ec4b1b3f8f00ef5c53d4b2e760acba6519b",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
                 "php-ds/php-ds": "^1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -286,7 +286,7 @@
                 "list",
                 "map"
             ],
-            "time": "2019-02-10T17:04:30+00:00"
+            "time": "2019-03-05T09:05:05+00:00"
         },
         {
             "name": "daikon/dbal",
@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "5a61e488a94e513dbc1986859b42e619cd0d9b0e"
+                "reference": "38acb623b02b79e0d90fd08cd2be148992700c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/5a61e488a94e513dbc1986859b42e619cd0d9b0e",
-                "reference": "5a61e488a94e513dbc1986859b42e619cd0d9b0e",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/38acb623b02b79e0d90fd08cd2be148992700c90",
+                "reference": "38acb623b02b79e0d90fd08cd2be148992700c90",
                 "shasum": ""
             },
             "require": {
@@ -311,7 +311,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -333,7 +333,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2019-02-13T16:54:06+00:00"
+            "time": "2019-03-05T09:23:28+00:00"
         },
         {
             "name": "daikon/elasticsearch6-adapter",
@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "9c95c22f09a89dc1d2badc176e1378ce54b74e62"
+                "reference": "ec8275a0e959f91bdb00d22b386f94ea56f528a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/9c95c22f09a89dc1d2badc176e1378ce54b74e62",
-                "reference": "9c95c22f09a89dc1d2badc176e1378ce54b74e62",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/ec8275a0e959f91bdb00d22b386f94ea56f528a6",
+                "reference": "ec8275a0e959f91bdb00d22b386f94ea56f528a6",
                 "shasum": ""
             },
             "require": {
@@ -356,7 +356,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -377,7 +377,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-02-10T17:28:41+00:00"
+            "time": "2019-03-05T09:38:37+00:00"
         },
         {
             "name": "daikon/entity",
@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "bb988788d9e37c9a506ea9404a840ab52e0091be"
+                "reference": "0ae6a18bc1945cbd417044884ef1f84c49b73764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/bb988788d9e37c9a506ea9404a840ab52e0091be",
-                "reference": "bb988788d9e37c9a506ea9404a840ab52e0091be",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/0ae6a18bc1945cbd417044884ef1f84c49b73764",
+                "reference": "0ae6a18bc1945cbd417044884ef1f84c49b73764",
                 "shasum": ""
             },
             "require": {
@@ -402,7 +402,7 @@
                 "ramsey/uuid": "^3.8"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -424,7 +424,7 @@
                 "generic",
                 "value-object"
             ],
-            "time": "2019-02-10T17:08:10+00:00"
+            "time": "2019-03-05T09:10:29+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -432,12 +432,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "ff0add846a55c6438c2a01c1ad76285c2351432b"
+                "reference": "66c5e3c889efb370410d72ef632dd6f5b303b59d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/ff0add846a55c6438c2a01c1ad76285c2351432b",
-                "reference": "ff0add846a55c6438c2a01c1ad76285c2351432b",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/66c5e3c889efb370410d72ef632dd6f5b303b59d",
+                "reference": "66c5e3c889efb370410d72ef632dd6f5b303b59d",
                 "shasum": ""
             },
             "require": {
@@ -447,7 +447,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -469,7 +469,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-02-13T13:35:36+00:00"
+            "time": "2019-03-05T09:17:18+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -477,12 +477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/flysystem-adapter.git",
-                "reference": "f2cbc55230905284c401f32cd2fcaa029933cec1"
+                "reference": "b559d1ef57099345390e22920db2e6445a43809c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/f2cbc55230905284c401f32cd2fcaa029933cec1",
-                "reference": "f2cbc55230905284c401f32cd2fcaa029933cec1",
+                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/b559d1ef57099345390e22920db2e6445a43809c",
+                "reference": "b559d1ef57099345390e22920db2e6445a43809c",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +491,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -512,7 +512,7 @@
                 "Flysystem",
                 "adapter"
             ],
-            "time": "2019-02-10T17:36:22+00:00"
+            "time": "2019-03-05T09:40:16+00:00"
         },
         {
             "name": "daikon/interop",
@@ -520,12 +520,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/interop.git",
-                "reference": "88776fc3ef955e2ab88b5296ed331be039d7fd58"
+                "reference": "2689dcef901a4c02984bb6c594f64f3972f84105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/88776fc3ef955e2ab88b5296ed331be039d7fd58",
-                "reference": "88776fc3ef955e2ab88b5296ed331be039d7fd58",
+                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/2689dcef901a4c02984bb6c594f64f3972f84105",
+                "reference": "2689dcef901a4c02984bb6c594f64f3972f84105",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +547,7 @@
             ],
             "description": "Interop traits used across Daikon components.",
             "homepage": "https://github.com/daikon-cqrs/interop",
-            "time": "2019-02-10T16:18:55+00:00"
+            "time": "2019-03-05T09:02:43+00:00"
         },
         {
             "name": "daikon/message-bus",
@@ -555,12 +555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/message-bus.git",
-                "reference": "5644a7206798e0dace43ba2e925e974a0810ebad"
+                "reference": "64a4c786a3922073c24b5a82e8784f119dfce23b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/5644a7206798e0dace43ba2e925e974a0810ebad",
-                "reference": "5644a7206798e0dace43ba2e925e974a0810ebad",
+                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/64a4c786a3922073c24b5a82e8784f119dfce23b",
+                "reference": "64a4c786a3922073c24b5a82e8784f119dfce23b",
                 "shasum": ""
             },
             "require": {
@@ -570,7 +570,7 @@
                 "ramsey/uuid": "^3.8"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -591,7 +591,7 @@
                 "message-bus",
                 "messaging"
             ],
-            "time": "2019-02-13T13:01:45+00:00"
+            "time": "2019-03-05T09:12:32+00:00"
         },
         {
             "name": "daikon/rabbitmq3-adapter",
@@ -599,12 +599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "ba1b91e64d185d60c10566db258e8c255ddd4112"
+                "reference": "c76215b5dcf56e0d7bc53defebe760084278cc94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/ba1b91e64d185d60c10566db258e8c255ddd4112",
-                "reference": "ba1b91e64d185d60c10566db258e8c255ddd4112",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/c76215b5dcf56e0d7bc53defebe760084278cc94",
+                "reference": "c76215b5dcf56e0d7bc53defebe760084278cc94",
                 "shasum": ""
             },
             "require": {
@@ -615,7 +615,7 @@
                 "php-amqplib/php-amqplib": "^v2.8"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -636,7 +636,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2019-02-13T13:45:00+00:00"
+            "time": "2019-03-05T09:42:19+00:00"
         },
         {
             "name": "daikon/read-model",
@@ -644,12 +644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "dbd61b7f2af70d1ec7ddf6e44633fe3def6f5269"
+                "reference": "d99b54c794d0b7e9de38f5b0f09a54a9329f180a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/dbd61b7f2af70d1ec7ddf6e44633fe3def6f5269",
-                "reference": "dbd61b7f2af70d1ec7ddf6e44633fe3def6f5269",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/d99b54c794d0b7e9de38f5b0f09a54a9329f180a",
+                "reference": "d99b54c794d0b7e9de38f5b0f09a54a9329f180a",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +661,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4",
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^2.0"
@@ -684,7 +684,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-02-17T14:54:55+00:00"
+            "time": "2019-03-05T09:21:19+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -2501,16 +2501,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4"
+                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4",
-                "reference": "1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4",
+                "url": "https://api.github.com/repos/symfony/console/zipball/9dc2299a016497f9ee620be94524e6c0af0280a9",
+                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9",
                 "shasum": ""
             },
             "require": {
@@ -2569,7 +2569,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-25T14:35:16+00:00"
+            "time": "2019-02-23T15:17:42+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -2641,16 +2641,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "ef71816cbb264988bb57fe6a73f610888b9aa70c"
+                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/ef71816cbb264988bb57fe6a73f610888b9aa70c",
-                "reference": "ef71816cbb264988bb57fe6a73f610888b9aa70c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/267b7002c1b70ea80db0833c3afe05f0fbde580a",
+                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a",
                 "shasum": ""
             },
             "require": {
@@ -2686,7 +2686,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-16T20:35:37+00:00"
+            "time": "2019-02-23T15:42:05+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2807,16 +2807,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "d461670ee145092b7e2a56c1da7118f19cadadb0"
+                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/d461670ee145092b7e2a56c1da7118f19cadadb0",
-                "reference": "d461670ee145092b7e2a56c1da7118f19cadadb0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/761fa560a937fd7686e5274ff89dcfa87a5047df",
+                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df",
                 "shasum": ""
             },
             "require": {
@@ -2862,7 +2862,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-16T20:35:37+00:00"
+            "time": "2019-02-23T15:17:42+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3035,16 +3035,16 @@
         },
         {
             "name": "zendframework/zend-httphandlerrunner",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-httphandlerrunner.git",
-                "reference": "5e4c1e82a8bb1585020eafd32c49ece5a6ee98df"
+                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-httphandlerrunner/zipball/5e4c1e82a8bb1585020eafd32c49ece5a6ee98df",
-                "reference": "5e4c1e82a8bb1585020eafd32c49ece5a6ee98df",
+                "url": "https://api.github.com/repos/zendframework/zend-httphandlerrunner/zipball/75fb12751fe9d6e392cce1ee0d687dacae2db787",
+                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787",
                 "shasum": ""
             },
             "require": {
@@ -3054,14 +3054,15 @@
                 "psr/http-server-handler": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.3",
+                "phpunit/phpunit": "^7.0.2",
                 "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-diactoros": "^1.7"
+                "zendframework/zend-diactoros": "^1.7 || ^2.1.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1.x-dev",
+                    "dev-develop": "1.2.x-dev"
                 },
                 "zf": {
                     "config-provider": "Zend\\HttpHandlerRunner\\ConfigProvider"
@@ -3085,7 +3086,7 @@
                 "psr-7",
                 "zf"
             ],
-            "time": "2018-02-21T20:33:02+00:00"
+            "time": "2019-02-19T18:20:34+00:00"
         }
     ],
     "packages-dev": [
@@ -3891,40 +3892,40 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "6.1.4",
+            "version": "7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "807e6013b00af69b6c5d9ceb4282d0393dbb9d8d"
+                "reference": "0317a769a81845c390e19684d9ba25d7f6aa4707"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/807e6013b00af69b6c5d9ceb4282d0393dbb9d8d",
-                "reference": "807e6013b00af69b6c5d9ceb4282d0393dbb9d8d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0317a769a81845c390e19684d9ba25d7f6aa4707",
+                "reference": "0317a769a81845c390e19684d9ba25d7f6aa4707",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-xmlwriter": "*",
-                "php": "^7.1",
-                "phpunit/php-file-iterator": "^2.0",
+                "php": "^7.2",
+                "phpunit/php-file-iterator": "^2.0.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^3.0",
+                "phpunit/php-token-stream": "^3.0.1",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
-                "sebastian/environment": "^3.1 || ^4.0",
+                "sebastian/environment": "^4.1",
                 "sebastian/version": "^2.0.1",
                 "theseer/tokenizer": "^1.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0"
+                "phpunit/phpunit": "^8.0"
             },
             "suggest": {
-                "ext-xdebug": "^2.6.0"
+                "ext-xdebug": "^2.6.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.1-dev"
+                    "dev-master": "7.0-dev"
                 }
             },
             "autoload": {
@@ -3950,7 +3951,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-31T16:06:48+00:00"
+            "time": "2019-02-26T07:38:26+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4045,16 +4046,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f"
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b8454ea6958c3dee38453d3bd571e023108c91f",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b389aebe1b8b0578430bda0c7c95a829608e059",
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059",
                 "shasum": ""
             },
             "require": {
@@ -4066,7 +4067,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -4090,7 +4091,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2018-02-01T13:07:23+00:00"
+            "time": "2019-02-20T10:12:59+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4143,16 +4144,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.5",
+            "version": "8.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9"
+                "reference": "a7af0201285445c9c73c4bdf869c486e36b41604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
-                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a7af0201285445c9c73c4bdf869c486e36b41604",
+                "reference": "a7af0201285445c9c73c4bdf869c486e36b41604",
                 "shasum": ""
             },
             "require": {
@@ -4162,26 +4163,24 @@
                 "ext-libxml": "*",
                 "ext-mbstring": "*",
                 "ext-xml": "*",
+                "ext-xmlwriter": "*",
                 "myclabs/deep-copy": "^1.7",
                 "phar-io/manifest": "^1.0.2",
                 "phar-io/version": "^2.0",
-                "php": "^7.1",
+                "php": "^7.2",
                 "phpspec/prophecy": "^1.7",
-                "phpunit/php-code-coverage": "^6.0.7",
+                "phpunit/php-code-coverage": "^7.0",
                 "phpunit/php-file-iterator": "^2.0.1",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.0",
                 "sebastian/comparator": "^3.0",
                 "sebastian/diff": "^3.0",
-                "sebastian/environment": "^4.0",
+                "sebastian/environment": "^4.1",
                 "sebastian/exporter": "^3.1",
-                "sebastian/global-state": "^2.0",
+                "sebastian/global-state": "^3.0",
                 "sebastian/object-enumerator": "^3.0.3",
                 "sebastian/resource-operations": "^2.0",
                 "sebastian/version": "^2.0.1"
-            },
-            "conflict": {
-                "phpunit/phpunit-mock-objects": "*"
             },
             "require-dev": {
                 "ext-pdo": "*"
@@ -4197,7 +4196,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.5-dev"
+                    "dev-master": "8.0-dev"
                 }
             },
             "autoload": {
@@ -4223,7 +4222,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-15T14:00:34+00:00"
+            "time": "2019-02-18T09:23:05+00:00"
         },
         {
             "name": "sabre/event",
@@ -4623,23 +4622,26 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "2.0.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4"
+                "reference": "edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
-                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4",
+                "reference": "edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.2",
+                "sebastian/object-reflector": "^1.1.1",
+                "sebastian/recursion-context": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "ext-dom": "*",
+                "phpunit/phpunit": "^8.0"
             },
             "suggest": {
                 "ext-uopz": "*"
@@ -4647,7 +4649,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -4670,7 +4672,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2017-04-27T15:39:26+00:00"
+            "time": "2019-02-01T05:30:01+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -5010,16 +5012,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "223bda89f9be41cf7033eeaf11bc61a280489c17"
+                "reference": "9f87189ac10b42edf7fb8edc846f1937c6d157cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/223bda89f9be41cf7033eeaf11bc61a280489c17",
-                "reference": "223bda89f9be41cf7033eeaf11bc61a280489c17",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/9f87189ac10b42edf7fb8edc846f1937c6d157cf",
+                "reference": "9f87189ac10b42edf7fb8edc846f1937c6d157cf",
                 "shasum": ""
             },
             "require": {
@@ -5082,7 +5084,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-01-30T11:44:30+00:00"
+            "time": "2019-02-23T15:17:42+00:00"
         },
         {
             "name": "theseer/tokenizer",
