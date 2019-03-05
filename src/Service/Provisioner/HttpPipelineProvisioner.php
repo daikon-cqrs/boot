@@ -9,10 +9,10 @@ use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
+use Middlewares\ContentType;
 use Middlewares\Whoops;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
-use Neomerx\Cors\Contracts\Constants\CorsResponseHeaders;
 use Neomerx\Cors\Strategies\Settings;
 use Oroshi\Core\Config\RoutingConfigLoader;
 use Oroshi\Core\Middleware\PipelineBuilderInterface;
@@ -39,8 +39,16 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             // Exception Handling
             ->define(Whoops::class, [':whoops' => (new Run)->pushHandler(new PrettyPageHandler)])
             // Content Negotiation
-            ->define(ContentLanguage::class, [':languages' => $config->get('project.i18n.languages', ['en'])])
+            ->define(ContentLanguage::class, [':languages' => $config->get('project.negotiation.languages', ['en'])])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
+            ->delegate(ContentType::class, function () use ($config): ContentType {
+                $contentType = new ContentType(array_intersect_key(
+                    ContentType::getDefaultFormats(),
+                    array_flip((array)$config->get('project.negotiation.content_types', ['text/html']))
+                ));
+                $contentType->useDefault((bool)$config->get('project.negotiation.use_default', true));
+                return $contentType;
+            })
             // Cors
             ->share(AnalyzerInterface::class)
             ->alias(AnalyzerInterface::class, Analyzer::class)
@@ -52,13 +60,13 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                     'port' => $config->get('project.cors.port'),
                 ]);
                 $corsSettings->setRequestAllowedOrigins(
-                    array_fill_keys($config->get('project.cors.request.allowed_origins', []), true)
+                    array_fill_keys((array)$config->get('project.cors.request.allowed_origins', []), true)
                 );
                 $corsSettings->setRequestAllowedHeaders(
-                    array_fill_keys($config->get('project.cors.request.allowed_headers', []), true)
+                    array_fill_keys((array)$config->get('project.cors.request.allowed_headers', []), true)
                 );
                 $corsSettings->setRequestAllowedMethods(
-                    array_fill_keys($config->get('project.cors.request.allowed_methods', []), true)
+                    array_fill_keys((array)$config->get('project.cors.request.allowed_methods', []), true)
                 );
                 $corsSettings->setRequestCredentialsSupported(
                     $config->get('project.cors.request.allowed_credentials', false)
@@ -67,7 +75,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                     $config->get('project.cors.response.preflight_cache_max_age', 0)
                 );
                 $corsSettings->setResponseExposedHeaders(
-                    array_fill_keys($config->get('project.cors.response.exposed_headers', []), true)
+                    array_fill_keys((array)$config->get('project.cors.response.exposed_headers', []), true)
                 );
                 return Analyzer::instance($corsSettings);
             })
@@ -91,7 +99,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
         $appConfigDir = $config->get('app.config_dir');
         $router = new RouterContainer;
         (new RoutingConfigLoader($router, $config))->load(
-            array_merge([$appConfigDir], $config->get('crates.*.config_dir', [])),
+            array_merge([$appConfigDir], (array)$config->get('crates.*.config_dir', [])),
             [
                 'routing.php',
                 "routing.$appContext.php",
