@@ -32,7 +32,7 @@ ASCII;
         $this->configProvider = $configProvider;
 
         parent::__construct(
-            $configProvider->get('project.name'),
+            (string)$configProvider->get('project.name'),
             sprintf('%s@%s', $configProvider->get('project.version'), $configProvider->get('app.env'))
         );
 

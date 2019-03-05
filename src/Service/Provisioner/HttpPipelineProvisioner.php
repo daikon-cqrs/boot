@@ -42,10 +42,9 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->define(ContentLanguage::class, [':languages' => $config->get('project.negotiation.languages', ['en'])])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
             ->delegate(ContentType::class, function () use ($config): ContentType {
-                $contentType = new ContentType(array_intersect_key(
-                    ContentType::getDefaultFormats(),
-                    array_flip((array)$config->get('project.negotiation.content_types', ['text/html']))
-                ));
+                $contentType = new ContentType(
+                    (array)$config->get('project.negotiation.content_types', ContentType::getDefaultFormats())
+                );
                 $contentType->useDefault((bool)$config->get('project.negotiation.use_default', true));
                 return $contentType;
             })
