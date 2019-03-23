@@ -40,6 +40,9 @@ trait ValidatorTrait
     {
         $output = [];
         foreach ($fields as $fieldname) {
+            if (!is_string($fieldname) || empty($fieldname)) {
+                throw new \RuntimeException('Input field name must be a valid string.');
+            }
             if (isset($input[$fieldname])) {
                 $output[$fieldname] = $input[$fieldname];
             } elseif ($required) {

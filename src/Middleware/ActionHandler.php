@@ -81,7 +81,7 @@ class ActionHandler implements MiddlewareInterface
         } elseif (is_array($dependency) && count($dependency) === 2) {
             $fqcn = $dependency[0];
             $params = $dependency[1];
-            Assertion::classExists($fqcn);
+            Assertion::classExists($fqcn, "Given responder '$fqcn' not found.");
             Assertion::isArray($params);
             $dependency = $this->container->make($fqcn, $params);
         }
