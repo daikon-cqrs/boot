@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Oroshi\Core\Middleware;
 
-use Assert\Assertion;
 use Oroshi\Core\Middleware\Action\ActionInterface;
 use Oroshi\Core\Middleware\Action\ResponderInterface;
 use Oroshi\Core\Middleware\Action\ValidatorInterface;
@@ -16,16 +15,19 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ActionHandler implements MiddlewareInterface
 {
+    use ResolvesDependency;
+
     const ATTR_ERRORS = '_errors';
 
     const ATTR_ERROR_CODE = '_error_code';
+
+    const ATTR_ERROR_SEVERITY = '_error_severity';
 
     const ATTR_RESPONDER = '_responder';
 
     const ATTR_VALIDATOR = '_validator';
 
-    /** @var ContainerInterface */
-    private $container;
+    const ATTR_PAYLOAD = '_payload';
 
     public function __construct(ContainerInterface $container)
     {
@@ -70,29 +72,5 @@ class ActionHandler implements MiddlewareInterface
         return ($responder = $request->getAttribute(self::ATTR_RESPONDER))
             ? $this->resolve($responder, ResponderInterface::class)
             : null;
-    }
-
-    /** @param mixed $dependency */
-    private function resolve($dependency, string $stereoType): ?callable
-    {
-        if (is_string($dependency)) {
-            Assertion::classExists($dependency);
-            $dependency = $this->container->get($dependency);
-        } elseif (is_array($dependency) && count($dependency) === 2) {
-            $fqcn = $dependency[0];
-            $params = $dependency[1];
-            Assertion::classExists($fqcn, "Given responder '$fqcn' not found.");
-            Assertion::isArray($params);
-            $dependency = $this->container->make($fqcn, $params);
-        }
-        if (is_object($dependency)) {
-            Assertion::isInstanceOf($dependency, $stereoType);
-        }
-        if (is_callable($dependency)) {
-            return $dependency;
-        }
-        throw new \RuntimeException(
-            sprintf("Given type '%s' is not a $stereoType.", gettype($dependency))
-        );
     }
 }

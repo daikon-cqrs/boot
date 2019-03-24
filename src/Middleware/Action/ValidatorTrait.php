@@ -60,6 +60,8 @@ trait ValidatorTrait
         } else {
             $data = $request->getParsedBody();
         }
+
+        //@todo handle data error better
         if (!is_array($data)) {
             throw new \RuntimeException('Failed to parse data from request body.');
         }

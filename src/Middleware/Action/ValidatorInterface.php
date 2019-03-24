@@ -9,5 +9,13 @@ use Psr\Http\Message\ServerRequestInterface;
 
 interface ValidatorInterface extends StatusCodeInterface
 {
+    const SEVERITY_CRITICAL = 32;
+
+    const SEVERITY_ERROR = 16;
+
+    const SEVERITY_SUCCESS = 8;
+
+    const SEVERITY_INFO = 4;
+
     public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
 }
