@@ -17,6 +17,7 @@
         "daikon/event-sourcing": "master@dev",
         "daikon/flysystem-adapter": "master@dev",
         "daikon/rabbitmq3-adapter": "master@dev",
+        "daikon/value-object": "master@dev",
         "danielstjules/stringy": "^3.1",
         "middlewares/cors": "^v1.1",
         "middlewares/negotiation": "^v1.1",

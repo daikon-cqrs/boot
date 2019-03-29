@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b26e7f02057b9a6a404cace67e67a21",
+    "content-hash": "fa3ee8e74f393102dffdb62b53e6033b",
     "packages": [
         {
             "name": "aura/router",
@@ -5402,7 +5402,8 @@
         "daikon/entity": 20,
         "daikon/event-sourcing": 20,
         "daikon/flysystem-adapter": 20,
-        "daikon/rabbitmq3-adapter": 20
+        "daikon/rabbitmq3-adapter": 20,
+        "daikon/value-object": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
