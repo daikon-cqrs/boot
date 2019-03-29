@@ -18,7 +18,6 @@ use Daikon\MessageBus\Channel\Subscription\Transport\TransportMap;
 use Daikon\MessageBus\MessageBusInterface;
 use Daikon\MessageBus\Metadata\MetadataEnricherList;
 use Oroshi\Core\Exception\ConfigException;
-use Oroshi\Core\Service\ServiceDefinition;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 use Oroshi\Core\Service\ServiceDefinitionMap;
 
@@ -49,7 +48,6 @@ final class MessageBusProvisioner implements ProvisionerInterface
             $injector,
             $serviceDefinition
         ): object {
-            $settings = $serviceDefinition->getSettings();
             $transportMap = $this->buildTransportMap($injector, $serviceDefinition, $connectorMap);
             $channelSubs = $this->collectChannelSubscriptions($injector, $serviceDefinitionMap, $transportMap);
             $channels = [];

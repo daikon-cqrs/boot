@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/async-job.git",
-                "reference": "c9d24f19d99ab9fcfbe42fb0b3ed024c724b1d5e"
+                "reference": "e55ef8044294edb5b15dc4b885549d826cb036cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/c9d24f19d99ab9fcfbe42fb0b3ed024c724b1d5e",
-                "reference": "c9d24f19d99ab9fcfbe42fb0b3ed024c724b1d5e",
+                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/e55ef8044294edb5b15dc4b885549d826cb036cc",
+                "reference": "e55ef8044294edb5b15dc4b885549d826cb036cc",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 "job",
                 "worker"
             ],
-            "time": "2019-03-20T22:25:54+00:00"
+            "time": "2019-03-29T13:35:49+00:00"
         },
         {
             "name": "daikon/config",
@@ -206,12 +206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "d25358024ff4d722618ef8da156972bb0b3d04df"
+                "reference": "e93b1a48c0893ffe19b70523a9d103b565247a7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/d25358024ff4d722618ef8da156972bb0b3d04df",
-                "reference": "d25358024ff4d722618ef8da156972bb0b3d04df",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/e93b1a48c0893ffe19b70523a9d103b565247a7c",
+                "reference": "e93b1a48c0893ffe19b70523a9d103b565247a7c",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2019-03-21T12:37:41+00:00"
+            "time": "2019-03-29T13:53:23+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/data-structure.git",
-                "reference": "9b6e87afb0de7c592b1a48755293fbe70e2f0c74"
+                "reference": "5e541ddb6b131db2aee353ff976c28191b2a0f66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/9b6e87afb0de7c592b1a48755293fbe70e2f0c74",
-                "reference": "9b6e87afb0de7c592b1a48755293fbe70e2f0c74",
+                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/5e541ddb6b131db2aee353ff976c28191b2a0f66",
+                "reference": "5e541ddb6b131db2aee353ff976c28191b2a0f66",
                 "shasum": ""
             },
             "require": {
@@ -286,7 +286,7 @@
                 "list",
                 "map"
             ],
-            "time": "2019-03-20T22:15:55+00:00"
+            "time": "2019-03-29T13:02:06+00:00"
         },
         {
             "name": "daikon/dbal",
@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "c1e7efd0f6f23a0b075e01e62ea8df42cdfbc93d"
+                "reference": "59718e541c6bfd4399da9490660ea1447c8645ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/c1e7efd0f6f23a0b075e01e62ea8df42cdfbc93d",
-                "reference": "c1e7efd0f6f23a0b075e01e62ea8df42cdfbc93d",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/59718e541c6bfd4399da9490660ea1447c8645ff",
+                "reference": "59718e541c6bfd4399da9490660ea1447c8645ff",
                 "shasum": ""
             },
             "require": {
@@ -333,7 +333,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2019-03-21T12:34:38+00:00"
+            "time": "2019-03-29T13:50:27+00:00"
         },
         {
             "name": "daikon/elasticsearch6-adapter",
@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "913d47fd9ebef0c6f6e1204fa1cfda0373a8f0c2"
+                "reference": "5ae54029fd19202a81ee3c17d247ab6d0839b43b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/913d47fd9ebef0c6f6e1204fa1cfda0373a8f0c2",
-                "reference": "913d47fd9ebef0c6f6e1204fa1cfda0373a8f0c2",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/5ae54029fd19202a81ee3c17d247ab6d0839b43b",
+                "reference": "5ae54029fd19202a81ee3c17d247ab6d0839b43b",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-03-21T12:39:03+00:00"
+            "time": "2019-03-29T13:54:58+00:00"
         },
         {
             "name": "daikon/entity",
@@ -385,21 +385,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "ea62b47b5ad913bf23fb5f67287fa9778acc74c2"
+                "reference": "5c7cc24d49edc371d6af78d77cb0343be59fcd45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/ea62b47b5ad913bf23fb5f67287fa9778acc74c2",
-                "reference": "ea62b47b5ad913bf23fb5f67287fa9778acc74c2",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/5c7cc24d49edc371d6af78d77cb0343be59fcd45",
+                "reference": "5c7cc24d49edc371d6af78d77cb0343be59fcd45",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^3.0",
                 "daikon/data-structure": "master@dev",
                 "daikon/interop": "master@dev",
+                "daikon/value-object": "master@dev",
                 "jms/parser-lib": "^1.0",
-                "php": "^7.2",
-                "ramsey/uuid": "^3.8"
+                "php": "^7.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -424,7 +424,7 @@
                 "generic",
                 "value-object"
             ],
-            "time": "2019-03-20T22:21:27+00:00"
+            "time": "2019-03-29T13:17:28+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -432,18 +432,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "56035e14d660d85428dc5865772949c1eabb0c24"
+                "reference": "37264f34089504afed669c8ccc02163cf34d3138"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/56035e14d660d85428dc5865772949c1eabb0c24",
-                "reference": "56035e14d660d85428dc5865772949c1eabb0c24",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/37264f34089504afed669c8ccc02163cf34d3138",
+                "reference": "37264f34089504afed669c8ccc02163cf34d3138",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^3.0",
                 "daikon/interop": "master@dev",
                 "daikon/message-bus": "master@dev",
+                "daikon/value-object": "master@dev",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -469,7 +470,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-03-21T07:33:44+00:00"
+            "time": "2019-03-29T13:31:08+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -477,12 +478,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/flysystem-adapter.git",
-                "reference": "85287a9e8a4a3f4fe50a4daa010ca08403429eb0"
+                "reference": "91e3eabc9fb13e15081137191bcc863b12a24219"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/85287a9e8a4a3f4fe50a4daa010ca08403429eb0",
-                "reference": "85287a9e8a4a3f4fe50a4daa010ca08403429eb0",
+                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/91e3eabc9fb13e15081137191bcc863b12a24219",
+                "reference": "91e3eabc9fb13e15081137191bcc863b12a24219",
                 "shasum": ""
             },
             "require": {
@@ -512,7 +513,7 @@
                 "Flysystem",
                 "adapter"
             ],
-            "time": "2019-03-21T12:42:09+00:00"
+            "time": "2019-03-29T13:56:29+00:00"
         },
         {
             "name": "daikon/interop",
@@ -520,12 +521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/interop.git",
-                "reference": "1f7de0b96886d2db554bf6c44a96c5bbe2d4108e"
+                "reference": "e1a6c171b6bf4899527b75595226f925adb1198a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/1f7de0b96886d2db554bf6c44a96c5bbe2d4108e",
-                "reference": "1f7de0b96886d2db554bf6c44a96c5bbe2d4108e",
+                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/e1a6c171b6bf4899527b75595226f925adb1198a",
+                "reference": "e1a6c171b6bf4899527b75595226f925adb1198a",
                 "shasum": ""
             },
             "require": {
@@ -545,9 +546,9 @@
             "license": [
                 "MPL-2.0"
             ],
-            "description": "Interop traits used across Daikon components.",
+            "description": "Interop components used across Daikon components.",
             "homepage": "https://github.com/daikon-cqrs/interop",
-            "time": "2019-03-20T22:10:38+00:00"
+            "time": "2019-03-29T12:31:44+00:00"
         },
         {
             "name": "daikon/message-bus",
@@ -555,12 +556,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/message-bus.git",
-                "reference": "66479ddcb5ad3df45b910c5b7b2542039eb6327d"
+                "reference": "9522ec93712ca6952c883d1d3f1624fde4db7d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/66479ddcb5ad3df45b910c5b7b2542039eb6327d",
-                "reference": "66479ddcb5ad3df45b910c5b7b2542039eb6327d",
+                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/9522ec93712ca6952c883d1d3f1624fde4db7d18",
+                "reference": "9522ec93712ca6952c883d1d3f1624fde4db7d18",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +592,7 @@
                 "message-bus",
                 "messaging"
             ],
-            "time": "2019-03-20T22:22:31+00:00"
+            "time": "2019-03-29T13:26:08+00:00"
         },
         {
             "name": "daikon/rabbitmq3-adapter",
@@ -599,12 +600,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "7f70538062c1e62401a658cce1e477469a2e2111"
+                "reference": "83c617bce1692fdaa536e8e2d1e94f5e7eea2d33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/7f70538062c1e62401a658cce1e477469a2e2111",
-                "reference": "7f70538062c1e62401a658cce1e477469a2e2111",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/83c617bce1692fdaa536e8e2d1e94f5e7eea2d33",
+                "reference": "83c617bce1692fdaa536e8e2d1e94f5e7eea2d33",
                 "shasum": ""
             },
             "require": {
@@ -636,7 +637,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2019-03-21T12:43:07+00:00"
+            "time": "2019-03-29T13:58:25+00:00"
         },
         {
             "name": "daikon/read-model",
@@ -644,12 +645,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "95aea03cb2aa49de8818d1596b7883e5573d73d6"
+                "reference": "0cc7ec75d60f4ca5dfca44660220a2c5999de180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/95aea03cb2aa49de8818d1596b7883e5573d73d6",
-                "reference": "95aea03cb2aa49de8818d1596b7883e5573d73d6",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/0cc7ec75d60f4ca5dfca44660220a2c5999de180",
+                "reference": "0cc7ec75d60f4ca5dfca44660220a2c5999de180",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +685,50 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-03-21T12:32:22+00:00"
+            "time": "2019-03-29T13:45:37+00:00"
+        },
+        {
+            "name": "daikon/value-object",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daikon-cqrs/value-object.git",
+                "reference": "7213c5213d804acb56bfeb385d963e19b2572c74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/7213c5213d804acb56bfeb385d963e19b2572c74",
+                "reference": "7213c5213d804acb56bfeb385d963e19b2572c74",
+                "shasum": ""
+            },
+            "require": {
+                "beberlei/assert": "^3.0",
+                "daikon/interop": "master@dev",
+                "php": "^7.2",
+                "ramsey/uuid": "^3.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "sebastian/phpcpd": "^4.1",
+                "squizlabs/php_codesniffer": "^3.3",
+                "vimeo/psalm": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Daikon\\ValueObject\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MPL-2.0"
+            ],
+            "description": "Value-object components for Daikon projects.",
+            "homepage": "https://github.com/daikon-cqrs/value-object",
+            "keywords": [
+                "value-object"
+            ],
+            "time": "2019-03-29T12:42:30+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -1750,16 +1794,16 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v2.9.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "08d105d6b69ff4d8fa4fe090c49afdc568a5665b"
+                "reference": "bde215e0b62d361d8316e8c2c1f1a0ffd71deab6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/08d105d6b69ff4d8fa4fe090c49afdc568a5665b",
-                "reference": "08d105d6b69ff4d8fa4fe090c49afdc568a5665b",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/bde215e0b62d361d8316e8c2c1f1a0ffd71deab6",
+                "reference": "bde215e0b62d361d8316e8c2c1f1a0ffd71deab6",
                 "shasum": ""
             },
             "require": {
@@ -1820,7 +1864,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2019-03-22T16:02:15+00:00"
+            "time": "2019-03-26T18:25:18+00:00"
         },
         {
             "name": "php-ds/php-ds",
@@ -2454,16 +2498,16 @@
         },
         {
             "name": "relay/relay",
-            "version": "2.0.0-alpha1",
+            "version": "2.0.0-rc.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/relayphp/Relay.Relay.git",
-                "reference": "5d6345ccfcdab9ce9c3e3c33226164a5759310da"
+                "reference": "afbd4718dd3166209d196c0d6fda279be2a948d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/5d6345ccfcdab9ce9c3e3c33226164a5759310da",
-                "reference": "5d6345ccfcdab9ce9c3e3c33226164a5759310da",
+                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/afbd4718dd3166209d196c0d6fda279be2a948d1",
+                "reference": "afbd4718dd3166209d196c0d6fda279be2a948d1",
                 "shasum": ""
             },
             "require": {
@@ -2498,7 +2542,7 @@
                 "middleware",
                 "psr-7"
             ],
-            "time": "2018-02-13T16:52:55+00:00"
+            "time": "2019-03-23T23:19:35+00:00"
         },
         {
             "name": "symfony/console",
@@ -2734,7 +2778,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -4147,16 +4191,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.0.5",
+            "version": "8.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "19cbed2120839772c4a00e8b28456b0c77d1a7b4"
+                "reference": "925109f8bbe6dae28fbc7bb07446a53abd3b1c25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/19cbed2120839772c4a00e8b28456b0c77d1a7b4",
-                "reference": "19cbed2120839772c4a00e8b28456b0c77d1a7b4",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/925109f8bbe6dae28fbc7bb07446a53abd3b1c25",
+                "reference": "925109f8bbe6dae28fbc7bb07446a53abd3b1c25",
                 "shasum": ""
             },
             "require": {
@@ -4225,7 +4269,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-03-16T07:33:46+00:00"
+            "time": "2019-03-26T14:00:24+00:00"
         },
         {
             "name": "sabre/event",

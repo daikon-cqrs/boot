@@ -52,9 +52,8 @@ oroshi:
   command_router:
     class: Oroshi\Core\MessageBus\CommandRouter
     provisioner: Oroshi\Core\Service\Provisioner\CommandRouterProvisioner
-    commands: []
     subscriptions:
-      command_sub:
+      commands_sub:
         channel: commands
         transport: inproc
         guards: Daikon\EventSourcing\Aggregate\Command\CommandInterface
