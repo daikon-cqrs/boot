@@ -17,5 +17,7 @@ interface ValidatorInterface extends StatusCodeInterface
 
     const SEVERITY_INFO = 4;
 
+    const SEVERITY_SILENT = 2;
+
     public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
 }
