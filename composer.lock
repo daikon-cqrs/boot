@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "5c7cc24d49edc371d6af78d77cb0343be59fcd45"
+                "reference": "22b8a389336f11c783b495e0f9bf5d629ea00df4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/5c7cc24d49edc371d6af78d77cb0343be59fcd45",
-                "reference": "5c7cc24d49edc371d6af78d77cb0343be59fcd45",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/22b8a389336f11c783b495e0f9bf5d629ea00df4",
+                "reference": "22b8a389336f11c783b495e0f9bf5d629ea00df4",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "generic",
                 "value-object"
             ],
-            "time": "2019-03-29T13:17:28+00:00"
+            "time": "2019-03-29T17:19:27+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -432,12 +432,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "37264f34089504afed669c8ccc02163cf34d3138"
+                "reference": "a8a4a95b30b6259fe549564f796f5cd7168b8657"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/37264f34089504afed669c8ccc02163cf34d3138",
-                "reference": "37264f34089504afed669c8ccc02163cf34d3138",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/a8a4a95b30b6259fe549564f796f5cd7168b8657",
+                "reference": "a8a4a95b30b6259fe549564f796f5cd7168b8657",
                 "shasum": ""
             },
             "require": {
@@ -470,7 +470,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-03-29T13:31:08+00:00"
+            "time": "2019-03-29T21:18:47+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -693,12 +693,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/value-object.git",
-                "reference": "7213c5213d804acb56bfeb385d963e19b2572c74"
+                "reference": "571323e1f5516a24b94196f10a3cb0e150cdd3e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/7213c5213d804acb56bfeb385d963e19b2572c74",
-                "reference": "7213c5213d804acb56bfeb385d963e19b2572c74",
+                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/571323e1f5516a24b94196f10a3cb0e150cdd3e1",
+                "reference": "571323e1f5516a24b94196f10a3cb0e150cdd3e1",
                 "shasum": ""
             },
             "require": {
@@ -728,7 +728,7 @@
             "keywords": [
                 "value-object"
             ],
-            "time": "2019-03-29T12:42:30+00:00"
+            "time": "2019-03-29T17:49:38+00:00"
         },
         {
             "name": "danielstjules/stringy",
