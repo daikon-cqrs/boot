@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "22b8a389336f11c783b495e0f9bf5d629ea00df4"
+                "reference": "7333f300bcac88624001bc724735b947830dc031"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/22b8a389336f11c783b495e0f9bf5d629ea00df4",
-                "reference": "22b8a389336f11c783b495e0f9bf5d629ea00df4",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/7333f300bcac88624001bc724735b947830dc031",
+                "reference": "7333f300bcac88624001bc724735b947830dc031",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "generic",
                 "value-object"
             ],
-            "time": "2019-03-29T17:19:27+00:00"
+            "time": "2019-04-01T22:01:02+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -1275,16 +1275,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.50",
+            "version": "1.0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "dab4e7624efa543a943be978008f439c333f2249"
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/dab4e7624efa543a943be978008f439c333f2249",
-                "reference": "dab4e7624efa543a943be978008f439c333f2249",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
                 "shasum": ""
             },
             "require": {
@@ -1355,7 +1355,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-02-01T08:50:36+00:00"
+            "time": "2019-03-30T13:22:34+00:00"
         },
         {
             "name": "middlewares/cors",
@@ -2498,16 +2498,16 @@
         },
         {
             "name": "relay/relay",
-            "version": "2.0.0-rc.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/relayphp/Relay.Relay.git",
-                "reference": "afbd4718dd3166209d196c0d6fda279be2a948d1"
+                "reference": "6a1c347c54f649ecaa438217e095868587e5ca05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/afbd4718dd3166209d196c0d6fda279be2a948d1",
-                "reference": "afbd4718dd3166209d196c0d6fda279be2a948d1",
+                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/6a1c347c54f649ecaa438217e095868587e5ca05",
+                "reference": "6a1c347c54f649ecaa438217e095868587e5ca05",
                 "shasum": ""
             },
             "require": {
@@ -2536,13 +2536,14 @@
                     "homepage": "https://github.com/relayphp/Relay.Relay/contributors"
                 }
             ],
-            "description": "A PSR-7 middleware dispatcher.",
+            "description": "A PSR-15 server request handler.",
             "homepage": "https://github.com/relayphp/Relay.Relay",
             "keywords": [
                 "middleware",
+                "psr-15",
                 "psr-7"
             ],
-            "time": "2019-03-23T23:19:35+00:00"
+            "time": "2019-03-31T01:22:37+00:00"
         },
         {
             "name": "symfony/console",
