@@ -6,7 +6,6 @@ namespace Oroshi\Core\Service\Provisioner;
 
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
-use Daikon\Dbal\Connector\ConnectorInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 

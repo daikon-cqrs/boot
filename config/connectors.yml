@@ -10,12 +10,6 @@ oroshi.filesystem:
   class: Daikon\Flysystem\Connector\FlysystemConnector
   settings:
     mounts:
-      local:
-        adapter: League\Flysystem\Adapter\Local
-        location: ${app.base_dir}/data/files
-      local_tmp:
-        adapter: League\Flysystem\Adapter\Local
-        location: ${app.base_dir}/data/tmp_files
       migration:
         adapter: League\Flysystem\Adapter\Local
         location: ${app.base_dir}/app/migration

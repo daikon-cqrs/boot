@@ -30,7 +30,12 @@ trait BootstrapTrait
                                 'vendor:' => $bootParams['base_dir'].'/vendor'
                             ]),
                             'locations' => [$bootParams['config_dir']],
-                            'sources' => ['crates.yml']
+                            'sources' => [
+                                'crates.yml',
+                                'crates.${app.context}.yml',
+                                'crates.${app.env}.yml',
+                                'crates.${app.context}.${app.env}.yml'
+                            ]
                         ]
                     ],
                     (new YamlConfigLoader)->load(

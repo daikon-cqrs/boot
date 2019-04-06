@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "5ae54029fd19202a81ee3c17d247ab6d0839b43b"
+                "reference": "641576ca2d05e51c5ac61341bbd26e7a1c9272df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/5ae54029fd19202a81ee3c17d247ab6d0839b43b",
-                "reference": "5ae54029fd19202a81ee3c17d247ab6d0839b43b",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/641576ca2d05e51c5ac61341bbd26e7a1c9272df",
+                "reference": "641576ca2d05e51c5ac61341bbd26e7a1c9272df",
                 "shasum": ""
             },
             "require": {
@@ -377,7 +377,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-03-29T13:54:58+00:00"
+            "time": "2019-04-03T15:15:40+00:00"
         },
         {
             "name": "daikon/entity",
@@ -432,12 +432,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "a8a4a95b30b6259fe549564f796f5cd7168b8657"
+                "reference": "43d3987b54803a1219db8aded4740d96c4d7fb2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/a8a4a95b30b6259fe549564f796f5cd7168b8657",
-                "reference": "a8a4a95b30b6259fe549564f796f5cd7168b8657",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/43d3987b54803a1219db8aded4740d96c4d7fb2a",
+                "reference": "43d3987b54803a1219db8aded4740d96c4d7fb2a",
                 "shasum": ""
             },
             "require": {
@@ -470,7 +470,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-03-29T21:18:47+00:00"
+            "time": "2019-04-06T14:37:53+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -521,12 +521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/interop.git",
-                "reference": "e1a6c171b6bf4899527b75595226f925adb1198a"
+                "reference": "27826af26593a06589ba5210f508cdda130bcef7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/e1a6c171b6bf4899527b75595226f925adb1198a",
-                "reference": "e1a6c171b6bf4899527b75595226f925adb1198a",
+                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/27826af26593a06589ba5210f508cdda130bcef7",
+                "reference": "27826af26593a06589ba5210f508cdda130bcef7",
                 "shasum": ""
             },
             "require": {
@@ -548,7 +548,7 @@
             ],
             "description": "Interop components used across Daikon components.",
             "homepage": "https://github.com/daikon-cqrs/interop",
-            "time": "2019-03-29T12:31:44+00:00"
+            "time": "2019-04-05T18:36:01+00:00"
         },
         {
             "name": "daikon/message-bus",
@@ -693,12 +693,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/value-object.git",
-                "reference": "571323e1f5516a24b94196f10a3cb0e150cdd3e1"
+                "reference": "e62bfc8381fbe50079bbdc48184ade668889cc24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/571323e1f5516a24b94196f10a3cb0e150cdd3e1",
-                "reference": "571323e1f5516a24b94196f10a3cb0e150cdd3e1",
+                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/e62bfc8381fbe50079bbdc48184ade668889cc24",
+                "reference": "e62bfc8381fbe50079bbdc48184ade668889cc24",
                 "shasum": ""
             },
             "require": {
@@ -728,7 +728,7 @@
             "keywords": [
                 "value-object"
             ],
-            "time": "2019-03-29T17:49:38+00:00"
+            "time": "2019-04-05T18:44:22+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -2547,16 +2547,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9"
+                "reference": "24206aff3efe6962593297e57ef697ebb220e384"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/9dc2299a016497f9ee620be94524e6c0af0280a9",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/24206aff3efe6962593297e57ef697ebb220e384",
+                "reference": "24206aff3efe6962593297e57ef697ebb220e384",
                 "shasum": ""
             },
             "require": {
@@ -2615,7 +2615,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-04-01T07:32:59+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -2687,7 +2687,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -2853,16 +2853,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df"
+                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/761fa560a937fd7686e5274ff89dcfa87a5047df",
-                "reference": "761fa560a937fd7686e5274ff89dcfa87a5047df",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
+                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
                 "shasum": ""
             },
             "require": {
@@ -2908,7 +2908,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-03-30T15:58:42+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4192,16 +4192,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.0.6",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "925109f8bbe6dae28fbc7bb07446a53abd3b1c25"
+                "reference": "37cfab19fdda1554f2830be83a566ade4e2ae098"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/925109f8bbe6dae28fbc7bb07446a53abd3b1c25",
-                "reference": "925109f8bbe6dae28fbc7bb07446a53abd3b1c25",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/37cfab19fdda1554f2830be83a566ade4e2ae098",
+                "reference": "37cfab19fdda1554f2830be83a566ade4e2ae098",
                 "shasum": ""
             },
             "require": {
@@ -4244,7 +4244,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.0-dev"
+                    "dev-master": "8.1-dev"
                 }
             },
             "autoload": {
@@ -4270,7 +4270,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-03-26T14:00:24+00:00"
+            "time": "2019-04-05T05:27:33+00:00"
         },
         {
             "name": "sabre/event",
@@ -5060,7 +5060,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
@@ -5136,16 +5136,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/1c42705be2b6c1de5904f8afacef5895cab44bf8",
+                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8",
                 "shasum": ""
             },
             "require": {
@@ -5172,7 +5172,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-04T09:56:43+00:00"
         },
         {
             "name": "vimeo/psalm",
