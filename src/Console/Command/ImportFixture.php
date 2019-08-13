@@ -2,6 +2,9 @@
 
 namespace Oroshi\Core\Console\Command;
 
+use Oroshi\Core\Fixture\FixtureInterface;
+use Oroshi\Core\Fixture\FixtureList;
+use Oroshi\Core\Fixture\FixtureTargetInterface;
 use Oroshi\Core\Fixture\FixtureTargetMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -34,35 +37,54 @@ final class ImportFixture extends Command
                 'from',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The version to import from (if omitted all fixtures will be imported).'
+                'The version to import from (if omitted all available fixtures will be imported).'
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $target = $input->getOption('target');
-        $version = intval($input->getOption('from'));
+        $from = intval($input->getOption('from'));
 
-        foreach ($this->fixtureTargetMap->getEnabledTargets() as $targetName => $fixtureTarget) {
+        $loadedFixtures = [];
+        $enabledTargets = $this->fixtureTargetMap->getEnabledTargets();
+        /** @var FixtureTargetInterface $fixtureTarget */
+        foreach ($enabledTargets as $targetName => $fixtureTarget) {
             if ($target && $target !== $targetName) {
                 continue;
             }
+            $fixtureList = $fixtureTarget->getFixtureList();
+            $output->writeln(sprintf(
+                'Found <options=bold>%d</> fixtures for target <options=bold>%s</>',
+                $fixtureList->count(),
+                $targetName
+            ));
+            $loadedFixtures = array_merge($loadedFixtures, $fixtureList->toNative());
+        }
 
-            $output->writeln(sprintf('Importing fixtures for target <options=bold>%s</>', $targetName));
-            $importedFixtures = $fixtureTarget->import($version);
-            if ($importedFixtures->count() > 0) {
-                foreach ($importedFixtures as $fixture) {
+        $importedFixtures = [];
+        $loadedFixturesList = (new FixtureList($loadedFixtures))->sortByVersion();
+        /** @var FixtureInterface $fixture */
+        foreach ($loadedFixturesList as $fixture) {
+            if ($fixture->getVersion() < $from) {
+                continue;
+            }
+            /** @var FixtureTargetInterface $fixtureTarget */
+            foreach ($enabledTargets as $fixtureTarget) {
+                if ($fixtureTarget->import($fixture)) {
+                    $importedFixtures[] = $fixture;
                     $output->writeln(sprintf(
                         '  <info>Imported fixture version %d (%s)</info>',
                         $fixture->getVersion(),
                         $fixture->getName()
                     ));
                 }
-            } else {
-                $output->writeln('  <comment>No pending fixtures found</comment>');
             }
         }
 
-        $output->writeln('Successfully imported fixtures.');
+        $output->writeln(sprintf(
+            'Successfully imported <options=bold>%d</> fixtures.',
+            count($importedFixtures)
+        ));
     }
 }

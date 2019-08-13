@@ -21,6 +21,9 @@ final class FixtureTarget implements FixtureTargetInterface
     /** @var MessageBusInterface */
     private $messageBus;
 
+    /** @var FixtureList|null */
+    private $fixtureList;
+
     public function __construct(
         string $name,
         bool $enabled,
@@ -45,24 +48,22 @@ final class FixtureTarget implements FixtureTargetInterface
 
     public function getFixtureList(): FixtureList
     {
-        return $this->fixtureLoader->load();
+        if (!$this->fixtureList) {
+            //@todo fix fixture class loading to avoid this
+            $this->fixtureList = $this->fixtureLoader->load();
+        }
+        return $this->fixtureList;
     }
 
-    public function import(int $version = null): FixtureList
+    public function import(FixtureInterface $fixture): bool
     {
         Assertion::true($this->isEnabled());
 
-        $fixtureList = $this->getFixtureList();
-
-        $completedImports = [];
-        foreach ($fixtureList as $fixture) {
-            if ($fixture->getVersion() < $version) {
-                continue;
-            }
+        $index = $this->getFixtureList()->indexOf($fixture);
+        if ($index !== false) {
             $fixture->import($this->messageBus);
-            $completedImports[] = $fixture;
         }
 
-        return new FixtureList($completedImports);
+        return $index !== false;
     }
 }

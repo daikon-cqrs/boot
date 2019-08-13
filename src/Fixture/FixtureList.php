@@ -16,12 +16,12 @@ final class FixtureList implements \IteratorAggregate, \Countable, ToNativeInter
         $this->init($fixtures, FixtureInterface::class);
     }
 
-    public function toNative(): array
+    public function sortByVersion(): self
     {
-        $fixtures = [];
-        foreach ($this as $fixture) {
-            $fixtures[] = $fixture->toNative();
-        }
-        return $fixtures;
+        $copy = clone $this;
+        $copy->compositeVector->sort(function (FixtureInterface $a, FixtureInterface $b) {
+            return $a->getVersion() > $b->getVersion();
+        });
+        return $copy;
     }
 }
