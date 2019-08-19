@@ -12,7 +12,7 @@
         "beberlei/assert": "^v3.0",
         "daikon/config": "master@dev",
         "daikon/couchdb-adapter": "master@dev",
-        "daikon/elasticsearch6-adapter": "master@dev",
+        "daikon/elasticsearch7-adapter": "master@dev",
         "daikon/entity": "master@dev",
         "daikon/event-sourcing": "master@dev",
         "daikon/flysystem-adapter": "master@dev",

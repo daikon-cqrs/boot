@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa3ee8e74f393102dffdb62b53e6033b",
+    "content-hash": "694400e5791523f91bd160b96ee9ada1",
     "packages": [
         {
             "name": "aura/router",
@@ -336,23 +336,23 @@
             "time": "2019-03-29T13:50:27+00:00"
         },
         {
-            "name": "daikon/elasticsearch6-adapter",
+            "name": "daikon/elasticsearch7-adapter",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/daikon-cqrs/elasticsearch6-adapter.git",
-                "reference": "641576ca2d05e51c5ac61341bbd26e7a1c9272df"
+                "url": "https://github.com/daikon-cqrs/elasticsearch7-adapter.git",
+                "reference": "f528d46a2d36581412d27fae0cbb0ab9dcd1f239"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch6-adapter/zipball/641576ca2d05e51c5ac61341bbd26e7a1c9272df",
-                "reference": "641576ca2d05e51c5ac61341bbd26e7a1c9272df",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/f528d46a2d36581412d27fae0cbb0ab9dcd1f239",
+                "reference": "f528d46a2d36581412d27fae0cbb0ab9dcd1f239",
                 "shasum": ""
             },
             "require": {
                 "daikon/dbal": "master@dev",
                 "daikon/read-model": "master@dev",
-                "elasticsearch/elasticsearch": "^6.0",
+                "elasticsearch/elasticsearch": "^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -364,20 +364,20 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Daikon\\Elasticsearch6\\": "src"
+                    "Daikon\\Elasticsearch7\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MPL-2.0"
             ],
-            "description": "Elasticsearch6 adapter for Daikon projects.",
-            "homepage": "https://github.com/daikon-cqrs/elasticsearch6-adapter",
+            "description": "Elasticsearch7 adapter for Daikon projects.",
+            "homepage": "https://github.com/daikon-cqrs/elasticsearch7-adapter",
             "keywords": [
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-04-03T15:15:40+00:00"
+            "time": "2019-08-19T21:04:24+00:00"
         },
         {
             "name": "daikon/entity",
@@ -788,33 +788,33 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v6.7.2",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "9ba89f905ebf699e72dacffa410331c7fecc8255"
+                "reference": "63e70a4ce2b8197aca71583c53f376054dca618b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/9ba89f905ebf699e72dacffa410331c7fecc8255",
-                "reference": "9ba89f905ebf699e72dacffa410331c7fecc8255",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/63e70a4ce2b8197aca71583c53f376054dca618b",
+                "reference": "63e70a4ce2b8197aca71583c53f376054dca618b",
                 "shasum": ""
             },
             "require": {
                 "ext-json": ">=1.3.7",
                 "guzzlehttp/ringphp": "~1.0",
-                "php": "^7.0",
+                "php": "^7.1",
                 "psr/log": "~1.0"
             },
             "require-dev": {
-                "cpliakas/git-wrapper": "^1.7 || ^2.1",
-                "doctrine/inflector": "^1.1",
+                "cpliakas/git-wrapper": "~2.0",
+                "doctrine/inflector": "^1.3",
                 "mockery/mockery": "^1.2",
-                "phpstan/phpstan-shim": "^0.9 || ^0.11",
-                "phpunit/phpunit": "^5.7 || ^6.5",
+                "phpstan/phpstan-shim": "^0.11",
+                "phpunit/phpunit": "^7.5",
                 "squizlabs/php_codesniffer": "^3.4",
-                "symfony/finder": "^2.8",
-                "symfony/yaml": "^2.8"
+                "symfony/finder": "~4.0",
+                "symfony/yaml": "~4.0"
             },
             "suggest": {
                 "ext-curl": "*",
@@ -844,7 +844,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2019-07-19T14:48:24+00:00"
+            "time": "2019-08-14T15:43:24+00:00"
         },
         {
             "name": "fig/http-message-util",
@@ -5507,7 +5507,7 @@
     "stability-flags": {
         "daikon/config": 20,
         "daikon/couchdb-adapter": 20,
-        "daikon/elasticsearch6-adapter": 20,
+        "daikon/elasticsearch7-adapter": 20,
         "daikon/entity": 20,
         "daikon/event-sourcing": 20,
         "daikon/flysystem-adapter": 20,
