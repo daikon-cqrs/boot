@@ -19,7 +19,7 @@ final class FixtureList implements \IteratorAggregate, \Countable, ToNativeInter
     public function sortByVersion(): self
     {
         $copy = clone $this;
-        $copy->compositeVector->sort(function (FixtureInterface $a, FixtureInterface $b) {
+        $copy->compositeVector->sort(function (FixtureInterface $a, FixtureInterface $b): bool {
             return $a->getVersion() > $b->getVersion();
         });
         return $copy;

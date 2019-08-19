@@ -206,12 +206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "e93b1a48c0893ffe19b70523a9d103b565247a7c"
+                "reference": "a147037bc6f8073762f7b92b631095817652eeef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/e93b1a48c0893ffe19b70523a9d103b565247a7c",
-                "reference": "e93b1a48c0893ffe19b70523a9d103b565247a7c",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/a147037bc6f8073762f7b92b631095817652eeef",
+                "reference": "a147037bc6f8073762f7b92b631095817652eeef",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2019-03-29T13:53:23+00:00"
+            "time": "2019-08-18T22:05:49+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -432,12 +432,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "5b9bb4d3ee321d714549937608780ddf06cfd631"
+                "reference": "de8ffd317052fe2d594cde7abb920884253085c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/5b9bb4d3ee321d714549937608780ddf06cfd631",
-                "reference": "5b9bb4d3ee321d714549937608780ddf06cfd631",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/de8ffd317052fe2d594cde7abb920884253085c1",
+                "reference": "de8ffd317052fe2d594cde7abb920884253085c1",
                 "shasum": ""
             },
             "require": {
@@ -470,7 +470,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-08-01T05:14:18+00:00"
+            "time": "2019-08-18T22:04:21+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -645,12 +645,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "0cc7ec75d60f4ca5dfca44660220a2c5999de180"
+                "reference": "90a2035015dc7abe0aad80decedac76ad0394bf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/0cc7ec75d60f4ca5dfca44660220a2c5999de180",
-                "reference": "0cc7ec75d60f4ca5dfca44660220a2c5999de180",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/90a2035015dc7abe0aad80decedac76ad0394bf0",
+                "reference": "90a2035015dc7abe0aad80decedac76ad0394bf0",
                 "shasum": ""
             },
             "require": {
@@ -685,7 +685,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-03-29T13:45:37+00:00"
+            "time": "2019-08-18T21:52:21+00:00"
         },
         {
             "name": "daikon/value-object",
@@ -1801,22 +1801,22 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v2.9.2",
+            "version": "v2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "76faddcd668dabb8d4f7c00e86b8a9decd781a59"
+                "reference": "04e5366f032906d5f716890427e425e71307d3a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/76faddcd668dabb8d4f7c00e86b8a9decd781a59",
-                "reference": "76faddcd668dabb8d4f7c00e86b8a9decd781a59",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/04e5366f032906d5f716890427e425e71307d3a8",
+                "reference": "04e5366f032906d5f716890427e425e71307d3a8",
                 "shasum": ""
             },
             "require": {
                 "ext-bcmath": "*",
                 "ext-sockets": "*",
-                "php": ">=5.4.0"
+                "php": ">=5.6"
             },
             "replace": {
                 "videlalvaro/php-amqplib": "self.version"
@@ -1824,14 +1824,14 @@
             "require-dev": {
                 "ext-curl": "*",
                 "nategood/httpful": "^0.2.20",
-                "phpdocumentor/phpdocumentor": "^2.9",
-                "phpunit/phpunit": "^4.8",
+                "phpdocumentor/phpdocumentor": "dev-master",
+                "phpunit/phpunit": "^5.7|^6.5|^7.0",
                 "squizlabs/php_codesniffer": "^2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "2.10-dev"
                 }
             },
             "autoload": {
@@ -1871,7 +1871,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2019-04-24T15:36:21+00:00"
+            "time": "2019-08-08T18:28:18+00:00"
         },
         {
             "name": "php-ds/php-ds",
@@ -2431,21 +2431,21 @@
             "authors": [
                 {
                     "name": "Dan Ackroyd",
+                    "role": "Developer",
                     "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
+                    "homepage": "http://www.basereality.com"
                 },
                 {
                     "name": "Levi Morrison",
+                    "role": "Developer",
                     "email": "levim@php.net",
-                    "homepage": "http://morrisonlevi.github.com/",
-                    "role": "Developer"
+                    "homepage": "http://morrisonlevi.github.com/"
                 },
                 {
                     "name": "Daniel Lowrey",
+                    "role": "Creator / Main Developer",
                     "email": "rdlowrey@gmail.com",
-                    "homepage": "https://github.com/rdlowrey",
-                    "role": "Creator / Main Developer"
+                    "homepage": "https://github.com/rdlowrey"
                 }
             ],
             "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
@@ -3488,19 +3488,23 @@
         },
         {
             "name": "netresearch/jsonmapper",
-            "version": "v1.5.2",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweiske/jsonmapper.git",
-                "reference": "caf41ab74ac7252f5f46db6c16ab0a8358e2e55c"
+                "reference": "0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/caf41ab74ac7252f5f46db6c16ab0a8358e2e55c",
-                "reference": "caf41ab74ac7252f5f46db6c16ab0a8358e2e55c",
+                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06",
+                "reference": "0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
+                "ext-pcre": "*",
+                "ext-reflection": "*",
+                "ext-spl": "*",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -3526,7 +3530,7 @@
                 }
             ],
             "description": "Map nested JSON structures onto PHP classes",
-            "time": "2019-08-04T19:56:28+00:00"
+            "time": "2019-08-15T19:41:25+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -5271,8 +5275,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
