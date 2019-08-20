@@ -3,7 +3,7 @@ oroshi.event_store:
   settings: ${secrets.couchdb}
 
 oroshi.projection_store:
-  class: Daikon\Elasticsearch6\Connector\Elasticsearch6Connector
+  class: Daikon\Elasticsearch7\Connector\Elasticsearch7Connector
   settings: ${secrets.elasticsearch}
 
 oroshi.filesystem:
