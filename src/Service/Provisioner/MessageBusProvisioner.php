@@ -16,7 +16,7 @@ use Daikon\MessageBus\Channel\Subscription\SubscriptionMap;
 use Daikon\MessageBus\Channel\Subscription\Transport\TransportInterface;
 use Daikon\MessageBus\Channel\Subscription\Transport\TransportMap;
 use Daikon\MessageBus\MessageBusInterface;
-use Daikon\MessageBus\Metadata\MetadataEnricherList;
+use Daikon\Metadata\MetadataEnricherList;
 use Oroshi\Core\Exception\ConfigException;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 use Oroshi\Core\Service\ServiceDefinitionMap;

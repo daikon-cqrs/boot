@@ -22,7 +22,7 @@ final class ListConfig extends Command
         $this->configProvider = $configProvider;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('config:ls')
@@ -46,7 +46,7 @@ final class ListConfig extends Command
         $this->renderValues($output, $configs);
     }
 
-    private function renderValues(OutputInterface $output, $settings, $indent = 0)
+    private function renderValues(OutputInterface $output, array $settings, int $indent = 0): void
     {
         foreach ($settings as $key => $value) {
             if (is_scalar($value) || is_null($value)) {
