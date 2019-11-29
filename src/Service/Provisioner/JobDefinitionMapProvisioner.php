@@ -57,11 +57,11 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
                     [
                         ':retryStrategy' => $injector->make(
                             $strategyConfig['retry']['class'],
-                            [ ':settings' => $strategyConfig['retry']['settings'] ?? [] ]
+                            [':settings' => $strategyConfig['retry']['settings'] ?? []]
                         ),
                         ':failureStrategy' => $injector->make(
                             $strategyConfig['failure']['class'],
-                            [ ':settings' => $strategyConfig['failure']['settings'] ?? [] ]
+                            [':settings' => $strategyConfig['failure']['settings'] ?? []]
                         )
                     ]
                 );
