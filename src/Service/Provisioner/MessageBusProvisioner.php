@@ -23,6 +23,12 @@ use Oroshi\Core\Service\ServiceDefinitionMap;
 
 final class MessageBusProvisioner implements ProvisionerInterface
 {
+    public const COMMANDS_CHANNEL = 'commands';
+
+    public const COMMITS_CHANNEL = 'commits';
+
+    public const EVENTS_CHANNEL = 'events';
+
     public function provision(
         Injector $injector,
         ConfigProviderInterface $configProvider,
@@ -82,7 +88,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
         ServiceDefinitionMap $serviceDefinitionMap,
         TransportMap $transportMap
     ): array {
-        $channelSubs = ['commands' => [], 'commits' => [], 'events' => []];
+        $channelSubs = [self::COMMANDS_CHANNEL => [], self::COMMITS_CHANNEL => [], self::EVENTS_CHANNEL => []];
         foreach ($serviceDefinitionMap as $serviceDefinition) {
             $this->registerServiceSubs($injector, $serviceDefinition, $transportMap, $channelSubs);
         }

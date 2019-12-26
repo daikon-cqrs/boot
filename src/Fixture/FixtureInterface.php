@@ -9,8 +9,6 @@ use Daikon\MessageBus\MessageBusInterface;
 
 interface FixtureInterface extends ToNativeInterface
 {
-    const CHAN_COMMANDS = 'commands';
-
     public function getName(): string;
 
     public function getVersion(): int;
