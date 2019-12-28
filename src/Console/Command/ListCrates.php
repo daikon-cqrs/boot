@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
@@ -28,11 +32,13 @@ final class ListCrates extends Command
             ->setDescription('Lists currently installed crates.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         foreach ($this->crateMap as $name => $crate) {
             $output->writeln(sprintf('Summary for crate <options=bold>%s</>', $name));
             $output->writeln('  Location: '.$crate->getLocation());
         }
+
+        return 0;
     }
 }

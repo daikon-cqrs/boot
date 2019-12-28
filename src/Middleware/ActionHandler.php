@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Middleware;
 
@@ -12,6 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use RuntimeException;
 
 class ActionHandler implements MiddlewareInterface
 {
@@ -54,7 +59,7 @@ class ActionHandler implements MiddlewareInterface
             : $action->handleError($request);
 
         if (!$responder = $this->getResponder($request)) {
-            throw new \RuntimeException('Unable to determine responder for '.get_class($action));
+            throw new RuntimeException('Unable to determine responder for '.get_class($action));
         }
 
         return $responder($request);

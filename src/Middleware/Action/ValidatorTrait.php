@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Middleware\Action;
 
@@ -8,6 +12,7 @@ use function GuzzleHttp\Psr7\parse_query;
 use Assert\InvalidArgumentException;
 use Assert\LazyAssertionException;
 use Psr\Http\Message\ServerRequestInterface;
+use RuntimeException;
 use Stringy\Stringy;
 
 trait ValidatorTrait
@@ -63,7 +68,7 @@ trait ValidatorTrait
 
         //@todo handle data error better
         if (!is_array($data)) {
-            throw new \RuntimeException('Failed to parse data from request body.');
+            throw new RuntimeException('Failed to parse data from request body.');
         }
 
         $data = array_merge(parse_query($request->getUri()->getQuery()), $data);
@@ -82,10 +87,10 @@ trait ValidatorTrait
 
     private function validate(string $name, $value, array &$errors): array
     {
-        $validationMethod = 'validate'.Stringy::create($name)->upperCamelize();
+        $validationMethod = 'validate'.(string)Stringy::create($name)->upperCamelize();
         $validationCallback = [$this, $validationMethod];
         if (!is_callable($validationCallback)) {
-            throw new \RuntimeException("Missing required validation callback: $validationMethod");
+            throw new RuntimeException("Missing required validation callback: $validationMethod");
         }
 
         try {

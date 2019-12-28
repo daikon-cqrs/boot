@@ -1,6 +1,10 @@
-<?php
-
-declare (strict_types=1);
+<?php declare (strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Service;
 
@@ -9,6 +13,8 @@ use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\MessageInterface;
 use Daikon\Metadata\MetadataInterface;
+use ReflectionClass;
+use RuntimeException;
 
 trait ProcessManagerTrait
 {
@@ -16,11 +22,11 @@ trait ProcessManagerTrait
     {
         $message = $envelope->getMessage();
         Assertion::isInstanceOf($message, MessageInterface::class);
-        $shortName = (new \ReflectionClass($message))->getShortName();
+        $shortName = (new ReflectionClass($message))->getShortName();
         $handlerMethod = 'when'.ucfirst($shortName);
         $handler = [$this, $handlerMethod];
         if (!is_callable($handler)) {
-            throw new \RuntimeException("Handler method '$handlerMethod' is not callable in ".static::class);
+            throw new RuntimeException("Handler method '$handlerMethod' is not callable in ".static::class);
         }
         call_user_func($handler, $message, $envelope->getMetadata());
     }

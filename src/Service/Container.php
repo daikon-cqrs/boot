@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Service;
 
@@ -9,9 +13,7 @@ use Psr\Container\ContainerInterface;
 
 final class Container implements ContainerInterface
 {
-    /**
-     * @var Injector
-     */
+    /** @var Injector */
     private $injector;
 
     public function __construct(Injector $injector)

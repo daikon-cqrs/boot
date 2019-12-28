@@ -1,8 +1,15 @@
-<?php
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
 use Aura\Router\RouterContainer;
+use Closure;
 use Oroshi\Core\Middleware\RoutingHandler;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,9 +34,9 @@ class ListRoutes extends Command
             ->setDescription('List registered routes.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $getRouter = \Closure::bind(
+        $getRouter = Closure::bind(
             function (RoutingHandler $routingHandler): RouterContainer {
                 /** @psalm-suppress InaccessibleProperty */
                 return $routingHandler->router;
@@ -43,5 +50,7 @@ class ListRoutes extends Command
             $output->write('<comment>'.implode('|', $route->allows).'</comment> ');
             $output->writeln($route->path);
         }
+
+        return 0;
     }
 }

@@ -1,17 +1,23 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Common;
 
+use Countable;
 use Daikon\DataStructure\TypedMapTrait;
 use Daikon\EventSourcing\EventStore\UnitOfWorkInterface;
+use IteratorAggregate;
 
-final class UnitOfWorkMap implements \IteratorAggregate, \Countable
+final class UnitOfWorkMap implements IteratorAggregate, Countable
 {
     use TypedMapTrait;
 
-    public function __construct(array $unitsOfWork = [])
+    public function __construct(iterable $unitsOfWork = [])
     {
         $this->init($unitsOfWork, UnitOfWorkInterface::class);
     }

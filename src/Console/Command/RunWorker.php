@@ -1,11 +1,14 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
 use Daikon\AsyncJob\Worker\WorkerMap;
-use Daikon\RabbitMq3\Job\RabbitMq3Worker;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,13 +45,15 @@ class RunWorker extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$workerName = $input->getArgument('worker')) {
             $workerName = $this->listWorkers($input, $output);
         }
         $worker = $this->workerMap->get($workerName);
         $worker->run(['queue' => $input->getArgument('queue')]);
+        //@todo return int from worker
+        return 0;
     }
 
     protected function listWorkers(InputInterface $input, OutputInterface $output): string

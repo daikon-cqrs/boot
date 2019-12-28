@@ -1,4 +1,10 @@
-<?php
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
@@ -41,7 +47,7 @@ final class ImportFixture extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $target = $input->getOption('target');
         $from = intval($input->getOption('from'));
@@ -86,5 +92,7 @@ final class ImportFixture extends Command
             'Successfully imported <options=bold>%d</> fixtures.',
             count($importedFixtures)
         ));
+
+        return 0;
     }
 }

@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Fixture;
 
@@ -34,7 +38,6 @@ final class FlysystemFixtureLoader implements FixtureLoaderInterface
         $fixtures = [];
         foreach ($fixtureFiles as $fixtureFile) {
             $declaredClasses = get_declared_classes();
-            /** @psalm-suppress UnresolvableInclude */
             require_once $this->getBaseDir().'/'.$fixtureFile['path'];
             $fixtureClass = current(array_diff(get_declared_classes(), $declaredClasses));
             $fixtures[] = new $fixtureClass;

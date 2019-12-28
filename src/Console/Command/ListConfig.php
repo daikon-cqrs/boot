@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
@@ -34,7 +38,7 @@ final class ListConfig extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($path = $input->getArgument('path')) {
             $configs = $this->configProvider->get($path, []);
@@ -44,6 +48,8 @@ final class ListConfig extends Command
         }
 
         $this->renderValues($output, $configs);
+
+        return 0;
     }
 
     private function renderValues(OutputInterface $output, array $settings, int $indent = 0): void

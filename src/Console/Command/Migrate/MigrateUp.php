@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command\Migrate;
 
@@ -42,7 +46,7 @@ final class MigrateUp extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $target = $input->getOption('target');
         $version = intval($input->getOption('to'));
@@ -65,5 +69,7 @@ final class MigrateUp extends Command
                 $output->writeln('  <comment>No pending migrations found</comment>');
             }
         }
+
+        return 0;
     }
 }

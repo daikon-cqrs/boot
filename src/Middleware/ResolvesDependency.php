@@ -1,11 +1,16 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Middleware;
 
 use Assert\Assertion;
 use Psr\Container\ContainerInterface;
+use RuntimeException;
 
 trait ResolvesDependency
 {
@@ -31,7 +36,7 @@ trait ResolvesDependency
         if (is_callable($dependency)) {
             return $dependency;
         }
-        throw new \RuntimeException(
+        throw new RuntimeException(
             sprintf("Given type '%s' is not a $stereoType.", gettype($dependency))
         );
     }

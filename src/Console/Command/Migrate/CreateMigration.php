@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command\Migrate;
 
@@ -12,7 +16,6 @@ use Stringy\Stringy;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
@@ -49,7 +52,7 @@ final class CreateMigration extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!count($this->crateMap) || !count($this->migrationTargetMap)) {
             $output->writeln('<error>There are no targets available to generate migrations for.</error>');
@@ -83,6 +86,8 @@ final class CreateMigration extends Command
         if (file_put_contents($migrationFile, $migration)) {
             $output->writeln("Created migration file at: <options=bold>$migrationFile</>");
         }
+
+        return 0;
     }
 
     private function promptCrate(InputInterface $input, OutputInterface $output): string
@@ -114,7 +119,7 @@ final class CreateMigration extends Command
         $name = $this->getHelper('question')->ask($input, $output, new Question(
             'Please provide a short migration description: '
         ));
-        return Stringy::create($name)->upperCamelize();
+        return (string)Stringy::create($name)->upperCamelize();
     }
 
     private function migrationTemplate(): string

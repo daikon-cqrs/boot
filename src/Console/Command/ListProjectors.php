@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command;
 
@@ -28,7 +32,7 @@ final class ListProjectors extends Command
             ->setDescription('Lists currently configured projectors.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         foreach ($this->eventProjectorMap as $projectorKey => $eventProjector) {
             $projectorFqcn = get_class($eventProjector->getProjector());
@@ -36,5 +40,7 @@ final class ListProjectors extends Command
             //@todo use closure binding instead of getter on EventProjector
             $output->writeln('  Responds to: '.implode(" | ", $eventProjector->getEventExpressions()));
         }
+
+        return 0;
     }
 }

@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Config;
 
@@ -25,6 +29,7 @@ final class RoutingConfigLoader implements ConfigLoaderInterface
     public function load(array $locations, array $sources): array
     {
         $router = $this->router;
+        //these variables are in scope for included routing files
         $map = $router->getMap();
         $configProvider = $this->configProvider;
         $loadedConfigs = [];
@@ -35,7 +40,6 @@ final class RoutingConfigLoader implements ConfigLoaderInterface
             foreach ($sources as $source) {
                 $filepath = $location.$source;
                 if (is_file($filepath) && is_readable($filepath)) {
-                    /** @psalm-suppress UnresolvableInclude */
                     require_once $filepath;
                     $loadedConfigs[] = $filepath;
                 }

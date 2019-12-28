@@ -1,6 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
+/**
+ * This file is part of the oroshi/oroshi-core project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Oroshi\Core\Console\Command\Migrate;
 
@@ -35,7 +39,7 @@ final class ListTargets extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $target = $input->getOption('target');
         foreach ($this->migrationTargetMap as $targetName => $migrationTarget) {
@@ -50,5 +54,7 @@ final class ListTargets extends Command
             $output->writeln('  Executed Migrations: '.count($executedMigrations));
             $output->writeln('  Pending Migrations: '.count($pendingMigrations));
         }
+
+        return 0;
     }
 }
