@@ -15,8 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ListCrates extends Command
 {
-    /** @var CrateMap */
-    private $crateMap;
+    private CrateMap $crateMap;
 
     public function __construct(CrateMap $crateMap)
     {

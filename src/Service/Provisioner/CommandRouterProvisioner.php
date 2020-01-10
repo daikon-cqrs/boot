@@ -11,7 +11,7 @@ namespace Oroshi\Core\Service\Provisioner;
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\EventSourcing\Aggregate\Command\CommandHandler;
-use Oroshi\Core\Common\UnitOfWorkMap;
+use Daikon\EventSourcing\EventStore\UnitOfWorkMap;
 use Oroshi\Core\MessageBus\CommandRouter;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 

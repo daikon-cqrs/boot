@@ -17,8 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListRoutes extends Command
 {
-    /** @var RoutingHandler */
-    private $routingHandler;
+    private RoutingHandler $routingHandler;
 
     public function __construct(RoutingHandler $routingHandler)
     {

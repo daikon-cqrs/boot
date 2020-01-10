@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bddf9a2c1a164c2b0ef02eb72c63451",
+    "content-hash": "a0a60bba78a60c6039a3a64445bf24e6",
     "packages": [
         {
             "name": "aura/router",
@@ -123,12 +123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/async-job.git",
-                "reference": "c34c1688ebb6a5fc562c75e0cf1f2a8b16a779b2"
+                "reference": "395b695c42727f062faa4d71620aaf30595f5269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/c34c1688ebb6a5fc562c75e0cf1f2a8b16a779b2",
-                "reference": "c34c1688ebb6a5fc562c75e0cf1f2a8b16a779b2",
+                "url": "https://api.github.com/repos/daikon-cqrs/async-job/zipball/395b695c42727f062faa4d71620aaf30595f5269",
+                "reference": "395b695c42727f062faa4d71620aaf30595f5269",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "daikon/data-structure": "master@dev",
                 "daikon/message-bus": "master@dev",
                 "daikon/metadata": "master@dev",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -157,13 +157,13 @@
             "description": "Asynchronous job components for Daikon projects.",
             "homepage": "https://github.com/daikon-cqrs/async-job",
             "keywords": [
-                "asynchronous",
+                "async",
                 "background",
                 "delayed",
                 "job",
                 "worker"
             ],
-            "time": "2019-12-28T13:33:10+00:00"
+            "time": "2020-01-10T13:37:13+00:00"
         },
         {
             "name": "daikon/config",
@@ -214,19 +214,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "724520b18aa9a448fc1b2bf2af999ea27714a312"
+                "reference": "b69fa592412199b2261ca5abaa2a21815df388bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/724520b18aa9a448fc1b2bf2af999ea27714a312",
-                "reference": "724520b18aa9a448fc1b2bf2af999ea27714a312",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/b69fa592412199b2261ca5abaa2a21815df388bc",
+                "reference": "b69fa592412199b2261ca5abaa2a21815df388bc",
                 "shasum": ""
             },
             "require": {
                 "daikon/dbal": "master@dev",
                 "daikon/event-sourcing": "master@dev",
                 "guzzlehttp/guzzle": "^6.3",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -250,7 +250,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2019-12-28T16:50:33+00:00"
+            "time": "2020-01-10T13:51:39+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -258,16 +258,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/data-structure.git",
-                "reference": "c4f42f6e73b64c15317a17daaae4117e0cae2f4a"
+                "reference": "a073e74efa77933a5f9461d7dd48a170c25c9b47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/c4f42f6e73b64c15317a17daaae4117e0cae2f4a",
-                "reference": "c4f42f6e73b64c15317a17daaae4117e0cae2f4a",
+                "url": "https://api.github.com/repos/daikon-cqrs/data-structure/zipball/a073e74efa77933a5f9461d7dd48a170c25c9b47",
+                "reference": "a073e74efa77933a5f9461d7dd48a170c25c9b47",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "beberlei/assert": "^3.0",
+                "php": "^7.4",
                 "php-ds/php-ds": "^1.2"
             },
             "require-dev": {
@@ -287,14 +288,15 @@
                 "MPL-2.0"
             ],
             "description": "Immutable data-structure traits based on php/ds.",
-            "homepage": "https://github.com/daikon-cqrs/data-structures",
+            "homepage": "https://github.com/daikon-cqrs/data-structure",
             "keywords": [
-                "data-structures",
+                "data-structure",
                 "immutable",
                 "list",
-                "map"
+                "map",
+                "vector"
             ],
-            "time": "2019-12-28T17:22:22+00:00"
+            "time": "2020-01-10T13:05:24+00:00"
         },
         {
             "name": "daikon/dbal",
@@ -302,12 +304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "8f9df7366617f029fb3d8dcc2ea692bec21c9456"
+                "reference": "0818419eb2e330a1c5ebea413cef32c5dc877a34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/8f9df7366617f029fb3d8dcc2ea692bec21c9456",
-                "reference": "8f9df7366617f029fb3d8dcc2ea692bec21c9456",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/0818419eb2e330a1c5ebea413cef32c5dc877a34",
+                "reference": "0818419eb2e330a1c5ebea413cef32c5dc877a34",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +318,7 @@
                 "daikon/event-sourcing": "master@dev",
                 "daikon/interop": "master@dev",
                 "daikon/read-model": "master@dev",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -341,7 +343,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2019-12-28T16:33:53+00:00"
+            "time": "2020-01-10T13:49:26+00:00"
         },
         {
             "name": "daikon/elasticsearch7-adapter",
@@ -349,12 +351,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch7-adapter.git",
-                "reference": "aa2f13a0b88540887e3c58cc100b6080442762fc"
+                "reference": "58116d31452c28f1e59ac823cd55f158da12ef2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/aa2f13a0b88540887e3c58cc100b6080442762fc",
-                "reference": "aa2f13a0b88540887e3c58cc100b6080442762fc",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/58116d31452c28f1e59ac823cd55f158da12ef2e",
+                "reference": "58116d31452c28f1e59ac823cd55f158da12ef2e",
                 "shasum": ""
             },
             "require": {
@@ -362,13 +364,13 @@
                 "daikon/metadata": "master@dev",
                 "daikon/read-model": "master@dev",
                 "elasticsearch/elasticsearch": "^7.0",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
-                "vimeo/psalm": "^2.0"
+                "vimeo/psalm": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -386,7 +388,7 @@
                 "adapter",
                 "elasticsearch"
             ],
-            "time": "2019-10-23T13:26:58+00:00"
+            "time": "2020-01-10T13:53:41+00:00"
         },
         {
             "name": "daikon/entity",
@@ -394,12 +396,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "75f0f727d235fa567952f55b959dea9c10803492"
+                "reference": "b959755a98210ede7eff3d19230025645261888e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/75f0f727d235fa567952f55b959dea9c10803492",
-                "reference": "75f0f727d235fa567952f55b959dea9c10803492",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/b959755a98210ede7eff3d19230025645261888e",
+                "reference": "b959755a98210ede7eff3d19230025645261888e",
                 "shasum": ""
             },
             "require": {
@@ -408,7 +410,7 @@
                 "daikon/interop": "master@dev",
                 "daikon/value-object": "master@dev",
                 "jms/parser-lib": "^1.0",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -429,11 +431,11 @@
             "description": "Boilerplate for implementing well structured entities in PHP7.",
             "homepage": "https://github.com/daikon-cqrs/entity",
             "keywords": [
+                "attribute",
                 "entity",
-                "generic",
-                "value-object"
+                "generic"
             ],
-            "time": "2019-12-28T13:23:19+00:00"
+            "time": "2020-01-10T13:24:30+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -441,12 +443,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "7b96bb92f8c023f75d71a118a3696dd987ea819c"
+                "reference": "7e220539d48d7528f1886b22ca31059f3b21d6b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/7b96bb92f8c023f75d71a118a3696dd987ea819c",
-                "reference": "7b96bb92f8c023f75d71a118a3696dd987ea819c",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/7e220539d48d7528f1886b22ca31059f3b21d6b3",
+                "reference": "7e220539d48d7528f1886b22ca31059f3b21d6b3",
                 "shasum": ""
             },
             "require": {
@@ -455,7 +457,7 @@
                 "daikon/message-bus": "master@dev",
                 "daikon/metadata": "master@dev",
                 "daikon/value-object": "master@dev",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -480,7 +482,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2019-12-28T16:00:28+00:00"
+            "time": "2020-01-10T13:39:58+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -488,18 +490,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/flysystem-adapter.git",
-                "reference": "e95f8e77a2c003d690d621b241368a71c91001f6"
+                "reference": "ff50995dcdf1fc430a90e2f62dc889c322f94c5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/e95f8e77a2c003d690d621b241368a71c91001f6",
-                "reference": "e95f8e77a2c003d690d621b241368a71c91001f6",
+                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/ff50995dcdf1fc430a90e2f62dc889c322f94c5c",
+                "reference": "ff50995dcdf1fc430a90e2f62dc889c322f94c5c",
                 "shasum": ""
             },
             "require": {
                 "daikon/dbal": "master@dev",
                 "league/flysystem": "^1.0",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -523,7 +525,7 @@
                 "Flysystem",
                 "adapter"
             ],
-            "time": "2019-12-28T17:31:35+00:00"
+            "time": "2020-01-10T13:55:06+00:00"
         },
         {
             "name": "daikon/interop",
@@ -531,18 +533,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/interop.git",
-                "reference": "bbcfdc37448f4e4c92f7ec72cebc5a017bb5b8bc"
+                "reference": "44f02fd660c4210fc8aec89e92750752f71350c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/bbcfdc37448f4e4c92f7ec72cebc5a017bb5b8bc",
-                "reference": "bbcfdc37448f4e4c92f7ec72cebc5a017bb5b8bc",
+                "url": "https://api.github.com/repos/daikon-cqrs/interop/zipball/44f02fd660c4210fc8aec89e92750752f71350c9",
+                "reference": "44f02fd660c4210fc8aec89e92750752f71350c9",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
+                "phpunit/phpunit": "^8.0",
                 "sebastian/phpcpd": "^4.1",
                 "squizlabs/php_codesniffer": "^3.3",
                 "vimeo/psalm": "^3.0"
@@ -559,7 +562,7 @@
             ],
             "description": "Interop components used across Daikon components.",
             "homepage": "https://github.com/daikon-cqrs/interop",
-            "time": "2019-12-27T23:36:00+00:00"
+            "time": "2020-01-10T13:01:44+00:00"
         },
         {
             "name": "daikon/message-bus",
@@ -567,19 +570,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/message-bus.git",
-                "reference": "0ec552aebab0861a92b5ada63c5caf302717f951"
+                "reference": "e3c46b14cd0cd03619da50a10ef8d87db59bac42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/0ec552aebab0861a92b5ada63c5caf302717f951",
-                "reference": "0ec552aebab0861a92b5ada63c5caf302717f951",
+                "url": "https://api.github.com/repos/daikon-cqrs/message-bus/zipball/e3c46b14cd0cd03619da50a10ef8d87db59bac42",
+                "reference": "e3c46b14cd0cd03619da50a10ef8d87db59bac42",
                 "shasum": ""
             },
             "require": {
                 "daikon/data-structure": "master@dev",
                 "daikon/interop": "master@dev",
                 "daikon/metadata": "master@dev",
-                "php": "^7.2",
+                "php": "^7.4",
                 "ramsey/uuid": "^3.8"
             },
             "require-dev": {
@@ -604,7 +607,7 @@
                 "message-bus",
                 "messaging"
             ],
-            "time": "2019-12-28T13:24:41+00:00"
+            "time": "2020-01-10T13:29:02+00:00"
         },
         {
             "name": "daikon/metadata",
@@ -612,18 +615,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/metadata.git",
-                "reference": "07950c2798872ff002a945cbd634a0538f4517d0"
+                "reference": "f3cea71ea460f7c01f038fbbf03dc156a7ff93fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/metadata/zipball/07950c2798872ff002a945cbd634a0538f4517d0",
-                "reference": "07950c2798872ff002a945cbd634a0538f4517d0",
+                "url": "https://api.github.com/repos/daikon-cqrs/metadata/zipball/f3cea71ea460f7c01f038fbbf03dc156a7ff93fe",
+                "reference": "f3cea71ea460f7c01f038fbbf03dc156a7ff93fe",
                 "shasum": ""
             },
             "require": {
                 "daikon/data-structure": "master@dev",
                 "daikon/interop": "master@dev",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -647,7 +650,7 @@
                 "enricher",
                 "metadata"
             ],
-            "time": "2019-12-28T00:08:44+00:00"
+            "time": "2020-01-10T13:18:27+00:00"
         },
         {
             "name": "daikon/rabbitmq3-adapter",
@@ -655,12 +658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "8f059df79aab270f7fba7742867ddf296a597037"
+                "reference": "90b3c1f57903c34d3c1fc6a78e8aeb402d20fa37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/8f059df79aab270f7fba7742867ddf296a597037",
-                "reference": "8f059df79aab270f7fba7742867ddf296a597037",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/90b3c1f57903c34d3c1fc6a78e8aeb402d20fa37",
+                "reference": "90b3c1f57903c34d3c1fc6a78e8aeb402d20fa37",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +671,7 @@
                 "daikon/async-job": "master@dev",
                 "daikon/dbal": "master@dev",
                 "daikon/message-bus": "master@dev",
-                "php": "^7.2",
+                "php": "^7.4",
                 "php-amqplib/php-amqplib": "^v2.8"
             },
             "require-dev": {
@@ -693,7 +696,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2019-12-28T18:13:37+00:00"
+            "time": "2020-01-10T13:57:04+00:00"
         },
         {
             "name": "daikon/read-model",
@@ -701,12 +704,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "8e77ae1e8561f0a4402032298e37dfa1cc06add3"
+                "reference": "330ddc21d95ae6f0388c4d24ffbad3e229c01524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/8e77ae1e8561f0a4402032298e37dfa1cc06add3",
-                "reference": "8e77ae1e8561f0a4402032298e37dfa1cc06add3",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/330ddc21d95ae6f0388c4d24ffbad3e229c01524",
+                "reference": "330ddc21d95ae6f0388c4d24ffbad3e229c01524",
                 "shasum": ""
             },
             "require": {
@@ -716,7 +719,7 @@
                 "daikon/interop": "master@dev",
                 "daikon/message-bus": "master@dev",
                 "daikon/metadata": "master@dev",
-                "php": "^7.2"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -742,7 +745,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2019-12-28T16:19:11+00:00"
+            "time": "2020-01-10T13:42:08+00:00"
         },
         {
             "name": "daikon/value-object",
@@ -750,18 +753,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/value-object.git",
-                "reference": "60f78c68b169024a4229917ad8facc2df38e084a"
+                "reference": "0d64504651815442f9c3b56b17a8c194ff5f4472"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/60f78c68b169024a4229917ad8facc2df38e084a",
-                "reference": "60f78c68b169024a4229917ad8facc2df38e084a",
+                "url": "https://api.github.com/repos/daikon-cqrs/value-object/zipball/0d64504651815442f9c3b56b17a8c194ff5f4472",
+                "reference": "0d64504651815442f9c3b56b17a8c194ff5f4472",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^3.0",
+                "daikon/data-structure": "master@dev",
                 "daikon/interop": "master@dev",
-                "php": "^7.2",
+                "php": "^7.4",
                 "ramsey/uuid": "^3.8"
             },
             "require-dev": {
@@ -785,7 +789,7 @@
             "keywords": [
                 "value-object"
             ],
-            "time": "2019-12-28T12:48:48+00:00"
+            "time": "2020-01-10T13:21:29+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -958,16 +962,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.6.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "ecbc8f3ed2cafca3cfca3d5febaae5a9d2899508"
+                "reference": "4c97f814aa2f0dd4d5bedc89181c10ef12c004c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/ecbc8f3ed2cafca3cfca3d5febaae5a9d2899508",
-                "reference": "ecbc8f3ed2cafca3cfca3d5febaae5a9d2899508",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/4c97f814aa2f0dd4d5bedc89181c10ef12c004c5",
+                "reference": "4c97f814aa2f0dd4d5bedc89181c10ef12c004c5",
                 "shasum": ""
             },
             "require": {
@@ -986,7 +990,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1015,7 +1019,45 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2019-12-25T10:00:00+00:00"
+            "time": "2019-12-29T10:00:00+00:00"
+        },
+        {
+            "name": "franzl/whoops-middleware",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/franzliedke/whoops-middleware.git",
+                "reference": "040df4c8b59fdf0e4def28810d97b5a3723c5e92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/franzliedke/whoops-middleware/zipball/040df4c8b59fdf0e4def28810d97b5a3723c5e92",
+                "reference": "040df4c8b59fdf0e4def28810d97b5a3723c5e92",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^1.1 || ^2.0",
+                "zendframework/zend-diactoros": "^1.1.0 || ^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.0.*",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "suggest": {
+                "psr/http-server-middleware": "In case you want to use PSR 15 middleware"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Franzl\\Middleware\\Whoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PSR-15 compatible middleware for Whoops, the pretty error handler",
+            "time": "2020-01-07T23:33:59+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1344,16 +1386,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.61",
+            "version": "1.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "4fb13c01784a6c9f165a351e996871488ca2d8c9"
+                "reference": "8132daec326565036bc8e8d1876f77ec183a7bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4fb13c01784a6c9f165a351e996871488ca2d8c9",
-                "reference": "4fb13c01784a6c9f165a351e996871488ca2d8c9",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8132daec326565036bc8e8d1876f77ec183a7bd6",
+                "reference": "8132daec326565036bc8e8d1876f77ec183a7bd6",
                 "shasum": ""
             },
             "require": {
@@ -1424,33 +1466,34 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-12-08T21:46:50+00:00"
+            "time": "2020-01-04T16:30:31+00:00"
         },
         {
             "name": "middlewares/cors",
-            "version": "v1.1.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/middlewares/cors.git",
-                "reference": "1de4dae37d439cdf3f046e0b69427076d54d0e16"
+                "reference": "629582786348db4407f7728f43e4f97f46ec6d53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/cors/zipball/1de4dae37d439cdf3f046e0b69427076d54d0e16",
-                "reference": "1de4dae37d439cdf3f046e0b69427076d54d0e16",
+                "url": "https://api.github.com/repos/middlewares/cors/zipball/629582786348db4407f7728f43e4f97f46ec6d53",
+                "reference": "629582786348db4407f7728f43e4f97f46ec6d53",
                 "shasum": ""
             },
             "require": {
-                "middlewares/utils": "^2.1",
-                "neomerx/cors-psr7": "^1.0",
-                "php": "^7.0",
+                "middlewares/utils": "^3.0",
+                "neomerx/cors-psr7": "^2.0",
+                "php": "^7.2",
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.0",
-                "phpunit/phpunit": "^6.0|^7.0",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.1",
                 "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
+                "zendframework/zend-diactoros": "^2.2"
             },
             "type": "library",
             "autoload": {
@@ -1473,33 +1516,34 @@
                 "psr-7",
                 "security"
             ],
-            "time": "2018-08-04T10:41:47+00:00"
+            "time": "2019-11-30T23:25:59+00:00"
         },
         {
             "name": "middlewares/negotiation",
-            "version": "v1.1.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/middlewares/negotiation.git",
-                "reference": "4c8cee6e923834ec26905bab29788265a46134bd"
+                "reference": "028b8e1cf0be5e51c3927b6e329db7e3f13f386e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/negotiation/zipball/4c8cee6e923834ec26905bab29788265a46134bd",
-                "reference": "4c8cee6e923834ec26905bab29788265a46134bd",
+                "url": "https://api.github.com/repos/middlewares/negotiation/zipball/028b8e1cf0be5e51c3927b6e329db7e3f13f386e",
+                "reference": "028b8e1cf0be5e51c3927b6e329db7e3f13f386e",
                 "shasum": ""
             },
             "require": {
-                "middlewares/utils": "^2.1",
-                "php": "^7.0",
+                "middlewares/utils": "^3.0",
+                "php": "^7.2",
                 "psr/http-server-middleware": "^1.0",
                 "willdurand/negotiation": "^2.1"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.0",
-                "phpunit/phpunit": "^6.0|^7.0",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.1",
                 "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
+                "zendframework/zend-diactoros": "^2.0.1"
             },
             "type": "library",
             "autoload": {
@@ -1524,34 +1568,34 @@
                 "psr-7",
                 "server"
             ],
-            "time": "2018-08-04T10:41:52+00:00"
+            "time": "2019-11-29T16:49:16+00:00"
         },
         {
             "name": "middlewares/request-handler",
-            "version": "v1.4.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/middlewares/request-handler.git",
-                "reference": "adcc7dd36361661bd62057a21c052643ede6c726"
+                "reference": "e02286017e549e84a4ff4f535fd11b64e6ab892d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/request-handler/zipball/adcc7dd36361661bd62057a21c052643ede6c726",
-                "reference": "adcc7dd36361661bd62057a21c052643ede6c726",
+                "url": "https://api.github.com/repos/middlewares/request-handler/zipball/e02286017e549e84a4ff4f535fd11b64e6ab892d",
+                "reference": "e02286017e549e84a4ff4f535fd11b64e6ab892d",
                 "shasum": ""
             },
             "require": {
-                "middlewares/utils": "^2.1",
-                "php": "^7.0",
+                "middlewares/utils": "^3.0",
+                "php": "^7.2",
+                "psr/container": "^1.0",
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.0",
-                "phpstan/phpstan": "^0.9.2|^0.10.3",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "psr/container": "^1.0",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.1",
                 "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
+                "zendframework/zend-diactoros": "^2.2"
             },
             "suggest": {
                 "psr/container": "Can be used to resolve handlers automatically"
@@ -1579,24 +1623,24 @@
                 "request",
                 "server"
             ],
-            "time": "2018-10-25T22:59:24+00:00"
+            "time": "2019-11-29T17:46:34+00:00"
         },
         {
             "name": "middlewares/utils",
-            "version": "v2.2.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/middlewares/utils.git",
-                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc"
+                "reference": "0f7117b8942e81594541638b20d168e47b797805"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/utils/zipball/7dc49454b4fbf249226023c7b77658b6068abfbc",
-                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc",
+                "url": "https://api.github.com/repos/middlewares/utils/zipball/0f7117b8942e81594541638b20d168e47b797805",
+                "reference": "0f7117b8942e81594541638b20d168e47b797805",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
+                "php": "^7.2",
                 "psr/container": "^1.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
@@ -1604,11 +1648,17 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.0",
-                "guzzlehttp/psr7": "^1.3",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "slim/http": "^0.3",
+                "guzzlehttp/psr7": "dev-master",
+                "nyholm/psr7": "^1.0",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.1",
+                "slim/psr7": "~0.3",
                 "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
+                "sunrise/http-message": "^1.0",
+                "sunrise/http-server-request": "^1.0",
+                "sunrise/stream": "^1.0",
+                "sunrise/uri": "^1.0",
+                "zendframework/zend-diactoros": "^2.0.1"
             },
             "type": "library",
             "autoload": {
@@ -1620,7 +1670,7 @@
             "license": [
                 "MIT"
             ],
-            "description": "Common utils to create PSR-15 middleware packages",
+            "description": "Common utils for PSR-15 middleware packages",
             "homepage": "https://github.com/middlewares/utils",
             "keywords": [
                 "PSR-11",
@@ -1630,76 +1680,25 @@
                 "psr-17",
                 "psr-7"
             ],
-            "time": "2019-03-05T22:06:37+00:00"
-        },
-        {
-            "name": "middlewares/whoops",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/whoops.git",
-                "reference": "4bd8e6553edfc1eba757947c86bc358bd723b40e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/whoops/zipball/4bd8e6553edfc1eba757947c86bc358bd723b40e",
-                "reference": "4bd8e6553edfc1eba757947c86bc358bd723b40e",
-                "shasum": ""
-            },
-            "require": {
-                "filp/whoops": "^2.1",
-                "middlewares/utils": "^2.1",
-                "php": "^7.0",
-                "psr/container": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "eloquent/phony-phpunit": "^3.0|^4.0",
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Middleware to use Whoops as error handler",
-            "homepage": "https://github.com/middlewares/whoops",
-            "keywords": [
-                "error",
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-7",
-                "server",
-                "whoops"
-            ],
-            "time": "2018-08-04T10:41:55+00:00"
+            "time": "2019-11-29T12:20:12+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.25.3",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fa82921994db851a8becaf3787a9e73c5976b6f1"
+                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fa82921994db851a8becaf3787a9e73c5976b6f1",
-                "reference": "fa82921994db851a8becaf3787a9e73c5976b6f1",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c861fcba2ca29404dc9e617eedd9eff4616986b8",
+                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
-                "psr/log": "~1.0"
+                "php": "^7.2",
+                "psr/log": "^1.0.1"
             },
             "provide": {
                 "psr/log-implementation": "1.0.0"
@@ -1707,33 +1706,36 @@
             "require-dev": {
                 "aws/aws-sdk-php": "^2.4.9 || ^3.0",
                 "doctrine/couchdb": "~1.0@dev",
-                "graylog2/gelf-php": "~1.0",
-                "jakub-onderka/php-parallel-lint": "0.9",
+                "elasticsearch/elasticsearch": "^6.0",
+                "graylog2/gelf-php": "^1.4.2",
+                "jakub-onderka/php-parallel-lint": "^0.9",
                 "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
-                "phpunit/phpunit": "~4.5",
-                "phpunit/phpunit-mock-objects": "2.3.0",
+                "phpspec/prophecy": "^1.6.1",
+                "phpunit/phpunit": "^8.3",
+                "predis/predis": "^1.1",
+                "rollbar/rollbar": "^1.3",
                 "ruflin/elastica": ">=0.90 <3.0",
-                "sentry/sentry": "^0.13",
                 "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+                "elasticsearch/elasticsearch": "Allow sending log messages to an Elasticsearch server via official client",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "ext-mbstring": "Allow to work properly with unicode symbols",
+                "ext-mongodb": "Allow sending log messages to a MongoDB server (via driver)",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
                 "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "sentry/sentry": "Allow sending log messages to a Sentry server"
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -1759,32 +1761,34 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-12-20T14:15:16+00:00"
+            "time": "2019-12-20T14:22:59+00:00"
         },
         {
             "name": "neomerx/cors-psr7",
-            "version": "v1.0.13",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neomerx/cors-psr7.git",
-                "reference": "2556e2013f16a55532c95928455257d5b6bbc6e2"
+                "reference": "454e923aaf9ba4aa162f7aca2a514e41708b6ba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neomerx/cors-psr7/zipball/2556e2013f16a55532c95928455257d5b6bbc6e2",
-                "reference": "2556e2013f16a55532c95928455257d5b6bbc6e2",
+                "url": "https://api.github.com/repos/neomerx/cors-psr7/zipball/454e923aaf9ba4aa162f7aca2a514e41708b6ba5",
+                "reference": "454e923aaf9ba4aa162f7aca2a514e41708b6ba5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0",
+                "php": ">=7.1.0",
                 "psr/http-message": "^1.0",
                 "psr/log": "^1.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.14",
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^5.7",
-                "scrutinizer/ocular": "^1.1",
-                "squizlabs/php_codesniffer": "^3.0"
+                "phpmd/phpmd": "^2.6",
+                "phpunit/phpunit": "^7.0",
+                "scrutinizer/ocular": "^1.4",
+                "squizlabs/php_codesniffer": "^2.9"
             },
             "type": "library",
             "autoload": {
@@ -1814,7 +1818,7 @@
                 "w3.org",
                 "www.w3.org"
             ],
-            "time": "2018-05-23T16:10:11+00:00"
+            "time": "2019-02-14T10:35:50+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3134,57 +3138,6 @@
             "time": "2019-12-10T10:33:21+00:00"
         },
         {
-            "name": "vlucas/phpdotenv",
-            "version": "v2.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
-                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9",
-                "symfony/polyfill-ctype": "^1.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dotenv\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Vance Lucas",
-                    "email": "vance@vancelucas.com",
-                    "homepage": "http://www.vancelucas.com"
-                }
-            ],
-            "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
-            "keywords": [
-                "dotenv",
-                "env",
-                "environment"
-            ],
-            "time": "2019-01-29T11:11:52+00:00"
-        },
-        {
             "name": "willdurand/negotiation",
             "version": "v2.3.1",
             "source": {
@@ -3301,62 +3254,8 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2019-11-13T19:16:13+00:00"
-        },
-        {
-            "name": "zendframework/zend-httphandlerrunner",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/zend-httphandlerrunner.git",
-                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-httphandlerrunner/zipball/75fb12751fe9d6e392cce1ee0d687dacae2db787",
-                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "psr/http-message": "^1.0",
-                "psr/http-message-implementation": "^1.0",
-                "psr/http-server-handler": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0.2",
-                "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-diactoros": "^1.7 || ^2.1.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev",
-                    "dev-develop": "1.2.x-dev"
-                },
-                "zf": {
-                    "config-provider": "Zend\\HttpHandlerRunner\\ConfigProvider"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zend\\HttpHandlerRunner\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Execute PSR-15 RequestHandlerInterface instances and emit responses they generate.",
-            "keywords": [
-                "ZendFramework",
-                "components",
-                "expressive",
-                "psr-15",
-                "psr-7",
-                "zf"
-            ],
-            "time": "2019-02-19T18:20:34+00:00"
         }
     ],
     "packages-dev": [
@@ -4086,16 +3985,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.3",
+            "version": "4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62"
+                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
-                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/da3fd972d6bafd628114f7e7e036f45944b62e9c",
+                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c",
                 "shasum": ""
             },
             "require": {
@@ -4107,6 +4006,7 @@
             "require-dev": {
                 "doctrine/instantiator": "^1.0.5",
                 "mockery/mockery": "^1.0",
+                "phpdocumentor/type-resolver": "0.4.*",
                 "phpunit/phpunit": "^6.4"
             },
             "type": "library",
@@ -4133,7 +4033,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-20T13:40:23+00:00"
+            "time": "2019-12-28T18:55:12+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -4499,16 +4399,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.1",
+            "version": "8.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7870c78da3c5e4883eaef36ae47853ebb3cb86f2"
+                "reference": "018b6ac3c8ab20916db85fa91bf6465acb64d1e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7870c78da3c5e4883eaef36ae47853ebb3cb86f2",
-                "reference": "7870c78da3c5e4883eaef36ae47853ebb3cb86f2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/018b6ac3c8ab20916db85fa91bf6465acb64d1e0",
+                "reference": "018b6ac3c8ab20916db85fa91bf6465acb64d1e0",
                 "shasum": ""
             },
             "require": {
@@ -4578,7 +4478,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-12-25T14:49:39+00:00"
+            "time": "2020-01-08T08:49:49+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5419,16 +5319,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "3.8.0",
+            "version": "3.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "bdb2f3c2be7bd56b180535dca33d72b74ffe1af7"
+                "reference": "90d6b73fd8062432030ef39b7b6694b3902daa31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/bdb2f3c2be7bd56b180535dca33d72b74ffe1af7",
-                "reference": "bdb2f3c2be7bd56b180535dca33d72b74ffe1af7",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/90d6b73fd8062432030ef39b7b6694b3902daa31",
+                "reference": "90d6b73fd8062432030ef39b7b6694b3902daa31",
                 "shasum": ""
             },
             "require": {
@@ -5436,6 +5336,10 @@
                 "amphp/byte-stream": "^1.5",
                 "composer/xdebug-handler": "^1.1",
                 "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
+                "ext-tokenizer": "*",
                 "felixfbecker/advanced-json-rpc": "^3.0.3",
                 "felixfbecker/language-server-protocol": "^1.4",
                 "netresearch/jsonmapper": "^1.0",
@@ -5456,6 +5360,7 @@
                 "ext-curl": "*",
                 "friendsofphp/php-cs-fixer": "^2.15",
                 "phpmyadmin/sql-parser": "^5.0",
+                "phpspec/prophecy": ">=1.9.0",
                 "phpunit/phpunit": "^7.5 || ^8.0",
                 "psalm/plugin-phpunit": "^0.6",
                 "slevomat/coding-standard": "^5.0",
@@ -5505,7 +5410,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2019-12-27T22:10:16+00:00"
+            "time": "2020-01-07T13:50:31+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -5665,7 +5570,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.4"
     },
     "platform-dev": []
 }

@@ -8,16 +8,15 @@
 
 namespace Oroshi\Core\Fixture;
 
-use Countable;
+use Daikon\DataStructure\TypedMapInterface;
 use Daikon\DataStructure\TypedMapTrait;
-use IteratorAggregate;
 
-final class FixtureLoaderMap implements IteratorAggregate, Countable
+final class FixtureLoaderMap implements TypedMapInterface
 {
     use TypedMapTrait;
 
     public function __construct(iterable $fixtureLoaders = [])
     {
-        $this->init($fixtureLoaders, FixtureLoaderInterface::class);
+        $this->init($fixtureLoaders, [FixtureLoaderInterface::class]);
     }
 }

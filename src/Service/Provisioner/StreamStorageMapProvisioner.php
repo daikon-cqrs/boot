@@ -11,7 +11,6 @@ namespace Oroshi\Core\Service\Provisioner;
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Storage\StorageAdapterMap;
-use Oroshi\Core\Common\StreamStorageMap;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 
 final class StreamStorageMapProvisioner implements ProvisionerInterface
@@ -21,13 +20,15 @@ final class StreamStorageMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $mapClass = $serviceDefinition->getServiceClass();
         $adapterConfigs = $configProvider->get('databases.stream_stores', []);
         $factory = function (
             StorageAdapterMap $storageAdapterMap
         ) use (
             $injector,
+            $mapClass,
             $adapterConfigs
-        ): StreamStorageMap {
+        ): object {
             $adapters = [];
             foreach ($adapterConfigs as $adapterName => $adapterConfigs) {
                 $adapterClass = $adapterConfigs['class'];
@@ -36,11 +37,11 @@ final class StreamStorageMapProvisioner implements ProvisionerInterface
                     [':storageAdapter' => $storageAdapterMap->get($adapterConfigs['storage_adapter'])]
                 );
             }
-            return new StreamStorageMap($adapters);
+            return new $mapClass($adapters);
         };
 
         $injector
-            ->share(StreamStorageMap::class)
-            ->delegate(StreamStorageMap::class, $factory);
+            ->share($mapClass)
+            ->delegate($mapClass, $factory);
     }
 }

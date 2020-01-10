@@ -31,10 +31,12 @@ final class ConsoleBootstrap implements BootstrapInterface
     public function __invoke(Injector $injector, array $bootParams): ContainerInterface
     {
         $configProvider = $this->loadConfiguration($bootParams);
+
         $injector
             ->share($configProvider)
             ->alias(ConfigProviderInterface::class, ConfigProvider::class);
         $container = (new ServiceProvisioner)->provision($injector, $configProvider);
+
         $injector
             ->share($container)
             ->alias(ContainerInterface::class, get_class($container))
@@ -53,6 +55,7 @@ final class ConsoleBootstrap implements BootstrapInterface
                     RunWorker::class
                 ])
             );
+
         return $container;
     }
 }

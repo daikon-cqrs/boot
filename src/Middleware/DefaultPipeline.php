@@ -9,12 +9,12 @@
 namespace Oroshi\Core\Middleware;
 
 use Daikon\Config\ConfigProviderInterface;
+use Franzl\Middleware\Whoops\WhoopsMiddleware;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
 use Middlewares\Cors;
 use Middlewares\RequestHandler;
-use Middlewares\Whoops;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -22,8 +22,7 @@ use Relay\Relay;
 
 final class DefaultPipeline implements PipelineBuilderInterface
 {
-    /** @var array */
-    private static $defaultPipeline = [
+    private static array $defaultPipeline = [
         ContentType::class,
         ContentLanguage::class,
         ContentEncoding::class,
@@ -32,14 +31,11 @@ final class DefaultPipeline implements PipelineBuilderInterface
         RequestHandler::class
     ];
 
-    /** @var ContainerInterface */
-    private $container;
+    private ContainerInterface $container;
 
-    /** @var ConfigProviderInterface */
-    private $configProvider;
+    private ConfigProviderInterface $configProvider;
 
-    /** @var array */
-    private $settings;
+    private array $settings;
 
     public function __construct(
         ContainerInterface $container,
@@ -54,31 +50,29 @@ final class DefaultPipeline implements PipelineBuilderInterface
     public function __invoke(): RequestHandlerInterface
     {
         $middlewares = [];
-        $this->addDebug($middlewares, $this->container->get(Whoops::class));
+        $this->addDebug($middlewares, $this->container->get(WhoopsMiddleware::class));
+
         if ($this->configProvider->get('project.cors.enabled', false)) {
             $this->add($middlewares, $this->container->get(Cors::class));
         }
-        $this->add(
-            $middlewares,
-            ...array_map(
-                [$this->container, 'get'],
-                $this->settings['pipeline'] ?? self::$defaultPipeline
-            )
-        );
+
+        $this->add($middlewares, ...array_map(
+            [$this->container, 'get'],
+            $this->settings['pipeline'] ?? self::$defaultPipeline
+        ));
+
         return new Relay($middlewares);
     }
 
-    private function addDebug(array &$middlewares, MiddlewareInterface ...$middleware): self
+    private function addDebug(array &$middlewares, MiddlewareInterface ...$middleware): void
     {
         if ($this->configProvider->get('app.debug') === true) {
-            return $this->add($middlewares, ...$middleware);
+            $this->add($middlewares, ...$middleware);
         }
-        return $this;
     }
 
-    private function add(array &$middlewares, MiddlewareInterface ...$middleware): self
+    private function add(array &$middlewares, MiddlewareInterface ...$middleware): void
     {
         array_push($middlewares, ...$middleware);
-        return $this;
     }
 }

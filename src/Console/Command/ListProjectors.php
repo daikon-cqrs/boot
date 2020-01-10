@@ -15,8 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ListProjectors extends Command
 {
-    /** @var EventProjectorMap */
-    private $eventProjectorMap;
+    private EventProjectorMap $eventProjectorMap;
 
     public function __construct(EventProjectorMap $eventProjectorMap)
     {

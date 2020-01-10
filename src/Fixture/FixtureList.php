@@ -8,26 +8,22 @@
 
 namespace Oroshi\Core\Fixture;
 
-use Countable;
+use Daikon\DataStructure\TypedListInterface;
 use Daikon\DataStructure\TypedListTrait;
-use Daikon\Interop\ToNativeInterface;
-use IteratorAggregate;
 
-final class FixtureList implements IteratorAggregate, Countable, ToNativeInterface
+final class FixtureList implements TypedListInterface
 {
     use TypedListTrait;
 
     public function __construct(iterable $fixtures = [])
     {
-        $this->init($fixtures, FixtureInterface::class);
+        $this->init($fixtures, [FixtureInterface::class]);
     }
 
     public function sortByVersion(): self
     {
-        $copy = clone $this;
-        $copy->compositeVector->sort(function (FixtureInterface $a, FixtureInterface $b): bool {
-            return $a->getVersion() > $b->getVersion();
-        });
-        return $copy;
+        return $this->sort(
+            fn(FixtureInterface $a, FixtureInterface $b): bool => $a->getVersion() > $b->getVersion()
+        );
     }
 }

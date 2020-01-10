@@ -14,11 +14,9 @@ use Daikon\Config\ConfigProviderInterface;
 
 final class RoutingConfigLoader implements ConfigLoaderInterface
 {
-    /** @var RouterContainer */
-    private $router;
+    private RouterContainer $router;
 
-    /** @var ConfigProviderInterface */
-    private $configProvider;
+    private ConfigProviderInterface $configProvider;
 
     public function __construct(RouterContainer $router, ConfigProviderInterface $configProvider)
     {
@@ -32,6 +30,7 @@ final class RoutingConfigLoader implements ConfigLoaderInterface
         //these variables are in scope for included routing files
         $map = $router->getMap();
         $configProvider = $this->configProvider;
+
         $loadedConfigs = [];
         foreach ($locations as $location) {
             if (substr($location, -1) !== '/') {
@@ -45,6 +44,7 @@ final class RoutingConfigLoader implements ConfigLoaderInterface
                 }
             }
         }
+
         return $loadedConfigs;
     }
 }

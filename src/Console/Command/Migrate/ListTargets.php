@@ -16,8 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ListTargets extends Command
 {
-    /** @var MigrationTargetMap */
-    private $migrationTargetMap;
+    private MigrationTargetMap $migrationTargetMap;
 
     public function __construct(MigrationTargetMap $migrationTargetMap)
     {

@@ -26,11 +26,9 @@ final class CreateMigration extends Command
 {
     use DialogTrait;
 
-    /** @var MigrationTargetMap */
-    private $migrationTargetMap;
+    private MigrationTargetMap $migrationTargetMap;
 
-    /** @var CrateMap */
-    private $crateMap;
+    private CrateMap $crateMap;
 
     public function __construct(MigrationTargetMap $migrationTargetMap, CrateMap $crateMap)
     {
@@ -95,7 +93,7 @@ final class CreateMigration extends Command
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
             'Please select a crate: ',
-            array_keys($this->crateMap->toNative())
+            $this->crateMap->keys()
         );
         return $helper->ask($input, $output, $question);
     }

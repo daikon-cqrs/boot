@@ -19,8 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImportFixture extends Command
 {
-    /** @var FixtureTargetMap */
-    private $fixtureTargetMap;
+    private FixtureTargetMap $fixtureTargetMap;
 
     public function __construct(FixtureTargetMap $fixtureTargetMap)
     {
@@ -52,7 +51,8 @@ final class ImportFixture extends Command
         $target = $input->getOption('target');
         $from = intval($input->getOption('from'));
 
-        $loadedFixtures = [];
+        $availableFixtures = new FixtureList;
+        $loadedTargets = new FixtureTargetMap;
         $enabledTargets = $this->fixtureTargetMap->getEnabledTargets();
         /** @var FixtureTargetInterface $fixtureTarget */
         foreach ($enabledTargets as $targetName => $fixtureTarget) {
@@ -65,20 +65,22 @@ final class ImportFixture extends Command
                 $fixtureList->count(),
                 $targetName
             ));
-            $loadedFixtures = array_merge($loadedFixtures, $fixtureList->toNative());
+            $loadedTargets = $loadedTargets->with($targetName, $fixtureTarget);
+            $availableFixtures = $availableFixtures->append($fixtureList);
         }
 
-        $importedFixtures = [];
-        $loadedFixturesList = (new FixtureList($loadedFixtures))->sortByVersion();
+        $availableFixtures = $availableFixtures->sortByVersion();
+        $importedFixtures = new FixtureList;
+
         /** @var FixtureInterface $fixture */
-        foreach ($loadedFixturesList as $fixture) {
+        foreach ($availableFixtures as $fixture) {
             if ($fixture->getVersion() < $from) {
                 continue;
             }
             /** @var FixtureTargetInterface $fixtureTarget */
-            foreach ($enabledTargets as $fixtureTarget) {
+            foreach ($loadedTargets as $fixtureTarget) {
                 if ($fixtureTarget->import($fixture)) {
-                    $importedFixtures[] = $fixture;
+                    $importedFixtures = $importedFixtures->push($fixture);
                     $output->writeln(sprintf(
                         '  <info>Imported fixture version %d (%s)</info>',
                         $fixture->getVersion(),

@@ -8,23 +8,22 @@
 
 namespace Oroshi\Core\Crate;
 
-use Countable;
+use Daikon\DataStructure\TypedMapInterface;
 use Daikon\DataStructure\TypedMapTrait;
-use IteratorAggregate;
 
-final class CrateMap implements IteratorAggregate, Countable
+final class CrateMap implements TypedMapInterface
 {
     use TypedMapTrait;
 
     public function __construct(iterable $crates = [])
     {
-        $this->init($crates, CrateInterface::class);
+        $this->init($crates, [CrateInterface::class]);
     }
 
     public function getLocations(): array
     {
         $locations = [];
-        foreach ($this->compositeMap as $crate) {
+        foreach ($this as $crate) {
             $locations[] = $crate->getLocation();
         }
         return $locations;

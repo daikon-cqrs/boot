@@ -19,8 +19,7 @@ class RunWorker extends Command
 {
     use DialogTrait;
 
-    /** @var WorkerMap */
-    protected $workerMap;
+    protected WorkerMap $workerMap;
 
     public function __construct(WorkerMap $workerMap)
     {
@@ -45,6 +44,7 @@ class RunWorker extends Command
             );
     }
 
+    //@todo support running multiple queues
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$workerName = $input->getArgument('worker')) {
@@ -67,7 +67,7 @@ class RunWorker extends Command
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
             'Please select a worker: ',
-            array_keys($this->workerMap->toNative())
+            $this->workerMap->keys() //@todo show workers with filtered by queue
         );
 
         return $helper->ask($input, $output, $question);

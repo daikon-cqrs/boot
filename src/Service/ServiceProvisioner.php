@@ -32,7 +32,7 @@ final class ServiceProvisioner implements ServiceProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionMap $serviceDefinitionMap
     ): Injector {
-        foreach ($serviceDefinitionMap->getIterator() as $serviceDefinition) {
+        foreach ($serviceDefinitionMap as $serviceDefinition) {
             $provisionerClass = $serviceDefinition->getProvisionerClass();
             $provisioner = $injector->make($provisionerClass);
             if ($provisioner instanceof ProvisionerInterface) {

@@ -35,6 +35,7 @@ trait ResponderTrait
                 self::class
             ));
         }
+
         return $outputTypeHandler;
     }
 }

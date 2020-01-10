@@ -8,27 +8,22 @@
 
 namespace Oroshi\Core\Fixture;
 
-use Countable;
+use Daikon\DataStructure\TypedMapInterface;
 use Daikon\DataStructure\TypedMapTrait;
-use IteratorAggregate;
 
-final class FixtureTargetMap implements IteratorAggregate, Countable
+final class FixtureTargetMap implements TypedMapInterface
 {
     use TypedMapTrait;
 
     public function __construct(iterable $fixtureTargets = [])
     {
-        $this->init($fixtureTargets, FixtureTargetInterface::class);
+        $this->init($fixtureTargets, [FixtureTargetInterface::class]);
     }
 
     public function getEnabledTargets(): self
     {
-        return new self(
-            $this->compositeMap->filter(
-                function (string $fixtureName, FixtureTargetInterface $fixtureTarget): bool {
-                    return $fixtureTarget->isEnabled();
-                }
-            )
+        return $this->filter(
+            fn(string $name, FixtureTargetInterface $target): bool => $target->isEnabled()
         );
     }
 }

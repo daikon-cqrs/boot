@@ -14,8 +14,7 @@ use RuntimeException;
 
 trait ResolvesDependency
 {
-    /** @var ContainerInterface */
-    private $container;
+    private ContainerInterface $container;
 
     /** @param mixed $dependency */
     private function resolve($dependency, string $stereoType): callable
@@ -30,12 +29,15 @@ trait ResolvesDependency
             Assertion::isArray($params);
             $dependency = $this->container->make($fqcn, $params);
         }
+
         if (is_object($dependency)) {
             Assertion::isInstanceOf($dependency, $stereoType);
         }
+
         if (is_callable($dependency)) {
             return $dependency;
         }
+
         throw new RuntimeException(
             sprintf("Given type '%s' is not a $stereoType.", gettype($dependency))
         );

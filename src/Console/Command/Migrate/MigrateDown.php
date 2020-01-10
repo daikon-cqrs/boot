@@ -18,8 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class MigrateDown extends Command
 {
-    /** @var MigrationTargetMap */
-    private $migrationTargetMap;
+    private MigrationTargetMap $migrationTargetMap;
 
     public function __construct(MigrationTargetMap $migrationTargetMap)
     {

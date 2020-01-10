@@ -13,20 +13,15 @@ use Daikon\MessageBus\MessageBusInterface;
 
 final class FixtureTarget implements FixtureTargetInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var bool */
-    private $enabled;
+    private bool $enabled;
 
-    /** @var FixtureLoaderInterface */
-    private $fixtureLoader;
+    private FixtureLoaderInterface $fixtureLoader;
 
-    /** @var MessageBusInterface */
-    private $messageBus;
+    private MessageBusInterface $messageBus;
 
-    /** @var FixtureList|null */
-    private $fixtureList;
+    private ?FixtureList $fixtureList;
 
     public function __construct(
         string $name,
@@ -52,7 +47,7 @@ final class FixtureTarget implements FixtureTargetInterface
 
     public function getFixtureList(): FixtureList
     {
-        if (!$this->fixtureList) {
+        if (!isset($this->fixtureList)) {
             //@todo fix fixture class loading to avoid this
             $this->fixtureList = $this->fixtureLoader->load();
         }
@@ -63,7 +58,8 @@ final class FixtureTarget implements FixtureTargetInterface
     {
         Assertion::true($this->isEnabled());
 
-        $index = $this->getFixtureList()->indexOf($fixture);
+        $index = $this->getFixtureList()->find($fixture);
+
         if ($index !== false) {
             $fixture->import($this->messageBus);
         }

@@ -8,101 +8,122 @@
 
 namespace Oroshi\Core\Middleware\Action;
 
-use function GuzzleHttp\Psr7\parse_query;
-use Assert\InvalidArgumentException;
+use Assert\Assertion;
 use Assert\LazyAssertionException;
 use Psr\Http\Message\ServerRequestInterface;
-use RuntimeException;
 use Stringy\Stringy;
 
 trait ValidatorTrait
 {
-    private function validateFields(array $fields, ServerRequestInterface $request, array &$errors): array
+    public function __invoke(ServerRequestInterface $request): ServerRequestInterface
     {
-        $output = [];
-        $input = $this->getFields($this->getInput($request), $errors, $fields);
+        $prevPayload = (array)$request->getAttribute($this->payload);
+        $prevErrors = (array)$request->getAttribute($this->exportErrors);
+        $errorCode = $request->getAttribute($this->exportErrorCode);
+        $errors = $prevErrors;
+        // @todo better handle INFO/SUCCESS severity
 
-        foreach ($input as $name => $value) {
-            $output = array_merge($output, $this->validate($name, $value, $errors));
+        $queryParams = [];
+        parse_str($request->getUri()->getQuery(), $queryParams);
+        $payload = array_merge(
+            //@todo parse request headers
+            $this->parseBody($request),
+            $prevPayload,
+            $queryParams,
+            $request->getAttributes()
+        );
+
+        $exports = $this->validateInput(
+            $payload,
+            $this->input,
+            $this->export,
+            $this->default,
+            $this->required,
+            $this->import ?? [],
+            $errors,
+            $errorCode
+        );
+
+        if ($errors === $prevErrors || $this->severity < ValidatorInterface::SEVERITY_SUCCESS) {
+            $request = $request->withAttribute($this->payload, array_merge_recursive($prevPayload, $exports));
         }
 
-        return $output;
+        if ($errors !== $prevErrors && $this->severity > ValidatorInterface::SEVERITY_SUCCESS) {
+            $request = $request->withAttribute($this->exportErrors, $errors)
+                ->withAttribute($this->exportErrorSeverity, $this->severity)
+                ->withAttribute($this->exportErrorCode, $errorCode ?? ValidatorInterface::STATUS_UNPROCESSABLE_ENTITY);
+        }
+
+        return $request;
     }
 
-    private function validateAttributes(array $attributes, ServerRequestInterface $request, array &$errors): array
-    {
-        $output = [];
-        $input = $this->getFields($request->getAttributes(), $errors, $attributes);
-
-        foreach ($input as $name => $value) {
-            $output = array_merge($output, $this->validate($name, $value, $errors));
+    /**
+     * @param mixed $export
+     * @param mixed $default
+     */
+    private function validateInput(
+        array $payload,
+        string $input,
+        $export,
+        $default,
+        bool $required,
+        array $import,
+        array &$errors,
+        ?int &$errorCode
+    ): array {
+        if (!array_key_exists($input, $payload)) {
+            if ($required === true) {
+                $errors['_'][] = "Required input for '$input' is missing.";
+            }
+            return !is_null($default) ? [($export ?? $input) => $default] : [];
         }
 
-        return $output;
+        $import = array_intersect_key($payload, array_flip($import));
+        $result = $this->executeValidator($input, $payload[$input], $errorCode, $errors, $import);
+        return $export !== false ? [($export ?? $input) => $result] : [];
     }
 
-    private function getFields(array $input, array &$errors, array $fields, bool $required = true): array
+    /**
+     * @param mixed $input
+     * @return null|mixed
+     */
+    private function executeValidator(string $name, $input, ?int &$errorCode, array &$errors, array $import)
     {
-        $output = [];
-        foreach ($fields as $fieldname) {
-            if (!is_string($fieldname) || empty($fieldname)) {
-                throw new \RuntimeException('Input field name must be a valid string.');
-            }
-            if (isset($input[$fieldname])) {
-                $output[$fieldname] = $input[$fieldname];
-            } elseif ($required) {
-                $errors['_'][] = "Required input for field '$fieldname' is missing.";
-            }
-        }
-        return $output;
-    }
-
-    private function getInput(ServerRequestInterface $request): array
-    {
-        $contentType = $request->getHeaderLine('Content-Type');
-        if (Stringy::create($contentType)->startsWith('application/json')) {
-            $data = json_decode($request->getBody()->getContents(), true);
-        } else {
-            $data = $request->getParsedBody();
-        }
-
-        //@todo handle data error better
-        if (!is_array($data)) {
-            throw new RuntimeException('Failed to parse data from request body.');
-        }
-
-        $data = array_merge(parse_query($request->getUri()->getQuery()), $data);
-        $trimStrings = function ($value) use (&$trimStrings) {
-            if (is_string($value)) {
-                return trim($value);
-            }
-            if (is_array($value)) {
-                return array_map($trimStrings, $value);
-            }
-            return $value;
-        };
-
-        return $trimStrings($data);
-    }
-
-    private function validate(string $name, $value, array &$errors): array
-    {
-        $validationMethod = 'validate'.(string)Stringy::create($name)->upperCamelize();
+        $validationMethod = 'validate'.Stringy::create($name)->upperCamelize();
         $validationCallback = [$this, $validationMethod];
+        $validationCallback = is_callable($validationCallback) ? $validationCallback : [$this, 'validate'];
+
         if (!is_callable($validationCallback)) {
-            throw new RuntimeException("Missing required validation callback: $validationMethod");
+            throw new \RuntimeException("Missing required validation method 'validate' or '$validationMethod'.");
         }
 
         try {
             //Allow validation by assertion and transformation based on return
-            $output[$name] = $validationCallback($name, $value, $errors);
+            //otherwise set explicitly set errors and errorCode in validation method
+            $output = $validationCallback($name, $input, $errorCode, $errors, $import);
         } catch (LazyAssertionException $exception) {
             foreach ($exception->getErrorExceptions() as $error) {
-                $errors[$error->getPropertyPath()][] = $error->getMessage();
+                $errors[$name][] = $error->getMessage();
             }
-        } catch (InvalidArgumentException $error) {
-            $errors[$error->getPropertyPath()][] = $error->getMessage();
+        } catch (\Exception $error) {
+            $errors[$name][] = $error->getMessage();
         }
-        return $output ?? [];
+
+        return $output ?? null;
+    }
+
+    private function parseBody(ServerRequestInterface $request): array
+    {
+        $contentType = $request->getHeaderLine('Content-Type');
+
+        if (strpos(trim($contentType), 'application/json') === 0) {
+            $data = json_decode((string)$request->getBody(), true);
+        } else {
+            $data = $request->getParsedBody();
+        }
+
+        Assertion::nullOrIsArray($data, 'Failed to parse data from request body.');
+
+        return (array)$data;
     }
 }

@@ -10,9 +10,8 @@ namespace Oroshi\Core\Service\Provisioner;
 
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
+use Daikon\EventSourcing\EventStore\Storage\StreamStorageMap;
 use Daikon\EventSourcing\EventStore\UnitOfWork;
-use Oroshi\Core\Common\StreamStorageMap;
-use Oroshi\Core\Common\UnitOfWorkMap;
 use Oroshi\Core\Service\ServiceDefinitionInterface;
 
 final class UnitOfWorkMapProvisioner implements ProvisionerInterface
@@ -22,8 +21,9 @@ final class UnitOfWorkMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $mapClass = $serviceDefinition->getServiceClass();
         $uowConfigs = $configProvider->get('databases.units_of_work', []);
-        $factory = function (StreamStorageMap $streamStorageMap) use ($uowConfigs): UnitOfWorkMap {
+        $factory = function (StreamStorageMap $streamStorageMap) use ($uowConfigs, $mapClass): object {
             $unitsOfWork = [];
             foreach ($uowConfigs as $uowName => $uowConfig) {
                 $unitsOfWork[$uowName] = new UnitOfWork(
@@ -31,11 +31,11 @@ final class UnitOfWorkMapProvisioner implements ProvisionerInterface
                     $streamStorageMap->get($uowConfig['stream_store'])
                 );
             }
-            return new UnitOfWorkMap($unitsOfWork);
+            return new $mapClass($unitsOfWork);
         };
 
         $injector
-            ->share(UnitOfWorkMap::class)
-            ->delegate(UnitOfWorkMap::class, $factory);
+            ->share($mapClass)
+            ->delegate($mapClass, $factory);
     }
 }

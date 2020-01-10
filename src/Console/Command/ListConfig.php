@@ -16,8 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ListConfig extends Command
 {
-    /** @var ConfigProviderInterface */
-    private $configProvider;
+    private ConfigProviderInterface $configProvider;
 
     public function __construct(ConfigProviderInterface $configProvider)
     {

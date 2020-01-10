@@ -21,6 +21,7 @@ final class WebBootstrap implements BootstrapInterface
     public function __invoke(Injector $injector, array $bootParams): ContainerInterface
     {
         $configProvider = $this->loadConfiguration($bootParams);
+
         $injector
             ->share($configProvider)
             ->alias(ConfigProviderInterface::class, ConfigProvider::class);
@@ -28,6 +29,7 @@ final class WebBootstrap implements BootstrapInterface
         $injector
             ->share($container)
             ->alias(ContainerInterface::class, get_class($container));
+
         return $container;
     }
 }

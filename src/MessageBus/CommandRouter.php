@@ -16,11 +16,9 @@ use RuntimeException;
 
 final class CommandRouter implements MessageHandlerInterface
 {
-    /** @var array */
-    private $spawnedHandlers;
+    private array $spawnedHandlers;
 
-    /** @var array */
-    private $handlerMap;
+    private array $handlerMap;
 
     public function __construct(array $handlerMap)
     {

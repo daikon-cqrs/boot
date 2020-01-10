@@ -10,8 +10,7 @@ namespace Oroshi\Core\Crate;
 
 final class Crate implements CrateInterface
 {
-    /** @var array */
-    private $settings;
+    private array $settings;
 
     public function __construct(array $settings)
     {

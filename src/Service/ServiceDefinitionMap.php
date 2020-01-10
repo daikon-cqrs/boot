@@ -8,16 +8,15 @@
 
 namespace Oroshi\Core\Service;
 
-use Countable;
+use Daikon\DataStructure\TypedMapInterface;
 use Daikon\DataStructure\TypedMapTrait;
-use IteratorAggregate;
 
-final class ServiceDefinitionMap implements IteratorAggregate, Countable
+final class ServiceDefinitionMap implements TypedMapInterface
 {
     use TypedMapTrait;
 
     public function __construct(iterable $serviceDefinitions = [])
     {
-        $this->init($serviceDefinitions, ServiceDefinitionInterface::class);
+        $this->init($serviceDefinitions, [ServiceDefinitionInterface::class]);
     }
 }

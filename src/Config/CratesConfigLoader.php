@@ -14,11 +14,9 @@ use Stringy\Stringy;
 
 final class CratesConfigLoader implements ConfigLoaderInterface
 {
-    /** @var YamlConfigLoader */
-    private $yamlLoader;
+    private YamlConfigLoader $yamlLoader;
 
-    /** @var array */
-    private $dirPrefixes;
+    private array $dirPrefixes;
 
     public function __construct(array $dirPrefixes, YamlConfigLoader $yamlLoader = null)
     {
@@ -39,6 +37,7 @@ final class CratesConfigLoader implements ConfigLoaderInterface
             $crateConfig['fixture_dir'] = $this->expandPath($fixtureDir);
             $config[$crateName] = $crateConfig;
         }
+
         return $config;
     }
 
@@ -47,10 +46,13 @@ final class CratesConfigLoader implements ConfigLoaderInterface
         if (Stringy::create($path)->startsWith('/')) {
             return $path;
         }
+
         $search = array_keys($this->dirPrefixes);
-        $replace = array_map(function (string $path): string {
-            return Stringy::create($path)->endsWith('/') ? $path : "$path/";
-        }, array_values($this->dirPrefixes));
+        $replace = array_map(
+            fn(string $path): string => Stringy::create($path)->endsWith('/') ? $path : "$path/",
+            array_values($this->dirPrefixes)
+        );
+
         return str_replace($search, $replace, $path);
     }
 }

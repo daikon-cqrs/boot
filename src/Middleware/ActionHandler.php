@@ -8,8 +8,10 @@
 
 namespace Oroshi\Core\Middleware;
 
+use Middlewares\Utils\Factory;
 use Oroshi\Core\Middleware\Action\ActionInterface;
 use Oroshi\Core\Middleware\Action\ResponderInterface;
+use Oroshi\Core\Middleware\Action\SecureActionInterface;
 use Oroshi\Core\Middleware\Action\ValidatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -18,21 +20,16 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use RuntimeException;
 
-class ActionHandler implements MiddlewareInterface
+final class ActionHandler implements MiddlewareInterface
 {
     use ResolvesDependency;
 
-    const ATTR_ERRORS = '_errors';
-
-    const ATTR_ERROR_CODE = '_error_code';
-
-    const ATTR_ERROR_SEVERITY = '_error_severity';
-
-    const ATTR_RESPONDER = '_responder';
-
-    const ATTR_VALIDATOR = '_validator';
-
-    const ATTR_PAYLOAD = '_payload';
+    public const ATTR_ERRORS = '_errors';
+    public const ATTR_ERROR_CODE = '_error_code';
+    public const ATTR_ERROR_SEVERITY = '_error_severity';
+    public const ATTR_RESPONDER = '_responder';
+    public const ATTR_VALIDATOR = '_validator';
+    public const ATTR_PAYLOAD = '_payload';
 
     public function __construct(ContainerInterface $container)
     {
@@ -49,14 +46,29 @@ class ActionHandler implements MiddlewareInterface
 
     private function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
     {
+        if ($action instanceof SecureActionInterface) {
+            // Check action access first before running validation
+            if (!$action->isAuthorized($request)) {
+                return Factory::createResponse(401);
+            }
+        }
+
         if ($validator = $this->getValidator($action->registerValidator($request))) {
             $request = $validator($request);
         }
 
         $errors = $request->getAttribute(self::ATTR_ERRORS);
-        $request = empty($errors)
-            ? $action($request)
-            : $action->handleError($request);
+        if (empty($errors)) {
+            if ($action instanceof SecureActionInterface) {
+                // Run secondary resource authorization after validation
+                if (!$action->isAuthorized($request)) {
+                    return Factory::createResponse(401);
+                }
+            }
+            $request = $action($request);
+        } else {
+            $request = $action->handleError($request);
+        }
 
         if (!$responder = $this->getResponder($request)) {
             throw new RuntimeException('Unable to determine responder for '.get_class($action));

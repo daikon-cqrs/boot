@@ -14,8 +14,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 final class Console extends Application
 {
-    /** @var ConfigProviderInterface */
-    private $configProvider;
+    private ConfigProviderInterface $configProvider;
 
     public static function getLogo(): string
     {

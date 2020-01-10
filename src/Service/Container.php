@@ -13,8 +13,7 @@ use Psr\Container\ContainerInterface;
 
 final class Container implements ContainerInterface
 {
-    /** @var Injector */
-    private $injector;
+    private Injector $injector;
 
     public function __construct(Injector $injector)
     {

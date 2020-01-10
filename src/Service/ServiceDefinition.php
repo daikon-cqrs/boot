@@ -12,17 +12,13 @@ use Oroshi\Core\Service\Provisioner\DefaultProvisioner;
 
 final class ServiceDefinition implements ServiceDefinitionInterface
 {
-    /** @var string */
-    private $serviceClass;
+    private string $serviceClass;
 
-    /** @var string */
-    private $provisionerClass;
+    private string $provisionerClass;
 
-    /** @var array */
-    private $settings;
+    private array $settings;
 
-    /** @var array */
-    private $subscriptions;
+    private array $subscriptions;
 
     public function __construct(
         string $serviceClass,
