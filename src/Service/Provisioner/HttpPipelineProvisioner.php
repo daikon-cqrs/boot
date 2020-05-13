@@ -14,6 +14,8 @@ use Daikon\Config\ConfigProviderInterface;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
+use Middlewares\Utils\Factory;
+use Middlewares\Utils\FactoryDiscovery;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
 use Neomerx\Cors\Strategies\Settings;
@@ -32,6 +34,18 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
     ): void {
         $serviceClass = $serviceDefinition->getServiceClass();
         $settings = $serviceDefinition->getSettings();
+
+        // @todo remove this when zend is removed
+        Factory::setFactory(
+            new FactoryDiscovery([
+                'request' => 'Zend\Diactoros\RequestFactory',
+                'response' => 'Zend\Diactoros\ResponseFactory',
+                'serverRequest' => 'Zend\Diactoros\ServerRequestFactory',
+                'stream' => 'Zend\Diactoros\StreamFactory',
+                'uploadedFile' => 'Zend\Diactoros\UploadedFileFactory',
+                'uri' => 'Zend\Diactoros\UriFactory',
+            ])
+        );
 
         $injector
             ->define($serviceClass, [':settings' => $settings])
