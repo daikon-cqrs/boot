@@ -8,8 +8,8 @@
 
 namespace Oroshi\Core\Service;
 
-use Exception;
+use RuntimeException;
 
-final class ServiceException extends Exception
+final class ServiceException extends RuntimeException
 {
 }
