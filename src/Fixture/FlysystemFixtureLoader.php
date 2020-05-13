@@ -8,17 +8,21 @@
 
 namespace Oroshi\Core\Fixture;
 
+use Auryn\Injector;
 use Daikon\Flysystem\Connector\FlysystemConnector;
 use League\Flysystem\MountManager;
 
 final class FlysystemFixtureLoader implements FixtureLoaderInterface
 {
+    private Injector $injector;
+
     private FlysystemConnector $connector;
 
     private array $settings;
 
-    public function __construct(FlysystemConnector $connector, array $settings = [])
+    public function __construct(Injector $injector, FlysystemConnector $connector, array $settings = [])
     {
+        $this->injector = $injector;
         $this->connector = $connector;
         $this->settings = $settings;
     }
@@ -38,7 +42,7 @@ final class FlysystemFixtureLoader implements FixtureLoaderInterface
             $declaredClasses = get_declared_classes();
             require_once $this->getBaseDir().'/'.$fixtureFile['path'];
             $fixtureClass = current(array_diff(get_declared_classes(), $declaredClasses));
-            $fixtures[] = new $fixtureClass;
+            $fixtures[] = $this->injector->make($fixtureClass);
         }
 
         return new FixtureList($fixtures);

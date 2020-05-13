@@ -50,7 +50,9 @@ final class FixtureTargetMapProvisioner implements ProvisionerInterface
             return new FixtureLoaderMap($fixtureLoaders);
         };
 
-        $injector->delegate(FixtureLoaderMap::class, $factory)->share(FixtureLoaderMap::class);
+        $injector
+            ->delegate(FixtureLoaderMap::class, $factory)
+            ->share(FixtureLoaderMap::class);
     }
 
     private function delegateTargetMap(Injector $injector, array $targetConfigs): void
@@ -74,6 +76,8 @@ final class FixtureTargetMapProvisioner implements ProvisionerInterface
             return new FixtureTargetMap($fixtureTargets);
         };
 
-        $injector->delegate(FixtureTargetMap::class, $factory)->share(FixtureTargetMap::class);
+        $injector
+            ->delegate(FixtureTargetMap::class, $factory)
+            ->share(FixtureTargetMap::class);
     }
 }
