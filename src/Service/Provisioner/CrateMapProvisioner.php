@@ -21,9 +21,8 @@ final class CrateMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $crateConfigs = $configProvider->get('crates', []);
-        $cratesDir = $configProvider->get('app.crates_dir');
-        $factory = function () use ($crateConfigs, $cratesDir): CrateMap {
+        $crateConfigs = (array)$configProvider->get('crates', []);
+        $factory = function () use ($crateConfigs): CrateMap {
             $crates = [];
             foreach ($crateConfigs as $crateName => $crateConfig) {
                 $crates[$crateName] = new Crate($crateConfig);

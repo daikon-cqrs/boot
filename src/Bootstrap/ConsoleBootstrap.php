@@ -33,8 +33,10 @@ final class ConsoleBootstrap implements BootstrapInterface
         $configProvider = $this->loadConfiguration($bootParams);
 
         $injector
+            ->share($injector)
             ->share($configProvider)
             ->alias(ConfigProviderInterface::class, ConfigProvider::class);
+
         $container = (new ServiceProvisioner)->provision($injector, $configProvider);
 
         $injector

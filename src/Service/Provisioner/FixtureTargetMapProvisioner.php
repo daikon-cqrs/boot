@@ -23,8 +23,8 @@ final class FixtureTargetMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $loaderConfigs = $configProvider->get('fixtures.fixture_loaders', []);
-        $targetConfigs = $configProvider->get('fixtures.fixture_targets', []);
+        $loaderConfigs = (array)$configProvider->get('fixtures.fixture_loaders', []);
+        $targetConfigs = (array)$configProvider->get('fixtures.fixture_targets', []);
 
         $this->delegateLoaderMap($injector, $loaderConfigs);
         $this->delegateTargetMap($injector, $targetConfigs);

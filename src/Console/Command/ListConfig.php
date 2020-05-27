@@ -13,6 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 
 final class ListConfig extends Command
 {
@@ -39,13 +40,28 @@ final class ListConfig extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if ($path = $input->getArgument('path')) {
-            $configs = $this->configProvider->get($path, []);
-        } else {
-            // @todo handle listing all configs
-            $configs = $this->configProvider->get('*', []);
+        if (!is_string($path = $input->getArgument('path'))) {
+            //@todo improve root scope config listing
+            $scopes = [
+                'app',
+                'crates',
+                'services',
+                'connectors',
+                'secrets',
+                'project',
+                'databases',
+                'migrations',
+                'fixtures',
+                'jobs'
+            ];
+            $path = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new ChoiceQuestion('Available scopes:', $scopes)
+            );
         }
 
+        $configs = $this->configProvider->get($path, []);
         $this->renderValues($output, $configs);
 
         return 0;

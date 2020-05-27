@@ -9,8 +9,9 @@
 namespace Oroshi\Core\Middleware;
 
 use Assert\Assertion;
+use Auryn\Injector;
+use Oroshi\Core\Exception\RuntimeException;
 use Psr\Container\ContainerInterface;
-use RuntimeException;
 
 trait ResolvesDependency
 {
@@ -27,7 +28,7 @@ trait ResolvesDependency
             $params = $dependency[1];
             Assertion::classExists($fqcn, "Given dependency '$fqcn' not found.");
             Assertion::isArray($params);
-            $dependency = $this->container->make($fqcn, $params);
+            $dependency = $this->container->get(Injector::class)->make($fqcn, $params);
         }
 
         if (is_object($dependency)) {

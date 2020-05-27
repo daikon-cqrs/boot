@@ -23,9 +23,12 @@ final class WebBootstrap implements BootstrapInterface
         $configProvider = $this->loadConfiguration($bootParams);
 
         $injector
+            ->share($injector)
             ->share($configProvider)
             ->alias(ConfigProviderInterface::class, ConfigProvider::class);
+
         $container = (new ServiceProvisioner)->provision($injector, $configProvider);
+
         $injector
             ->share($container)
             ->alias(ContainerInterface::class, get_class($container));

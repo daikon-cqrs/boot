@@ -57,14 +57,17 @@ final class CreateMigration extends Command
             $output->writeln('');
             exit;
         }
-        if (!$crate = $input->getArgument('crate')) {
+
+        if (!is_string($crate = $input->getArgument('crate'))) {
             $crate = $this->promptCrate($input, $output);
         }
+
         if (!$this->crateMap->has($crate)) {
             $output->writeln("<error>Crate '$crate' does not exist.</error>");
             $output->writeln('');
             exit;
         }
+
         $crateSettings = $this->crateMap->get($crate)->getSettings();
         $targetDir = $this->promptDir($crateSettings['migration_dir'], $input, $output);
 
@@ -77,9 +80,11 @@ final class CreateMigration extends Command
             $crateSettings['migration_dir'],
             "/$targetDir/$timestamp-$name",
         ]);
+
         if (!is_dir($migrationDir)) {
             mkdir($migrationDir);
         }
+
         $migrationFile = "$migrationDir/$className.php";
         if (file_put_contents($migrationFile, $migration)) {
             $output->writeln("Created migration file at: <options=bold>$migrationFile</>");

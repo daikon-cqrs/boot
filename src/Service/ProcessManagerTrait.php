@@ -13,8 +13,8 @@ use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\MessageInterface;
 use Daikon\Metadata\MetadataInterface;
+use Oroshi\Core\Exception\RuntimeException;
 use ReflectionClass;
-use RuntimeException;
 
 trait ProcessManagerTrait
 {

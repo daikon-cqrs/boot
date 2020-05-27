@@ -6,10 +6,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service;
+namespace Oroshi\Core\Exception;
 
-use RuntimeException;
-
-final class ServiceException extends RuntimeException
+class ServiceException extends RuntimeException
 {
 }

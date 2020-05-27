@@ -20,14 +20,12 @@ final class ConnectorMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $connectorConfigs = (array)$configProvider->get('connectors', []);
         $injector
             ->share(ConnectorMap::class)
             ->delegate(
                 ConnectorMap::class,
-                $this->factory(
-                    $injector,
-                    $configProvider->get('connectors', [])
-                )
+                $this->factory($injector, $connectorConfigs)
             );
     }
 

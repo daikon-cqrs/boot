@@ -23,9 +23,9 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $workerConfigs = $configProvider->get('jobs.job_workers', []);
-        $strategyConfigs = $configProvider->get('jobs.job_strategies', []);
-        $jobConfigs = $configProvider->get('jobs.jobs', []);
+        $workerConfigs = (array)$configProvider->get('jobs.job_workers', []);
+        $strategyConfigs = (array)$configProvider->get('jobs.job_strategies', []);
+        $jobConfigs = (array)$configProvider->get('jobs.jobs', []);
 
         $this->delegateJobStrategyMap($injector, $strategyConfigs);
         $this->delegateJobDefinitionMap($injector, $jobConfigs);

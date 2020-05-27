@@ -38,11 +38,13 @@ final class MessageBusProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $serviceClass = $serviceDefinition->getServiceClass();
         $settings = $serviceDefinition->getSettings();
+
         if (!isset($settings['transports'])) {
             throw new ConfigException('Message bus transports configuration is required.');
         }
-        $serviceClass = $serviceDefinition->getServiceClass();
+
         $injector
             ->delegate($serviceClass, $this->factory($injector, $serviceDefinition))
             ->share($serviceClass)
@@ -134,12 +136,12 @@ final class MessageBusProvisioner implements ProvisionerInterface
         $guards = (array)($subscriptionConfig['guards'] ?? []);
         return new LazySubscription(
             $subscriptionName,
-            function () use ($transportMap, $transportName): TransportInterface {
-                return $transportMap->get($transportName);
-            },
-            function () use ($injector, $serviceFqcn): MessageHandlerList {
-                return new MessageHandlerList([$injector->make($serviceFqcn)]);
-            },
+            /**
+             * @psalm-suppress InvalidNullableReturnType
+             * @psalm-suppress NullableReturnStatement
+             */
+            fn(): TransportInterface => $transportMap->get($transportName),
+            fn(): MessageHandlerList => new MessageHandlerList([$injector->make($serviceFqcn)]),
             function (EnvelopeInterface $envelope) use ($guards): bool {
                 $message = $envelope->getMessage();
                 $interfaces = class_implements($message);

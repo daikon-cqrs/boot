@@ -21,7 +21,7 @@ final class StreamStorageMapProvisioner implements ProvisionerInterface
         ServiceDefinitionInterface $serviceDefinition
     ): void {
         $mapClass = $serviceDefinition->getServiceClass();
-        $adapterConfigs = $configProvider->get('databases.stream_stores', []);
+        $adapterConfigs = (array)$configProvider->get('databases.stream_stores', []);
         $factory = function (
             StorageAdapterMap $storageAdapterMap
         ) use (

@@ -12,7 +12,7 @@ use Assert\Assertion;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Subscription\MessageHandler\MessageHandlerInterface;
-use RuntimeException;
+use Oroshi\Core\Exception\RuntimeException;
 
 final class CommandRouter implements MessageHandlerInterface
 {

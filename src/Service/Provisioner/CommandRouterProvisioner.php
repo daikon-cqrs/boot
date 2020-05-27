@@ -22,14 +22,12 @@ final class CommandRouterProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
+        $commandConfigs = (array)$configProvider->get('services.oroshi.command_router.commands', []);
         $injector
             ->share(CommandRouter::class)
             ->delegate(
                 CommandRouter::class,
-                $this->factory(
-                    $injector,
-                    $configProvider->get('services.oroshi.command_router.commands', [])
-                )
+                $this->factory($injector, $commandConfigs)
             );
     }
 

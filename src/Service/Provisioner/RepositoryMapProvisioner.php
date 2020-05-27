@@ -21,7 +21,7 @@ final class RepositoryMapProvisioner implements ProvisionerInterface
         ServiceDefinitionInterface $serviceDefinition
     ): void {
         $serviceClass = $serviceDefinition->getServiceClass();
-        $repositoryConfigs = $configProvider->get('databases.repositories', []);
+        $repositoryConfigs = (array)$configProvider->get('databases.repositories', []);
 
         $factory = function (StorageAdapterMap $storageAdapterMap) use (
             $injector,

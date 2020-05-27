@@ -10,6 +10,7 @@ namespace Oroshi\Core\Middleware\Action;
 
 use Assert\Assertion;
 use Assert\LazyAssertionException;
+use Oroshi\Core\Exception\RuntimeException;
 use Psr\Http\Message\ServerRequestInterface;
 use Stringy\Stringy;
 
@@ -94,7 +95,7 @@ trait ValidatorTrait
         $validationCallback = is_callable($validationCallback) ? $validationCallback : [$this, 'validate'];
 
         if (!is_callable($validationCallback)) {
-            throw new \RuntimeException("Missing required validation method 'validate' or '$validationMethod'.");
+            throw new RuntimeException("Missing required validation method 'validate' or '$validationMethod'.");
         }
 
         try {

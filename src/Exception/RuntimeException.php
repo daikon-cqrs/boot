@@ -8,8 +8,8 @@
 
 namespace Oroshi\Core\Exception;
 
-use Exception;
+use RuntimeException as GlobalRuntimeException;
 
-final class RuntimeException extends Exception
+class RuntimeException extends GlobalRuntimeException
 {
 }

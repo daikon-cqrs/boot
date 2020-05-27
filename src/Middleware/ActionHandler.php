@@ -9,6 +9,7 @@
 namespace Oroshi\Core\Middleware;
 
 use Middlewares\Utils\Factory;
+use Oroshi\Core\Exception\RuntimeException;
 use Oroshi\Core\Middleware\Action\ActionInterface;
 use Oroshi\Core\Middleware\Action\ResponderInterface;
 use Oroshi\Core\Middleware\Action\SecureActionInterface;
@@ -18,7 +19,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use RuntimeException;
 
 final class ActionHandler implements MiddlewareInterface
 {

@@ -37,9 +37,4 @@ final class Container implements ContainerInterface
     {
         return class_exists($fqcn);
     }
-
-    public function make(string $implementor, array $state = []): object
-    {
-        return $this->injector->make($implementor, $state);
-    }
 }

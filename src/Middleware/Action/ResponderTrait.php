@@ -9,9 +9,9 @@
 namespace Oroshi\Core\Middleware\Action;
 
 use Assert\Assertion;
+use Oroshi\Core\Exception\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use RuntimeException;
 
 trait ResponderTrait
 {
@@ -29,7 +29,7 @@ trait ResponderTrait
         $outputTypeHandler = [$this, $methodName];
         if (!is_callable($outputTypeHandler)) {
             throw new RuntimeException(sprintf(
-                'Output-type "%s" not supported. Method "%s" missing from: %s',
+                'Output type "%s" not supported. Method "%s" missing from: %s',
                 $outputType,
                 $methodName,
                 self::class

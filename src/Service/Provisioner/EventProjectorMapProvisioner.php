@@ -22,7 +22,7 @@ final class EventProjectorMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $projectorConfigs = $configProvider->get('databases.projectors', []);
+        $projectorConfigs = (array)$configProvider->get('databases.projectors', []);
         $injector
             ->share(EventProjectorMap::class)
             ->delegate(

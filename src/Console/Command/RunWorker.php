@@ -8,6 +8,7 @@
 
 namespace Oroshi\Core\Console\Command;
 
+use Daikon\AsyncJob\Worker\WorkerInterface;
 use Daikon\AsyncJob\Worker\WorkerMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -47,9 +48,10 @@ class RunWorker extends Command
     //@todo support running multiple queues
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!$workerName = $input->getArgument('worker')) {
+        if (!is_string($workerName = $input->getArgument('worker'))) {
             $workerName = $this->listWorkers($input, $output);
         }
+        /** @var WorkerInterface $worker */
         $worker = $this->workerMap->get($workerName);
         $worker->run(['queue' => $input->getArgument('queue')]);
         //@todo return int from worker
