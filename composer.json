@@ -44,7 +44,7 @@
         "psr-4": { "Daikon\\Boot\\" : "src" }
     },
     "autoload-dev": {
-        "psr-4": { "Daikon\\Tests\\Boot": "tests" }
+        "psr-4": { "Daikon\\Tests\\Boot\\": "tests" }
     },
     "archive": {
         "exclude": [
