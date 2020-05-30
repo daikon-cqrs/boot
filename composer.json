@@ -1,7 +1,7 @@
 {
     "name": "daikon/boot",
     "type": "library",
-    "description": "Daikon-CQRS interop middleware with provisioning and tooling.",
+    "description": "Daikon-CQRS bootstrap middleware with provisioning and tooling.",
     "keywords": ["daikon-cqrs", "event-sourcing", "bootstrap", "middleware"],
     "homepage": "https://github.com/daikon-cqrs/boot",
     "license": "MPL-2.0",
@@ -44,7 +44,7 @@
         "psr-4": { "Daikon\\Boot\\" : "src" }
     },
     "autoload-dev": {
-        "psr-4": { "Daikon\\Boot\\Tests\\": "tests" }
+        "psr-4": { "Daikon\\Tests\\Boot": "tests" }
     },
     "archive": {
         "exclude": [
