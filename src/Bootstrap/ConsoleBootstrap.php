@@ -1,27 +1,27 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Bootstrap;
+namespace Daikon\Boot\Bootstrap;
 
 use Auryn\Injector;
+use Daikon\Boot\Console\Command\ImportFixture;
+use Daikon\Boot\Console\Command\ListConfig;
+use Daikon\Boot\Console\Command\ListCrates;
+use Daikon\Boot\Console\Command\ListProjectors;
+use Daikon\Boot\Console\Command\ListRoutes;
+use Daikon\Boot\Console\Command\Migrate\CreateMigration;
+use Daikon\Boot\Console\Command\Migrate\ListTargets;
+use Daikon\Boot\Console\Command\Migrate\MigrateDown;
+use Daikon\Boot\Console\Command\Migrate\MigrateUp;
+use Daikon\Boot\Console\Command\RunWorker;
+use Daikon\Boot\Service\ServiceProvisioner;
 use Daikon\Config\ConfigProvider;
 use Daikon\Config\ConfigProviderInterface;
-use Oroshi\Core\Console\Command\ImportFixture;
-use Oroshi\Core\Console\Command\ListConfig;
-use Oroshi\Core\Console\Command\ListCrates;
-use Oroshi\Core\Console\Command\ListProjectors;
-use Oroshi\Core\Console\Command\ListRoutes;
-use Oroshi\Core\Console\Command\Migrate\CreateMigration;
-use Oroshi\Core\Console\Command\Migrate\ListTargets;
-use Oroshi\Core\Console\Command\Migrate\MigrateDown;
-use Oroshi\Core\Console\Command\Migrate\MigrateUp;
-use Oroshi\Core\Console\Command\RunWorker;
-use Oroshi\Core\Service\ServiceProvisioner;
 use Psr\Container\ContainerInterface;
 
 final class ConsoleBootstrap implements BootstrapInterface

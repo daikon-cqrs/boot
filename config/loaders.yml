@@ -18,7 +18,7 @@ secrets:
 services:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:
@@ -30,7 +30,7 @@ services:
 connectors:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:
@@ -42,7 +42,7 @@ connectors:
 databases:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:
@@ -55,7 +55,7 @@ databases:
 jobs:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:
@@ -67,7 +67,7 @@ jobs:
 migrations:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:
@@ -79,7 +79,7 @@ migrations:
 fixtures:
   loader: Daikon\Config\YamlConfigLoader
   locations:
-    - ${app.oroshi.config_dir}
+    - ${app.daikon.config_dir}
     - ${crates.*.config_dir}
     - ${app.config_dir}
   sources:

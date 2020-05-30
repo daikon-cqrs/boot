@@ -1,9 +1,9 @@
 {
-    "name": "oroshi/oroshi-core",
+    "name": "daikon/boot",
     "type": "library",
     "description": "Daikon-CQRS interop middleware with provisioning and tooling.",
-    "keywords": ["daikon-cqrs", "event-sourcing", "middleware"],
-    "homepage": "https://github.com/oroshi/oroshi-core",
+    "keywords": ["daikon-cqrs", "event-sourcing", "bootstrap", "middleware"],
+    "homepage": "https://github.com/daikon-cqrs/boot",
     "license": "MPL-2.0",
     "prefer-stable": true,
     "minimum-stability": "dev",
@@ -41,10 +41,10 @@
         "vimeo/psalm": "^3.0"
     },
     "autoload": {
-        "psr-4": { "Oroshi\\Core\\" : "src" }
+        "psr-4": { "Daikon\\Boot\\" : "src" }
     },
     "autoload-dev": {
-        "psr-4": { "Oroshi\\Core\\Tests\\": "tests" }
+        "psr-4": { "Daikon\\Boot\\Tests\\": "tests" }
     },
     "archive": {
         "exclude": [

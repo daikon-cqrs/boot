@@ -1,12 +1,12 @@
-oroshi.event_store:
+daikon.event_store:
   class: Daikon\CouchDb\Connector\CouchDbConnector
   settings: ${secrets.couchdb}
 
-oroshi.projection_store:
+daikon.projection_store:
   class: Daikon\Elasticsearch7\Connector\Elasticsearch7Connector
   settings: ${secrets.elasticsearch}
 
-oroshi.filesystem:
+daikon.filesystem:
   class: Daikon\Flysystem\Connector\FlysystemConnector
   settings:
     mounts:
@@ -17,10 +17,10 @@ oroshi.filesystem:
         adapter: League\Flysystem\Adapter\Local
         location: ${app.base_dir}/app/fixture
 
-oroshi.message_queue:
+daikon.message_queue:
   class: Daikon\RabbitMq3\Connector\RabbitMq3Connector
   settings: ${secrets.rabbitmq}
 
-oroshi.message_queue.admin:
+daikon.message_queue.admin:
   class: Daikon\RabbitMq3\Connector\RabbitMq3AdminConnector
   settings: ${secrets.rabbitmq-admin}

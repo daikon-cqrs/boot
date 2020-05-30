@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service\Provisioner;
+namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
-use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Boot\Fixture\FixtureLoaderMap;
+use Daikon\Boot\Fixture\FixtureTarget;
+use Daikon\Boot\Fixture\FixtureTargetMap;
+use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
-use Oroshi\Core\Fixture\FixtureLoaderMap;
-use Oroshi\Core\Fixture\FixtureTarget;
-use Oroshi\Core\Fixture\FixtureTargetMap;
-use Oroshi\Core\Service\ServiceDefinitionInterface;
+use Daikon\Dbal\Connector\ConnectorMap;
 
 final class FixtureTargetMapProvisioner implements ProvisionerInterface
 {

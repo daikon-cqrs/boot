@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Console\Command\Migrate;
+namespace Daikon\Boot\Console\Command\Migrate;
 
+use Daikon\Boot\Console\Command\DialogTrait;
+use Daikon\Boot\Crate\CrateMap;
 use Daikon\Dbal\Migration\MigrationTargetMap;
 use DateTimeImmutable;
-use Oroshi\Core\Console\Command\DialogTrait;
-use Oroshi\Core\Crate\CrateMap;
 use Stringy\Stringy;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

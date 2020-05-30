@@ -1,45 +1,45 @@
-oroshi:
+daikon:
   logger:
     class: Monolog\Logger
-    provisioner: Oroshi\Core\Service\Provisioner\MonologProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\MonologProvisioner
     settings:
-      location: ${app.log_dir}/oroshi.log
+      location: ${app.log_dir}/daikon.log
 
   crate_map:
-    class: Oroshi\Core\Crate\CrateMap
-    provisioner: Oroshi\Core\Service\Provisioner\CrateMapProvisioner
+    class: Daikon\Boot\Crate\CrateMap
+    provisioner: Daikon\Boot\Service\Provisioner\CrateMapProvisioner
 
   connector_map:
     class: Daikon\Dbal\Connector\ConnectorMap
-    provisioner: Oroshi\Core\Service\Provisioner\ConnectorMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\ConnectorMapProvisioner
 
   storage_adapter_map:
     class: Daikon\Dbal\Storage\StorageAdapterMap
-    provisioner: Oroshi\Core\Service\Provisioner\StorageAdapterMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\StorageAdapterMapProvisioner
 
   stream_storage_map:
     class: Daikon\EventSourcing\EventStore\Storage\StreamStorageMap
-    provisioner: Oroshi\Core\Service\Provisioner\StreamStorageMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\StreamStorageMapProvisioner
 
   unit_of_work_map:
     class: Daikon\EventSourcing\EventStore\UnitOfWorkMap
-    provisioner: Oroshi\Core\Service\Provisioner\UnitOfWorkMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\UnitOfWorkMapProvisioner
 
   repository_map:
     class: Daikon\ReadModel\Repository\RepositoryMap
-    provisioner: Oroshi\Core\Service\Provisioner\RepositoryMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\RepositoryMapProvisioner
 
   migration_target_map:
     class: Daikon\Dbal\Migration\MigrationTargetMap
-    provisioner: Oroshi\Core\Service\Provisioner\MigrationTargetMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\MigrationTargetMapProvisioner
 
   fixture_target_map:
-    class: Oroshi\Core\Fixture\FixtureTargetMap
-    provisioner: Oroshi\Core\Service\Provisioner\FixtureTargetMapProvisioner
+    class: Daikon\Boot\Fixture\FixtureTargetMap
+    provisioner: Daikon\Boot\Service\Provisioner\FixtureTargetMapProvisioner
 
   projector_map:
     class: Daikon\ReadModel\Projector\EventProjectorMap
-    provisioner: Oroshi\Core\Service\Provisioner\EventProjectorMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\EventProjectorMapProvisioner
 
   projector_service:
     class: Daikon\ReadModel\Projector\ProjectorService
@@ -50,8 +50,8 @@ oroshi:
         guards: Daikon\EventSourcing\EventStore\Commit\CommitInterface
 
   command_router:
-    class: Oroshi\Core\MessageBus\CommandRouter
-    provisioner: Oroshi\Core\Service\Provisioner\CommandRouterProvisioner
+    class: Daikon\Boot\MessageBus\CommandRouter
+    provisioner: Daikon\Boot\Service\Provisioner\CommandRouterProvisioner
     subscriptions:
       commands_sub:
         channel: commands
@@ -60,7 +60,7 @@ oroshi:
 
   message_bus:
     class: Daikon\MessageBus\MessageBus
-    provisioner: Oroshi\Core\Service\Provisioner\MessageBusProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\MessageBusProvisioner
     settings:
       transports:
         inproc:
@@ -68,12 +68,12 @@ oroshi:
         message_queue:
           class: Daikon\RabbitMq3\Transport\RabbitMq3Transport
           dependencies:
-            connector: oroshi.message_queue
+            connector: daikon.message_queue
 
   job_definition_map:
     class: Daikon\AsyncJob\Job\JobDefinitionMap
-    provisioner: Oroshi\Core\Service\Provisioner\JobDefinitionMapProvisioner
+    provisioner: Daikon\Boot\Service\Provisioner\JobDefinitionMapProvisioner
 
   http_pipeline:
-    class: Oroshi\Core\Middleware\DefaultPipeline
-    provisioner: Oroshi\Core\Service\Provisioner\HttpPipelineProvisioner
+    class: Daikon\Boot\Middleware\DefaultPipeline
+    provisioner: Daikon\Boot\Service\Provisioner\HttpPipelineProvisioner

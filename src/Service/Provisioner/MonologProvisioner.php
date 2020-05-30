@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service\Provisioner;
+namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
+use Daikon\Boot\Exception\ConfigException;
+use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Oroshi\Core\Exception\ConfigException;
-use Oroshi\Core\Service\ServiceDefinitionInterface;
 use Psr\Log\LoggerInterface;
 
 final class MonologProvisioner implements ProvisionerInterface

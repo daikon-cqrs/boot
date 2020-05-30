@@ -1,15 +1,18 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service\Provisioner;
+namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
+use Daikon\Boot\Exception\ConfigException;
+use Daikon\Boot\Service\ServiceDefinitionInterface;
+use Daikon\Boot\Service\ServiceDefinitionMap;
 use Daikon\Dbal\Connector\ConnectorMap;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Channel;
@@ -21,9 +24,6 @@ use Daikon\MessageBus\Channel\Subscription\Transport\TransportInterface;
 use Daikon\MessageBus\Channel\Subscription\Transport\TransportMap;
 use Daikon\MessageBus\MessageBusInterface;
 use Daikon\Metadata\MetadataEnricherList;
-use Oroshi\Core\Exception\ConfigException;
-use Oroshi\Core\Service\ServiceDefinitionInterface;
-use Oroshi\Core\Service\ServiceDefinitionMap;
 
 final class MessageBusProvisioner implements ProvisionerInterface
 {

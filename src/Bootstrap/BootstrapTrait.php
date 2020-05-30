@@ -1,25 +1,25 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Bootstrap;
+namespace Daikon\Boot\Bootstrap;
 
+use Daikon\Boot\Config\CratesConfigLoader;
 use Daikon\Config\ArrayConfigLoader;
 use Daikon\Config\ConfigProvider;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Config\ConfigProviderParams;
 use Daikon\Config\YamlConfigLoader;
-use Oroshi\Core\Config\CratesConfigLoader;
 
 trait BootstrapTrait
 {
     private function loadConfiguration(array $bootParams): ConfigProviderInterface
     {
-        $bootParams['oroshi'] = ['config_dir' => dirname(dirname(__DIR__)) . '/config'];
+        $bootParams['daikon'] = ['config_dir' => dirname(dirname(__DIR__)) . '/config'];
         return new ConfigProvider(
             new ConfigProviderParams(
                 array_merge(
@@ -44,7 +44,7 @@ trait BootstrapTrait
                     ],
                     (new YamlConfigLoader)->load(
                         [
-                            $bootParams['oroshi']['config_dir'],
+                            $bootParams['daikon']['config_dir'],
                             $bootParams['config_dir']
                         ],
                         ['loaders.yml']

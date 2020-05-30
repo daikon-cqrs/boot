@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Console\Command;
+namespace Daikon\Boot\Console\Command;
 
-use Oroshi\Core\Fixture\FixtureInterface;
-use Oroshi\Core\Fixture\FixtureList;
-use Oroshi\Core\Fixture\FixtureTargetInterface;
-use Oroshi\Core\Fixture\FixtureTargetMap;
+use Daikon\Boot\Fixture\FixtureInterface;
+use Daikon\Boot\Fixture\FixtureList;
+use Daikon\Boot\Fixture\FixtureTargetInterface;
+use Daikon\Boot\Fixture\FixtureTargetMap;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

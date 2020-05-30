@@ -1,15 +1,19 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service\Provisioner;
+namespace Daikon\Boot\Service\Provisioner;
 
 use Aura\Router\RouterContainer;
 use Auryn\Injector;
+use Daikon\Boot\Config\RoutingConfigLoader;
+use Daikon\Boot\Middleware\PipelineBuilderInterface;
+use Daikon\Boot\Middleware\RoutingHandler;
+use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
@@ -19,10 +23,6 @@ use Middlewares\Utils\FactoryDiscovery;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
 use Neomerx\Cors\Strategies\Settings;
-use Oroshi\Core\Config\RoutingConfigLoader;
-use Oroshi\Core\Middleware\PipelineBuilderInterface;
-use Oroshi\Core\Middleware\RoutingHandler;
-use Oroshi\Core\Service\ServiceDefinitionInterface;
 use Psr\Container\ContainerInterface;
 
 final class HttpPipelineProvisioner implements ProvisionerInterface

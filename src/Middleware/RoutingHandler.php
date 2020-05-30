@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Middleware;
+namespace Daikon\Boot\Middleware;
 
 use Aura\Router\Route;
 use Aura\Router\RouterContainer;
@@ -14,8 +14,8 @@ use Aura\Router\Rule\Accepts;
 use Aura\Router\Rule\Allows;
 use Aura\Router\Rule\Host;
 use Aura\Router\Rule\Path;
+use Daikon\Boot\Middleware\Action\ActionInterface;
 use Middlewares\Utils\Factory;
-use Oroshi\Core\Middleware\Action\ActionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

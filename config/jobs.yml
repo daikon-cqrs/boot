@@ -1,5 +1,5 @@
 job_strategies:
-  oroshi.no_retry:
+  daikon.no_retry:
     class: Daikon\AsyncJob\Strategy\JobStrategy
     retry:
       class: Daikon\AsyncJob\Strategy\Retry\NoRetry
@@ -7,7 +7,7 @@ job_strategies:
       class: Daikon\AsyncJob\Strategy\Retry\NoRetry
 
 job_workers:
-  oroshi.message_queue:
+  daikon.message_queue:
     class: Daikon\RabbitMq3\Job\RabbitMq3Worker
     dependencies:
-      connector: oroshi.message_queue
+      connector: daikon.message_queue

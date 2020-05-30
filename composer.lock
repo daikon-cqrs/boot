@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b11b3a0f0a53d0e4780310b034a11bcf",
+    "content-hash": "756e780d6ee39c470a73948d4e6e58f0",
     "packages": [
         {
             "name": "aura/router",

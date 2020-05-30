@@ -1,19 +1,19 @@
 <?php declare (strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Service;
+namespace Daikon\Boot\Service;
 
 use Assert\Assertion;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
+use Daikon\Interop\RuntimeException;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\MessageInterface;
 use Daikon\Metadata\MetadataInterface;
-use Oroshi\Core\Exception\RuntimeException;
 use ReflectionClass;
 
 trait ProcessManagerTrait

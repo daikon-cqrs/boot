@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 /**
- * This file is part of the oroshi/oroshi-core project.
+ * This file is part of the daikon-cqrs/boot project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Oroshi\Core\Middleware;
+namespace Daikon\Boot\Middleware;
 
 use Assert\Assertion;
 use Auryn\Injector;
-use Oroshi\Core\Exception\RuntimeException;
+use Daikon\Interop\RuntimeException;
 use Psr\Container\ContainerInterface;
 
 trait ResolvesDependency
