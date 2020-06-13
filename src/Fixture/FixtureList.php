@@ -8,13 +8,10 @@
 
 namespace Daikon\Boot\Fixture;
 
-use Daikon\DataStructure\TypedListInterface;
-use Daikon\DataStructure\TypedListTrait;
+use Daikon\DataStructure\TypedList;
 
-final class FixtureList implements TypedListInterface
+final class FixtureList extends TypedList
 {
-    use TypedListTrait;
-
     public function __construct(iterable $fixtures = [])
     {
         $this->init($fixtures, [FixtureInterface::class]);

@@ -8,8 +8,8 @@
 
 namespace Daikon\Boot\MessageBus;
 
-use Assert\Assertion;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Subscription\MessageHandler\MessageHandlerInterface;
@@ -34,7 +34,7 @@ final class CommandRouter implements MessageHandlerInterface
 
         $commandFqcn = get_class($command);
         if (!isset($this->handlerMap[$commandFqcn])) {
-            throw new RuntimeException("No handler assigned to given command $commandFqcn");
+            throw new RuntimeException("No handler assigned to given command '$commandFqcn'.");
         }
         if (!isset($this->spawnedHandlers[$commandFqcn])) {
             $this->spawnedHandlers[$commandFqcn] = $this->handlerMap[$commandFqcn]();

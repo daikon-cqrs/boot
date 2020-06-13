@@ -8,8 +8,8 @@
 
 namespace Daikon\Boot\Middleware;
 
-use Assert\Assertion;
 use Auryn\Injector;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
 use Psr\Container\ContainerInterface;
 
@@ -27,12 +27,16 @@ trait ResolvesDependency
             $fqcn = $dependency[0];
             $params = $dependency[1];
             Assertion::classExists($fqcn, "Given dependency '$fqcn' not found.");
-            Assertion::isArray($params);
+            Assertion::isArray($params, 'Dependency parameters must be an array.');
             $dependency = $this->container->get(Injector::class)->make($fqcn, $params);
         }
 
         if (is_object($dependency)) {
-            Assertion::isInstanceOf($dependency, $stereoType);
+            Assertion::isInstanceOf(
+                $dependency,
+                $stereoType,
+                sprintf("Given dependency '%s' is not a '$stereoType'.", get_class($dependency))
+            );
         }
 
         if (is_callable($dependency)) {
@@ -40,7 +44,7 @@ trait ResolvesDependency
         }
 
         throw new RuntimeException(
-            sprintf("Given type '%s' is not a $stereoType.", gettype($dependency))
+            sprintf("Given dependency '%s' is not a '$stereoType'.", gettype($dependency))
         );
     }
 }

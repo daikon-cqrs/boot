@@ -8,8 +8,8 @@
 
 namespace Daikon\Boot\Service;
 
-use Assert\Assertion;
 use Daikon\EventSourcing\Aggregate\Command\CommandInterface;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\MessageInterface;
@@ -20,15 +20,20 @@ trait ProcessManagerTrait
 {
     public function handle(EnvelopeInterface $envelope): void
     {
-        $message = $envelope->getMessage();
-        Assertion::isInstanceOf($message, MessageInterface::class);
+        Assertion::isInstanceOf(
+            $message = $envelope->getMessage(),
+            MessageInterface::class,
+            sprintf("Process manager message '%s' must implement '%s'.", get_class($message), MessageInterface::class)
+        );
         $shortName = (new ReflectionClass($message))->getShortName();
         $handlerMethod = 'when'.ucfirst($shortName);
         $handler = [$this, $handlerMethod];
         if (!is_callable($handler)) {
-            throw new RuntimeException("Handler method '$handlerMethod' is not callable in ".static::class);
+            throw new RuntimeException(
+                sprintf("Handler method '%s' is not callable in '%s'.", $handlerMethod, static::class)
+            );
         }
-        call_user_func($handler, $message, $envelope->getMetadata());
+        $handler($message, $envelope->getMetadata());
     }
 
     public function then(CommandInterface $command, MetadataInterface $metadata = null): void

@@ -8,7 +8,7 @@
 
 namespace Daikon\Boot\Fixture;
 
-use Assert\Assertion;
+use Daikon\Interop\Assertion;
 use Daikon\MessageBus\MessageBusInterface;
 
 final class FixtureTarget implements FixtureTargetInterface
@@ -56,7 +56,7 @@ final class FixtureTarget implements FixtureTargetInterface
 
     public function import(FixtureInterface $fixture): bool
     {
-        Assertion::true($this->isEnabled());
+        Assertion::true($this->isEnabled(), sprintf("Fixture '%s' is not enabled.", $fixture->getName()));
 
         $index = $this->getFixtureList()->find($fixture);
 

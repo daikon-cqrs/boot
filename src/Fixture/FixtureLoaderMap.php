@@ -8,13 +8,10 @@
 
 namespace Daikon\Boot\Fixture;
 
-use Daikon\DataStructure\TypedMapInterface;
-use Daikon\DataStructure\TypedMapTrait;
+use Daikon\DataStructure\TypedMap;
 
-final class FixtureLoaderMap implements TypedMapInterface
+final class FixtureLoaderMap extends TypedMap
 {
-    use TypedMapTrait;
-
     public function __construct(iterable $fixtureLoaders = [])
     {
         $this->init($fixtureLoaders, [FixtureLoaderInterface::class]);

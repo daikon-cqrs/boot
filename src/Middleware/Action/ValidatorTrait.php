@@ -8,9 +8,10 @@
 
 namespace Daikon\Boot\Middleware\Action;
 
-use Assert\Assertion;
-use Assert\LazyAssertionException;
+use Daikon\Interop\Assertion;
+use Daikon\Interop\LazyAssertionException;
 use Daikon\Interop\RuntimeException;
+use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
 use Stringy\Stringy;
 
@@ -106,7 +107,7 @@ trait ValidatorTrait
             foreach ($exception->getErrorExceptions() as $error) {
                 $errors[$name][] = $error->getMessage();
             }
-        } catch (\Exception $error) {
+        } catch (InvalidArgumentException $error) {
             $errors[$name][] = $error->getMessage();
         }
 

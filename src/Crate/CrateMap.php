@@ -8,13 +8,10 @@
 
 namespace Daikon\Boot\Crate;
 
-use Daikon\DataStructure\TypedMapInterface;
-use Daikon\DataStructure\TypedMapTrait;
+use Daikon\DataStructure\TypedMap;
 
-final class CrateMap implements TypedMapInterface
+final class CrateMap extends TypedMap
 {
-    use TypedMapTrait;
-
     public function __construct(iterable $crates = [])
     {
         $this->init($crates, [CrateInterface::class]);

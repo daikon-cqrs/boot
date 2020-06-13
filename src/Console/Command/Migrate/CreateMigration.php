@@ -9,8 +9,10 @@
 namespace Daikon\Boot\Console\Command\Migrate;
 
 use Daikon\Boot\Console\Command\DialogTrait;
+use Daikon\Boot\Crate\CrateInterface;
 use Daikon\Boot\Crate\CrateMap;
 use Daikon\Dbal\Migration\MigrationTargetMap;
+use Daikon\Interop\Assertion;
 use DateTimeImmutable;
 use Stringy\Stringy;
 use Symfony\Component\Console\Command\Command;
@@ -58,17 +60,19 @@ final class CreateMigration extends Command
             exit;
         }
 
-        if (!is_string($crate = $input->getArgument('crate'))) {
-            $crate = $this->promptCrate($input, $output);
+        if (!is_string($crateName = $input->getArgument('crate'))) {
+            $crateName = $this->promptCrate($input, $output);
         }
 
-        if (!$this->crateMap->has($crate)) {
-            $output->writeln("<error>Crate '$crate' does not exist.</error>");
+        if (!$this->crateMap->has($crateName)) {
+            $output->writeln("<error>Crate '$crateName' does not exist.</error>");
             $output->writeln('');
             exit;
         }
 
-        $crateSettings = $this->crateMap->get($crate)->getSettings();
+        /** @var CrateInterface $crate */
+        $crate = $this->crateMap->get($crateName);
+        $crateSettings = $crate->getSettings();
         $targetDir = $this->promptDir($crateSettings['migration_dir'], $input, $output);
 
         $timestamp = (new DateTimeImmutable)->format('Ymdhis');
@@ -96,10 +100,7 @@ final class CreateMigration extends Command
     private function promptCrate(InputInterface $input, OutputInterface $output): string
     {
         $helper = $this->getHelper('question');
-        $question = new ChoiceQuestion(
-            'Please select a crate: ',
-            $this->crateMap->keys()
-        );
+        $question = new ChoiceQuestion('Please select a crate: ', $this->crateMap->keys());
         return $helper->ask($input, $output, $question);
     }
 

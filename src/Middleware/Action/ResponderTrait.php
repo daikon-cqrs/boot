@@ -8,7 +8,7 @@
 
 namespace Daikon\Boot\Middleware\Action;
 
-use Assert\Assertion;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,7 +17,7 @@ trait ResponderTrait
 {
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        return call_user_func($this->getOutputTypeHandler($request), $request);
+        return $this->getOutputTypeHandler($request)($request);
     }
 
     private function getOutputTypeHandler(ServerRequestInterface $request): callable

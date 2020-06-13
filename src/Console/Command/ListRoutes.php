@@ -35,6 +35,7 @@ class ListRoutes extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        /** @var Closure $getRouter */
         $getRouter = Closure::bind(
             function (RoutingHandler $routingHandler): RouterContainer {
                 /** @psalm-suppress InaccessibleProperty */

@@ -8,9 +8,9 @@
 
 namespace Daikon\Boot\Console\Command\Migrate;
 
-use Assert\InvalidArgumentException;
 use Daikon\Dbal\Migration\MigrationInterface;
 use Daikon\Dbal\Migration\MigrationTargetMap;
+use Daikon\Interop\InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
