@@ -7,6 +7,12 @@
     "license": "MPL-2.0",
     "prefer-stable": true,
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:MrHash/whoops-middleware.git"
+        }
+    ],
     "require": {
         "php": "^7.4",
         "aura/router": "^3.0",
@@ -22,7 +28,7 @@
         "daikon/value-object": "master@dev",
         "danielstjules/stringy": "^3.1",
         "fig/http-message-util": "^1.1",
-        "franzl/whoops-middleware": "^1.2",
+        "franzl/whoops-middleware": "master@dev",
         "middlewares/cors": "^v2.0",
         "middlewares/negotiation": "^v2.0",
         "middlewares/request-handler": "^v2.0",

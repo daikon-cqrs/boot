@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Daikon\Tests\Boot\Connector;
+namespace Daikon\Tests\Boot\Crate;
 
 use Daikon\Boot\Crate\CrateInterface;
 use Daikon\Boot\Crate\CrateMap;

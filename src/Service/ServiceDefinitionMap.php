@@ -8,13 +8,10 @@
 
 namespace Daikon\Boot\Service;
 
-use Daikon\DataStructure\TypedMapInterface;
-use Daikon\DataStructure\TypedMapTrait;
+use Daikon\DataStructure\TypedMap;
 
-final class ServiceDefinitionMap implements TypedMapInterface
+final class ServiceDefinitionMap extends TypedMap
 {
-    use TypedMapTrait;
-
     public function __construct(iterable $serviceDefinitions = [])
     {
         $this->init($serviceDefinitions, [ServiceDefinitionInterface::class]);
