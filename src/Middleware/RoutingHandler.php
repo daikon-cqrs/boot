@@ -61,11 +61,9 @@ class RoutingHandler implements MiddlewareInterface
         switch ($failedRoute->failedRule) {
             case Accepts::class:
                 return Factory::createResponse(406);
-
             case Allows::class:
                 $allowed = implode(', ', $failedRoute->allows);
                 return Factory::createResponse(405)->withHeader('Allow', $allowed);
-
             case Host::class:
             case Path::class:
                 return Factory::createResponse(404);

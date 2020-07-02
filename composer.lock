@@ -1184,19 +1184,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MrHash/whoops-middleware.git",
-                "reference": "a03b867ee8d7ffe5baf444ede164190db47d0047"
+                "reference": "b9aa1d026af988e7e78f5e033e023f954e36810a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MrHash/whoops-middleware/zipball/a03b867ee8d7ffe5baf444ede164190db47d0047",
-                "reference": "a03b867ee8d7ffe5baf444ede164190db47d0047",
+                "url": "https://api.github.com/repos/MrHash/whoops-middleware/zipball/b9aa1d026af988e7e78f5e033e023f954e36810a",
+                "reference": "b9aa1d026af988e7e78f5e033e023f954e36810a",
                 "shasum": ""
             },
             "require": {
                 "filp/whoops": "^1.1 || ^2.0",
-                "middlewares/utils": "^3.0"
+                "middlewares/utils": "^2.0 || ^3.0",
+                "php": "^7.1"
             },
             "require-dev": {
+                "laminas/laminas-diactoros": "^1.1.0 || ^2.0",
                 "phpunit/phpunit": "^7.0",
                 "psr/http-server-middleware": "^1.0"
             },
@@ -1221,7 +1223,7 @@
             "support": {
                 "source": "https://github.com/MrHash/whoops-middleware/tree/master"
             },
-            "time": "2020-06-30T21:05:18+00:00"
+            "time": "2020-07-01T22:54:37+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

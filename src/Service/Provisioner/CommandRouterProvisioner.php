@@ -27,30 +27,18 @@ final class CommandRouterProvisioner implements ProvisionerInterface
             ->share(CommandRouter::class)
             ->delegate(
                 CommandRouter::class,
-                $this->factory($injector, $commandConfigs)
-            );
-    }
-
-    private function factory(Injector $injector, array $cmdRoutingConfig): callable
-    {
-        return function (UnitOfWorkMap $uowMap) use ($injector, $cmdRoutingConfig): CommandRouter {
-            $handlerMap = [];
-            foreach ($cmdRoutingConfig as $uowKey => $registeredHandlers) {
-                foreach ($registeredHandlers as $commandFqcn => $handlerFqcn) {
-                    $handlerMap[$commandFqcn] = function () use (
-                        $injector,
-                        $handlerFqcn,
-                        $uowMap,
-                        $uowKey
-                    ): CommandHandler {
-                        return $injector->make(
-                            $handlerFqcn,
-                            [':unitOfWork' => $uowMap->get($uowKey)]
-                        );
-                    };
+                function (UnitOfWorkMap $uowMap) use ($injector, $commandConfigs): CommandRouter {
+                    $handlerMap = [];
+                    foreach ($commandConfigs as $uowKey => $registeredHandlers) {
+                        foreach ($registeredHandlers as $commandFqcn => $handlerFqcn) {
+                            $handlerMap[$commandFqcn] = fn(): CommandHandler => $injector->make(
+                                $handlerFqcn,
+                                [':unitOfWork' => $uowMap->get($uowKey)]
+                            );
+                        }
+                    }
+                    return new CommandRouter($handlerMap);
                 }
-            }
-            return new CommandRouter($handlerMap);
-        };
+            );
     }
 }

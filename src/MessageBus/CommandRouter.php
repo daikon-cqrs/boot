@@ -20,7 +20,7 @@ final class CommandRouter implements MessageHandlerInterface
 
     private array $handlerMap;
 
-    public function __construct(array $handlerMap)
+    public function __construct(array $handlerMap = [])
     {
         $this->handlerMap = $handlerMap;
         $this->spawnedHandlers = [];
@@ -36,6 +36,7 @@ final class CommandRouter implements MessageHandlerInterface
         if (!isset($this->handlerMap[$commandFqcn])) {
             throw new RuntimeException("No handler assigned to given command '$commandFqcn'.");
         }
+
         if (!isset($this->spawnedHandlers[$commandFqcn])) {
             $this->spawnedHandlers[$commandFqcn] = $this->handlerMap[$commandFqcn]();
         }
