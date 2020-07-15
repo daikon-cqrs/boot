@@ -9,9 +9,9 @@
 namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
+use Daikon\Boot\ReadModel\EventProjector;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
-use Daikon\ReadModel\Projector\EventProjector;
 use Daikon\ReadModel\Projector\EventProjectorMap;
 use Daikon\ReadModel\Repository\RepositoryMap;
 
@@ -42,21 +42,21 @@ final class EventProjectorMapProvisioner implements ProvisionerInterface
             $serviceDefinition
         ): EventProjectorMap {
             $settings = $serviceDefinition->getSettings();
-            $defaultWrapper = $settings['wrapper'] ?? EventProjector::class;
-            $projectors = [];
+            $defaultMatcher = $settings['matcher'] ?? EventProjector::class;
+            $eventMatchers = [];
             foreach ($projectorConfigs as $projectorName => $projectorConfig) {
                 $projectorClass = $projectorConfig['class'];
                 $projectorEvents = $projectorConfig['events'];
-                $eventProjectFqcn = $projectorConfig['wrapper'] ?? $defaultWrapper;
-                $projectors[$projectorName] = $injector->make($eventProjectFqcn, [
+                $eventMatcher = $projectorConfig['matcher'] ?? $defaultMatcher;
+                $eventMatchers[$projectorName] = $injector->make($eventMatcher, [
                     ':eventExpressions' => $projectorEvents,
                     ':projector' => $injector->make(
                         $projectorClass,
-                        [ ':repository' => $repositoryMap->get($projectorConfig['repository']) ]
+                        [':repository' => $repositoryMap->get($projectorConfig['repository'])]
                     )
                 ]);
             }
-            return new EventProjectorMap($projectors);
+            return new EventProjectorMap($eventMatchers);
         };
     }
 }

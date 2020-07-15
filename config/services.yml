@@ -42,7 +42,7 @@ daikon:
     provisioner: Daikon\Boot\Service\Provisioner\EventProjectorMapProvisioner
 
   projector_service:
-    class: Daikon\ReadModel\Projector\ProjectorService
+    class: Daikon\Boot\ReadModel\ProjectorService
     subscriptions:
       commits_sub:
         channel: commits
