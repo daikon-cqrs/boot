@@ -15,7 +15,7 @@ trait FixtureTrait
     public function getName(): string
     {
         $shortName = (new ReflectionClass(static::class))->getShortName();
-        if (!preg_match('#^(?<name>.+?)\d+$#', $shortName, $matches)) {
+        if (!preg_match('/^(?<name>.+?)\d+$/', $shortName, $matches)) {
             throw new FixtureException("Unexpected fixture name in $shortName");
         }
         return $matches['name'];
@@ -24,7 +24,7 @@ trait FixtureTrait
     public function getVersion(): int
     {
         $shortName= (new ReflectionClass(static::class))->getShortName();
-        if (!preg_match('#(?<version>\d{14})$#', $shortName, $matches)) {
+        if (!preg_match('/(?<version>\d{14})$/', $shortName, $matches)) {
             throw new FixtureException("Unexpected fixture version in $shortName");
         }
         return intval($matches['version']);
