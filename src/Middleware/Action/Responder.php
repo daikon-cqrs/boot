@@ -13,29 +13,24 @@ use Daikon\Interop\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-trait ResponderTrait
+abstract class Responder implements ResponderInterface
 {
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->getOutputTypeHandler($request)($request);
-    }
-
-    private function getOutputTypeHandler(ServerRequestInterface $request): callable
-    {
-        $outputType = $request->getHeaderLine('Accept');
-        $parts = explode('/', $outputType, 2);
-        Assertion::count($parts, 2);
+        $contentType = $request->getHeaderLine('Accept');
+        $parts = explode('/', $contentType, 2);
+        Assertion::count($parts, 2, "Invalid content type '$contentType'.");
         $methodName = 'respondTo'.ucfirst($parts[1]);
-        $outputTypeHandler = [$this, $methodName];
-        if (!is_callable($outputTypeHandler)) {
+        $responseHandler = [$this, $methodName];
+        if (!is_callable($responseHandler)) {
             throw new RuntimeException(sprintf(
-                'Output type "%s" not supported. Method "%s" missing from: %s',
-                $outputType,
+                "Method '%s' for content type '%s' missing from '%s'.",
                 $methodName,
-                self::class
+                $contentType,
+                static::class
             ));
         }
 
-        return $outputTypeHandler;
+        return $responseHandler($request);
     }
 }

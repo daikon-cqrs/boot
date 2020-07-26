@@ -18,6 +18,7 @@ use Daikon\Config\ConfigProviderInterface;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
+use Middlewares\RequestHandler;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
 use Neomerx\Cors\Strategies\Settings;
@@ -71,6 +72,14 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                 }
                 return Analyzer::instance($corsSettings);
             })
+            // Request
+            ->share(RequestHandler::class)
+            ->delegate(
+                RequestHandler::class,
+                function (ContainerInterface $container): RequestHandler {
+                    return (new RequestHandler($container))->handlerAttribute(RoutingHandler::ATTR_REQUEST_HANDLER);
+                }
+            )
             // Routing
             ->share(RoutingHandler::class)
             ->delegate(

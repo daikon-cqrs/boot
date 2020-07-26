@@ -15,6 +15,7 @@ use Aura\Router\Rule\Allows;
 use Aura\Router\Rule\Host;
 use Aura\Router\Rule\Path;
 use Daikon\Boot\Middleware\Action\ActionInterface;
+use Fig\Http\Message\StatusCodeInterface;
 use Middlewares\Utils\Factory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -22,9 +23,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class RoutingHandler implements MiddlewareInterface
+final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
 {
-    public const ATTR_HANDLER = 'request-handler';
+    public const ATTR_REQUEST_HANDLER = '_request_handler';
 
     private RouterContainer $router;
 
@@ -48,32 +49,32 @@ class RoutingHandler implements MiddlewareInterface
         }
 
         return $handler->handle(
-            $request->withAttribute(self::ATTR_HANDLER, $this->initHandler($route->handler))
+            $request->withAttribute(self::ATTR_REQUEST_HANDLER, $this->initializeHandler($route->handler))
         );
     }
 
     private function errorResponse(Route $failedRoute = null): ResponseInterface
     {
         if (!$failedRoute) {
-            return Factory::createResponse(500);
+            return Factory::createResponse(self::STATUS_INTERNAL_SERVER_ERROR);
         }
 
         switch ($failedRoute->failedRule) {
             case Accepts::class:
-                return Factory::createResponse(406);
+                return Factory::createResponse(self::STATUS_NOT_ACCEPTABLE);
             case Allows::class:
                 $allowed = implode(', ', $failedRoute->allows);
-                return Factory::createResponse(405)->withHeader('Allow', $allowed);
+                return Factory::createResponse(self::STATUS_METHOD_NOT_ALLOWED)->withHeader('Allow', $allowed);
             case Host::class:
             case Path::class:
-                return Factory::createResponse(404);
+                return Factory::createResponse(self::STATUS_NOT_FOUND);
             default:
-                return Factory::createResponse(500);
+                return Factory::createResponse(self::STATUS_INTERNAL_SERVER_ERROR);
         }
     }
 
     /** @param callable|ActionInterface $requestHandler */
-    private function initHandler($requestHandler): callable
+    private function initializeHandler($requestHandler): callable
     {
         if (is_string($requestHandler)) {
             $requestHandler = $this->container->get($requestHandler);

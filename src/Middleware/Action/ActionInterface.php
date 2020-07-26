@@ -15,7 +15,7 @@ interface ActionInterface extends StatusCodeInterface
 {
     public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
 
-    public function handleError(ServerRequestInterface $request): ServerRequestInterface;
-
     public function registerValidator(ServerRequestInterface $request): ServerRequestInterface;
+
+    public function handleError(ServerRequestInterface $request): ServerRequestInterface;
 }
