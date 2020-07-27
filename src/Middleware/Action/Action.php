@@ -9,7 +9,6 @@
 namespace Daikon\Boot\Middleware\Action;
 
 use Daikon\Boot\Middleware\Action\ActionInterface;
-use Daikon\Boot\Middleware\ActionHandler;
 use Psr\Http\Message\ServerRequestInterface;
 
 abstract class Action implements ActionInterface
@@ -21,12 +20,6 @@ abstract class Action implements ActionInterface
 
     public function handleError(ServerRequestInterface $request): ServerRequestInterface
     {
-        return $request->withAttribute(
-            ActionHandler::ATTR_RESPONDER,
-            [ErrorResponder::class, [
-                ':message' => $request->getAttribute(ActionHandler::ATTR_STATUS_MESSAGE),
-                ':statusCode' => $request->getAttribute(ActionHandler::ATTR_STATUS_CODE)
-            ]]
-        );
+        return $request;
     }
 }

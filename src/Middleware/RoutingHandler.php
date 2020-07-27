@@ -14,7 +14,6 @@ use Aura\Router\Rule\Accepts;
 use Aura\Router\Rule\Allows;
 use Aura\Router\Rule\Host;
 use Aura\Router\Rule\Path;
-use Daikon\Boot\Middleware\Action\ActionInterface;
 use Fig\Http\Message\StatusCodeInterface;
 use Middlewares\Utils\Factory;
 use Psr\Container\ContainerInterface;
@@ -48,8 +47,12 @@ final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
             $request = $request->withAttribute($name, $value);
         }
 
+        $requestHandler = is_string($route->handler)
+            ? $this->container->get($route->handler)
+            : $route->handler;
+
         return $handler->handle(
-            $request->withAttribute(self::ATTR_REQUEST_HANDLER, $this->initializeHandler($route->handler))
+            $request->withAttribute(self::ATTR_REQUEST_HANDLER, $requestHandler)
         );
     }
 
@@ -71,14 +74,5 @@ final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
             default:
                 return Factory::createResponse(self::STATUS_INTERNAL_SERVER_ERROR);
         }
-    }
-
-    /** @param callable|ActionInterface $requestHandler */
-    private function initializeHandler($requestHandler): callable
-    {
-        if (is_string($requestHandler)) {
-            $requestHandler = $this->container->get($requestHandler);
-        }
-        return $requestHandler;
     }
 }

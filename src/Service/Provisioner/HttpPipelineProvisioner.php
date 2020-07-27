@@ -52,21 +52,21 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->alias(AnalyzerInterface::class, Analyzer::class)
             ->delegate(Analyzer::class, function () use ($config): AnalyzerInterface {
                 $corsSettings = (new Settings)
-                ->setServerOrigin(
-                    $config->get('project.cors.scheme'),
-                    $config->get('project.cors.host'),
-                    $config->get('project.cors.port')
-                )->setAllowedOrigins(
-                    $config->get('project.cors.request.allowed_origins', [])
-                )->setAllowedHeaders(
-                    $config->get('project.cors.request.allowed_headers', [])
-                )->setAllowedMethods(
-                    $config->get('project.cors.request.allowed_methods', [])
-                )->setPreFlightCacheMaxAge(
-                    $config->get('project.cors.response.preflight_cache_max_age', 0)
-                )->setExposedHeaders(
-                    $config->get('project.cors.response.exposed_headers', [])
-                )->enableCheckHost();
+                    ->setServerOrigin(
+                        $config->get('project.cors.scheme'),
+                        $config->get('project.cors.host'),
+                        $config->get('project.cors.port')
+                    )->setAllowedOrigins(
+                        $config->get('project.cors.request.allowed_origins', [])
+                    )->setAllowedHeaders(
+                        $config->get('project.cors.request.allowed_headers', [])
+                    )->setAllowedMethods(
+                        $config->get('project.cors.request.allowed_methods', [])
+                    )->setPreFlightCacheMaxAge(
+                        $config->get('project.cors.response.preflight_cache_max_age', 0)
+                    )->setExposedHeaders(
+                        $config->get('project.cors.response.exposed_headers', [])
+                    )->enableCheckHost();
                 if ($config->get('project.cors.request.allowed_credentials') === true) {
                     $corsSettings = $corsSettings->setCredentialsSupported();
                 }

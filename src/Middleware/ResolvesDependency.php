@@ -15,20 +15,18 @@ use Psr\Container\ContainerInterface;
 
 trait ResolvesDependency
 {
-    private ContainerInterface $container;
-
     /** @param mixed $dependency */
-    private function resolve($dependency, string $stereoType): callable
+    private function resolve(ContainerInterface $container, $dependency, string $stereoType): callable
     {
         if (is_string($dependency)) {
             Assertion::classExists($dependency, "Given dependency '$dependency' not found.");
-            $dependency = $this->container->get($dependency);
+            $dependency = $container->get($dependency);
         } elseif (is_array($dependency) && count($dependency) === 2) {
             $fqcn = $dependency[0];
             $params = $dependency[1];
             Assertion::classExists($fqcn, "Given dependency '$fqcn' not found.");
             Assertion::isArray($params, 'Dependency parameters must be an array.');
-            $dependency = $this->container->get(Injector::class)->make($fqcn, $params);
+            $dependency = $container->get(Injector::class)->make($fqcn, $params);
         }
 
         if (is_object($dependency)) {

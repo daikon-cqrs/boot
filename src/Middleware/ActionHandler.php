@@ -26,13 +26,14 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
-    public const ATTR_STATUS_MESSAGE = '_status_message';
     public const ATTR_STATUS_CODE = '_status_code';
     public const ATTR_ERRORS = '_errors';
     public const ATTR_ERROR_SEVERITY = '_error_severity';
     public const ATTR_RESPONDER = '_responder';
     public const ATTR_VALIDATOR = '_validator';
     public const ATTR_PAYLOAD = '_payload';
+
+    private ContainerInterface $container;
 
     private LoggerInterface $logger;
 
@@ -60,9 +61,6 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         if (!empty($request->getAttribute(self::ATTR_ERRORS))) {
             $request = $action->handleError(
                 $request->withAttribute(
-                    self::ATTR_STATUS_MESSAGE,
-                    $request->getAttribute(self::ATTR_STATUS_MESSAGE, 'Unprocessable entity.')
-                )->withAttribute(
                     self::ATTR_STATUS_CODE,
                     $request->getAttribute(self::ATTR_STATUS_CODE, self::STATUS_UNPROCESSABLE_ENTITY)
                 )
@@ -72,21 +70,20 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
                 $request = $action($request);
             } catch (ServiceException $error) {
                 $request = $action->handleError(
-                    $request->withAttribute(self::ATTR_STATUS_MESSAGE, $error->getMessage())
-                    ->withAttribute(self::ATTR_STATUS_CODE, self::STATUS_UNPROCESSABLE_ENTITY)
+                    $request->withAttribute(self::ATTR_STATUS_CODE, self::STATUS_UNPROCESSABLE_ENTITY)
+                        ->withAttribute(self::ATTR_ERRORS, $error)
                 );
             } catch (Exception $error) {
-                $this->logger->error($error->getMessage(), ['exception' => $error]);
-                //@todo increase error verbosity for debug context
-                $request = $action->handleError(
-                    $request->withAttribute(self::ATTR_STATUS_MESSAGE, 'Internal server error.')
-                    ->withAttribute(self::ATTR_STATUS_CODE, self::STATUS_INTERNAL_SERVER_ERROR)
-                );
+                $this->logger->error($error->getMessage() , ['exception' => $error]);
+            } finally {
+                if ($error && !$request->getAttribute(ActionHandler::ATTR_RESPONDER)) {
+                    throw $error;
+                }
             }
         }
 
         if (!$responder = $this->getResponder($request)) {
-            throw new RuntimeException('Unable to determine responder for '.get_class($action));
+            throw new RuntimeException(sprintf("Unable to determine responder for '%s'.", get_class($action)));
         }
 
         return $responder($request);
@@ -95,14 +92,14 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
     private function getValidator(ServerRequestInterface $request): ?callable
     {
         return ($validator = $request->getAttribute(self::ATTR_VALIDATOR))
-            ? $this->resolve($validator, ValidatorInterface::class)
+            ? $this->resolve($this->container, $validator, ValidatorInterface::class)
             : null;
     }
 
     private function getResponder(ServerRequestInterface $request): ?callable
     {
         return ($responder = $request->getAttribute(self::ATTR_RESPONDER))
-            ? $this->resolve($responder, ResponderInterface::class)
+            ? $this->resolve($this->container, $responder, ResponderInterface::class)
             : null;
     }
 }
