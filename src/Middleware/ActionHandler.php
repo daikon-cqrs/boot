@@ -8,10 +8,10 @@
 
 namespace Daikon\Boot\Middleware;
 
-use Daikon\Boot\Exception\ServiceException;
 use Daikon\Boot\Middleware\Action\ActionInterface;
 use Daikon\Boot\Middleware\Action\ResponderInterface;
 use Daikon\Boot\Middleware\Action\ValidatorInterface;
+use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
 use Exception;
 use Fig\Http\Message\StatusCodeInterface;
@@ -68,22 +68,27 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         } else {
             try {
                 $request = $action($request);
-            } catch (ServiceException $error) {
+            } catch (Exception $error) {
+                $this->logger->error($error->getMessage(), ['exception' => $error]);
+                switch (true) {
+                    case $error instanceof AssertionFailedException:
+                        $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
+                        break;
+                    default:
+                        $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
+                }
                 $request = $action->handleError(
-                    $request->withAttribute(self::ATTR_STATUS_CODE, self::STATUS_UNPROCESSABLE_ENTITY)
+                    $request
+                        ->withAttribute(self::ATTR_STATUS_CODE, $statusCode)
                         ->withAttribute(self::ATTR_ERRORS, $error)
                 );
-            } catch (Exception $error) {
-                $this->logger->error($error->getMessage() , ['exception' => $error]);
-            } finally {
-                if ($error && !$request->getAttribute(ActionHandler::ATTR_RESPONDER)) {
-                    throw $error;
-                }
             }
         }
 
         if (!$responder = $this->getResponder($request)) {
-            throw new RuntimeException(sprintf("Unable to determine responder for '%s'.", get_class($action)));
+            throw $error ?? new RuntimeException(
+                sprintf("Unable to determine responder for '%s'.", get_class($action))
+            );
         }
 
         return $responder($request);

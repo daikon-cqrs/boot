@@ -10,10 +10,10 @@ namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
 use Daikon\Config\ConfigProviderInterface;
-use Daikon\Boot\Exception\ConfigException;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Boot\Service\ServiceDefinitionMap;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Interop\RuntimeException;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Channel;
 use Daikon\MessageBus\Channel\ChannelMap;
@@ -42,7 +42,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
         $settings = $serviceDefinition->getSettings();
 
         if (!isset($settings['transports'])) {
-            throw new ConfigException('Message bus transports configuration is required.');
+            throw new RuntimeException('Message bus transports configuration is required.');
         }
 
         $injector
@@ -111,7 +111,7 @@ final class MessageBusProvisioner implements ProvisionerInterface
             $channelName = $subscriptionConfig['channel'];
             $transportName = $subscriptionConfig['transport'];
             if (!$transportMap->has($transportName)) {
-                throw new ConfigException(
+                throw new RuntimeException(
                     sprintf('Message bus transport "%s" has not been configured.', $transportName)
                 );
             }

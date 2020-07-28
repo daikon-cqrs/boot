@@ -9,9 +9,9 @@
 namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
-use Daikon\Boot\Exception\ConfigException;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
+use Daikon\Interop\RuntimeException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
@@ -26,7 +26,7 @@ final class MonologProvisioner implements ProvisionerInterface
         $className = $serviceDefinition->getServiceClass();
         $settings = $serviceDefinition->getSettings();
         if (!isset($settings['location'])) {
-            throw new ConfigException('Please provide a logging service output location.');
+            throw new RuntimeException('Please provide a logging service output location.');
         }
         $settings['level'] = $settings['level'] ?? Logger::INFO;
         $settings['name'] = $settings['name'] ?? 'default-logger';

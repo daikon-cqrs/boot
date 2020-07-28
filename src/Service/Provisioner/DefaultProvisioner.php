@@ -9,9 +9,9 @@
 namespace Daikon\Boot\Service\Provisioner;
 
 use Auryn\Injector;
-use Daikon\Boot\Exception\ConfigException;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
+use Daikon\Interop\RuntimeException;
 
 final class DefaultProvisioner implements ProvisionerInterface
 {
@@ -33,7 +33,7 @@ final class DefaultProvisioner implements ProvisionerInterface
         if (isset($settings['_alias'])) {
             $alias = $settings['_alias'];
             if (!is_string($alias) && !class_exists($alias)) {
-                throw new ConfigException('Alias must be an existing fully qualified class or interface name.');
+                throw new RuntimeException('Alias must be an existing fully qualified class or interface name.');
             }
             $injector->alias($alias, $serviceClass);
         }

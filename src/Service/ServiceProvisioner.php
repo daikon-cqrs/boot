@@ -8,10 +8,10 @@
 
 namespace Daikon\Boot\Service;
 
-use Auryn\ConfigException;
 use Auryn\Injector;
 use Daikon\Boot\Service\Provisioner\ProvisionerInterface;
 use Daikon\Config\ConfigProviderInterface;
+use Daikon\Interop\RuntimeException;
 use Psr\Container\ContainerInterface;
 
 final class ServiceProvisioner implements ServiceProvisionerInterface
@@ -38,7 +38,7 @@ final class ServiceProvisioner implements ServiceProvisionerInterface
             if ($provisioner instanceof ProvisionerInterface) {
                 $provisioner->provision($injector, $configProvider, $serviceDefinition);
             } else {
-                throw new ConfigException(
+                throw new RuntimeException(
                     sprintf('Provisioner %s must implement %s', $provisionerClass, ProvisionerInterface::class)
                 );
             }
