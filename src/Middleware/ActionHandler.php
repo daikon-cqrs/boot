@@ -11,6 +11,7 @@ namespace Daikon\Boot\Middleware;
 use Daikon\Boot\Middleware\Action\ActionInterface;
 use Daikon\Boot\Middleware\Action\ResponderInterface;
 use Daikon\Boot\Middleware\Action\ValidatorInterface;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
 use Exception;
@@ -22,7 +23,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 
-final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
+class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
@@ -33,9 +34,9 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
     public const ATTR_VALIDATOR = '_validator';
     public const ATTR_PAYLOAD = '_payload';
 
-    private ContainerInterface $container;
+    protected ContainerInterface $container;
 
-    private LoggerInterface $logger;
+    protected LoggerInterface $logger;
 
     public function __construct(ContainerInterface $container, LoggerInterface $logger)
     {
@@ -51,38 +52,34 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
             : $handler->handle($request);
     }
 
-    private function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
+    protected function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
     {
-        $request = $action->registerValidator($request);
-        if ($validator = $this->getValidator($request)) {
-            $request = $validator($request);
-        }
+        try {
+            $request = $action->registerValidator($request);
+            if ($validator = $this->getValidator($request)) {
+                $request = $validator($request);
+                Assertion::noContent($request->getAttribute(self::ATTR_ERRORS));
+            }
 
-        if (!empty($request->getAttribute(self::ATTR_ERRORS))) {
+            $request = $action($request);
+        } catch (Exception $error) {
+            switch (true) {
+                case $error instanceof AssertionFailedException:
+                    $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
+                    break;
+                default:
+                    $this->logger->error($error->getMessage(), ['trace' => $error->getTrace()]);
+                    $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
+            }
             $request = $action->handleError(
                 $request->withAttribute(
                     self::ATTR_STATUS_CODE,
-                    $request->getAttribute(self::ATTR_STATUS_CODE, self::STATUS_UNPROCESSABLE_ENTITY)
+                    $request->getAttribute(self::ATTR_STATUS_CODE, $statusCode)
+                )->withAttribute(
+                    self::ATTR_ERRORS,
+                    $request->getAttribute(self::ATTR_ERRORS, $error)
                 )
             );
-        } else {
-            try {
-                $request = $action($request);
-            } catch (Exception $error) {
-                switch (true) {
-                    case $error instanceof AssertionFailedException:
-                        $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
-                        break;
-                    default:
-                        $this->logger->error($error->getMessage(), ['trace' => $error->getTrace()]);
-                        $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
-                }
-                $request = $action->handleError(
-                    $request
-                        ->withAttribute(self::ATTR_STATUS_CODE, $statusCode)
-                        ->withAttribute(self::ATTR_ERRORS, $error)
-                );
-            }
         }
 
         if (!$responder = $this->getResponder($request)) {
@@ -94,17 +91,23 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         return $responder($request);
     }
 
-    private function getValidator(ServerRequestInterface $request): ?callable
+    protected function getValidator(ServerRequestInterface $request): ?ValidatorInterface
     {
-        return ($validator = $request->getAttribute(self::ATTR_VALIDATOR))
-            ? $this->resolve($this->container, $validator, ValidatorInterface::class)
-            : null;
+        $validator = $request->getAttribute(self::ATTR_VALIDATOR);
+        if ($validator) {
+            /** @var ValidatorInterface $validator */
+            $validator = $this->resolve($this->container, $validator, ValidatorInterface::class);
+        }
+        return $validator;
     }
 
-    private function getResponder(ServerRequestInterface $request): ?callable
+    protected function getResponder(ServerRequestInterface $request): ?ResponderInterface
     {
-        return ($responder = $request->getAttribute(self::ATTR_RESPONDER))
-            ? $this->resolve($this->container, $responder, ResponderInterface::class)
-            : null;
+        $responder = $request->getAttribute(self::ATTR_RESPONDER);
+        if ($responder) {
+            /** @var ResponderInterface $responder */
+            $responder = $this->resolve($this->container, $responder, ResponderInterface::class);
+        }
+        return $responder;
     }
 }

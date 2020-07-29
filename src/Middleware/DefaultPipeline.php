@@ -22,7 +22,7 @@ use Relay\Relay;
 
 final class DefaultPipeline implements PipelineBuilderInterface
 {
-    private static array $defaultPipeline = [
+    private const DEFAULT_PIPELINE = [
         ContentType::class,
         ContentLanguage::class,
         ContentEncoding::class,
@@ -58,7 +58,7 @@ final class DefaultPipeline implements PipelineBuilderInterface
 
         $this->add($middlewares, ...array_map(
             [$this->container, 'get'],
-            $this->settings['pipeline'] ?? self::$defaultPipeline
+            $this->settings['pipeline'] ?? self::DEFAULT_PIPELINE
         ));
 
         return new Relay($middlewares);
