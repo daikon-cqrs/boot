@@ -69,12 +69,12 @@ final class ActionHandler implements MiddlewareInterface, StatusCodeInterface
             try {
                 $request = $action($request);
             } catch (Exception $error) {
-                $this->logger->error($error->getMessage(), ['exception' => $error]);
                 switch (true) {
                     case $error instanceof AssertionFailedException:
                         $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
                         break;
                     default:
+                        $this->logger->error($error->getMessage(), ['trace' => $error->getTrace()]);
                         $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
                 }
                 $request = $action->handleError(
