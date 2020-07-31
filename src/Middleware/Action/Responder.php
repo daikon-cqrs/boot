@@ -10,12 +10,13 @@ namespace Daikon\Boot\Middleware\Action;
 
 use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
+use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-abstract class Responder implements ResponderInterface
+abstract class Responder implements ResponderInterface, StatusCodeInterface
 {
-    public function __invoke(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $contentType = $request->getHeaderLine('Accept');
         $parts = explode('/', $contentType, 2);

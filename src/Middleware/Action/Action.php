@@ -9,9 +9,10 @@
 namespace Daikon\Boot\Middleware\Action;
 
 use Daikon\Boot\Middleware\Action\ActionInterface;
+use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-abstract class Action implements ActionInterface
+abstract class Action implements ActionInterface, StatusCodeInterface
 {
     public function registerValidator(ServerRequestInterface $request): ServerRequestInterface
     {

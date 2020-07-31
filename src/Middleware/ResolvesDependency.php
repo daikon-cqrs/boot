@@ -15,8 +15,11 @@ use Psr\Container\ContainerInterface;
 
 trait ResolvesDependency
 {
-    /** @param mixed $dependency */
-    private function resolve(ContainerInterface $container, $dependency, string $stereoType): callable
+    /**
+     * @param mixed $dependency
+     * @return callable|object
+     */
+    private function resolve(ContainerInterface $container, $dependency, string $stereoType)
     {
         if (is_string($dependency)) {
             Assertion::classExists($dependency, "Given dependency '$dependency' not found.");
@@ -35,12 +38,14 @@ trait ResolvesDependency
                 $stereoType,
                 sprintf("Given dependency '%s' is not a '$stereoType'.", get_class($dependency))
             );
+            return $dependency;
         }
 
         if (is_callable($dependency)) {
             return $dependency;
         }
 
+        //@better debug input
         throw new RuntimeException(
             sprintf("Given dependency '%s' is not a '$stereoType'.", gettype($dependency))
         );

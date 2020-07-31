@@ -10,10 +10,10 @@ namespace Daikon\Boot\Middleware;
 
 use Daikon\Boot\Middleware\Action\ActionInterface;
 use Daikon\Boot\Middleware\Action\ResponderInterface;
-use Daikon\Boot\Middleware\Action\ValidatorInterface;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
+use Daikon\Validize\Validator\ValidatorInterface;
 use Exception;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Container\ContainerInterface;
@@ -88,7 +88,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
             );
         }
 
-        return $responder($request);
+        return $responder->handle($request);
     }
 
     protected function getValidator(ServerRequestInterface $request): ?ValidatorInterface

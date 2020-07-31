@@ -8,11 +8,8 @@
 
 namespace Daikon\Boot\Middleware\Action;
 
-use Fig\Http\Message\StatusCodeInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-interface ResponderInterface extends StatusCodeInterface
+interface ResponderInterface extends RequestHandlerInterface
 {
-    public function __invoke(ServerRequestInterface $request): ResponseInterface;
 }
