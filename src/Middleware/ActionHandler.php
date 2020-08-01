@@ -13,7 +13,8 @@ use Daikon\Boot\Middleware\Action\ResponderInterface;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
-use Daikon\Validize\Validator\ValidatorInterface;
+use Daikon\Validize\Validation\ValidatorDefinition;
+use Daikon\Validize\ValueObject\Severity;
 use Exception;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Container\ContainerInterface;
@@ -27,12 +28,10 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
-    public const ATTR_STATUS_CODE = '_status_code';
     public const ATTR_ERRORS = '_errors';
-    public const ATTR_ERROR_SEVERITY = '_error_severity';
-    public const ATTR_RESPONDER = '_responder';
-    public const ATTR_VALIDATOR = '_validator';
     public const ATTR_PAYLOAD = '_payload';
+    public const ATTR_STATUS_CODE = '_status_code';
+    public const ATTR_RESPONDER = '_responder';
 
     protected ContainerInterface $container;
 
@@ -55,12 +54,14 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
     protected function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
     {
         try {
-            $request = $action->registerValidator($request);
-            if ($validator = $this->getValidator($request)) {
-                $request = $validator($request);
+            if ($validator = $action->getValidator($request)) {
+                $validatorDefinition = new ValidatorDefinition(self::ATTR_PAYLOAD, Severity::critical());
+                $request = $request->withAttribute(
+                    self::ATTR_PAYLOAD,
+                    $validator($validatorDefinition->withArgument($request))
+                );
                 Assertion::noContent($request->getAttribute(self::ATTR_ERRORS));
             }
-
             $request = $action($request);
         } catch (Exception $error) {
             switch (true) {
@@ -82,7 +83,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
             );
         }
 
-        if (!$responder = $this->getResponder($request)) {
+        if (!$responder = $this->resolveResponder($request)) {
             throw $error ?? new RuntimeException(
                 sprintf("Unable to determine responder for '%s'.", get_class($action))
             );
@@ -91,17 +92,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         return $responder->handle($request);
     }
 
-    protected function getValidator(ServerRequestInterface $request): ?ValidatorInterface
-    {
-        $validator = $request->getAttribute(self::ATTR_VALIDATOR);
-        if ($validator) {
-            /** @var ValidatorInterface $validator */
-            $validator = $this->resolve($this->container, $validator, ValidatorInterface::class);
-        }
-        return $validator;
-    }
-
-    protected function getResponder(ServerRequestInterface $request): ?ResponderInterface
+    protected function resolveResponder(ServerRequestInterface $request): ?ResponderInterface
     {
         $responder = $request->getAttribute(self::ATTR_RESPONDER);
         if ($responder) {

@@ -18,7 +18,9 @@ use Daikon\Config\ConfigProviderInterface;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
+use Middlewares\JsonPayload;
 use Middlewares\RequestHandler;
+use Middlewares\UrlEncodePayload;
 use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
 use Neomerx\Cors\Strategies\Settings;
@@ -73,6 +75,10 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                 return Analyzer::instance($corsSettings);
             })
             // Request
+            ->share(JsonPayload::class)
+            ->delegate(JsonPayload::class, fn(): JsonPayload => (new JsonPayload)->depth(8)->override(true))
+            ->share(UrlEncodePayload::class)
+            ->delegate(UrlEncodePayload::class, fn(): UrlEncodePayload => (new UrlEncodePayload)->override(true))
             ->share(RequestHandler::class)
             ->delegate(
                 RequestHandler::class,

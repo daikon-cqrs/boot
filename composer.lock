@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28b37d31aff9ea6928619d366826db30",
+    "content-hash": "cd0a3262d655fb597fcd6fdefcfbb04f",
     "packages": [
         {
             "name": "aura/router",
@@ -808,21 +808,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/validize.git",
-                "reference": "5c8f34477bd90502943b3a024c4f4e2f043586ea"
+                "reference": "432941f69ac79f8c8b51f8de2f134d66e2b70a24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/validize/zipball/5c8f34477bd90502943b3a024c4f4e2f043586ea",
-                "reference": "5c8f34477bd90502943b3a024c4f4e2f043586ea",
+                "url": "https://api.github.com/repos/daikon-cqrs/validize/zipball/432941f69ac79f8c8b51f8de2f134d66e2b70a24",
+                "reference": "432941f69ac79f8c8b51f8de2f134d66e2b70a24",
                 "shasum": ""
             },
             "require": {
                 "daikon/data-structure": "master@dev",
+                "daikon/entity": "master@dev",
                 "daikon/interop": "master@dev",
                 "daikon/value-object": "master@dev",
                 "egulias/email-validator": "^2.1",
-                "php": "^7.4",
-                "psr/http-message": "^1.0"
+                "php": "^7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -847,7 +847,7 @@
                 "validation",
                 "value-object"
             ],
-            "time": "2020-07-31T18:49:10+00:00"
+            "time": "2020-08-01T17:12:07+00:00"
         },
         {
             "name": "daikon/value-object",
@@ -1821,6 +1821,59 @@
                 "server"
             ],
             "time": "2020-03-07T11:55:39+00:00"
+        },
+        {
+            "name": "middlewares/payload",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/middlewares/payload.git",
+                "reference": "9a3f312b7989ab9ead69a73c4b3477c2bac8ed21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/middlewares/payload/zipball/9a3f312b7989ab9ead69a73c4b3477c2bac8ed21",
+                "reference": "9a3f312b7989ab9ead69a73c4b3477c2bac8ed21",
+                "shasum": ""
+            },
+            "require": {
+                "middlewares/utils": "^3.0",
+                "php": "^7.2",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.1",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-diactoros": "^2.2"
+            },
+            "suggest": {
+                "middlewares/csv-payload": "Adds support for parsing CSV body of request"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Middlewares\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Middleware to parse the body of the request with support for json, csv and url-encode",
+            "homepage": "https://github.com/middlewares/payload",
+            "keywords": [
+                "http",
+                "json",
+                "middleware",
+                "payload",
+                "psr-15",
+                "psr-7",
+                "server",
+                "url-encode"
+            ],
+            "time": "2019-11-29T17:20:58+00:00"
         },
         {
             "name": "middlewares/request-handler",

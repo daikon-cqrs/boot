@@ -14,7 +14,9 @@ use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
 use Middlewares\Cors;
+use Middlewares\JsonPayload;
 use Middlewares\RequestHandler;
+use Middlewares\UrlEncodePayload;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -27,6 +29,8 @@ final class DefaultPipeline implements PipelineBuilderInterface
         ContentLanguage::class,
         ContentEncoding::class,
         RoutingHandler::class,
+        JsonPayload::class,
+        UrlEncodePayload::class,
         ActionHandler::class,
         RequestHandler::class
     ];

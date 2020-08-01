@@ -77,3 +77,6 @@ daikon:
   http_pipeline:
     class: Daikon\Boot\Middleware\DefaultPipeline
     provisioner: Daikon\Boot\Service\Provisioner\HttpPipelineProvisioner
+
+  request_validator:
+    class: Daikon\Boot\Validator\ServerRequestValidator
