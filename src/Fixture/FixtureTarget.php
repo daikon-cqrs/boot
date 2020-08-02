@@ -35,6 +35,19 @@ final class FixtureTarget implements FixtureTargetInterface
         $this->messageBus = $messageBus;
     }
 
+    public function import(FixtureInterface $fixture): bool
+    {
+        Assertion::true($this->isEnabled(), sprintf("Fixture '%s' is not enabled.", $fixture->getName()));
+
+        $index = $this->getFixtureList()->find($fixture);
+
+        if ($index !== false) {
+            $fixture($this->messageBus);
+        }
+
+        return $index !== false;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -52,18 +65,5 @@ final class FixtureTarget implements FixtureTargetInterface
             $this->fixtureList = $this->fixtureLoader->load();
         }
         return $this->fixtureList;
-    }
-
-    public function import(FixtureInterface $fixture): bool
-    {
-        Assertion::true($this->isEnabled(), sprintf("Fixture '%s' is not enabled.", $fixture->getName()));
-
-        $index = $this->getFixtureList()->find($fixture);
-
-        if ($index !== false) {
-            $fixture->import($this->messageBus);
-        }
-
-        return $index !== false;
     }
 }

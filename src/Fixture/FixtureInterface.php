@@ -13,9 +13,9 @@ use Daikon\MessageBus\MessageBusInterface;
 
 interface FixtureInterface extends ToNativeInterface
 {
+    public function __invoke(MessageBusInterface $messageBus): void;
+
     public function getName(): string;
 
     public function getVersion(): int;
-
-    public function import(MessageBusInterface $messageBus): void;
 }

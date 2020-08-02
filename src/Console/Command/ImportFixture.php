@@ -24,7 +24,6 @@ final class ImportFixture extends Command
     public function __construct(FixtureTargetMap $fixtureTargetMap)
     {
         parent::__construct();
-
         $this->fixtureTargetMap = $fixtureTargetMap;
     }
 

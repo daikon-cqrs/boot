@@ -10,11 +10,11 @@ namespace Daikon\Boot\Fixture;
 
 interface FixtureTargetInterface
 {
+    public function import(FixtureInterface $fixture): bool;
+
     public function getName(): string;
 
     public function isEnabled(): bool;
 
     public function getFixtureList(): FixtureList;
-
-    public function import(FixtureInterface $fixture): bool;
 }
