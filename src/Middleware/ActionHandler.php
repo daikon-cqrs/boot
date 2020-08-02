@@ -9,7 +9,6 @@
 namespace Daikon\Boot\Middleware;
 
 use Daikon\Boot\Middleware\Action\ActionInterface;
-use Daikon\Boot\Middleware\Action\ResponderInterface;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
@@ -55,7 +54,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
     {
         try {
             if ($validator = $action->getValidator($request)) {
-                $validatorDefinition = new ValidatorDefinition(self::ATTR_PAYLOAD, Severity::critical());
+                $validatorDefinition = new ValidatorDefinition('$', Severity::critical());
                 $request = $request->withAttribute(
                     self::ATTR_PAYLOAD,
                     $validator($validatorDefinition->withArgument($request))
@@ -92,12 +91,12 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         return $responder->handle($request);
     }
 
-    protected function resolveResponder(ServerRequestInterface $request): ?ResponderInterface
+    protected function resolveResponder(ServerRequestInterface $request): RequestHandlerInterface
     {
         $responder = $request->getAttribute(self::ATTR_RESPONDER);
-        if ($responder) {
-            /** @var ResponderInterface $responder */
-            $responder = $this->resolve($this->container, $responder, ResponderInterface::class);
+        if (!$responder instanceof RequestHandlerInterface) {
+            /** @var RequestHandlerInterface $responder */
+            $responder = $this->resolve($this->container, $responder, RequestHandlerInterface::class);
         }
         return $responder;
     }

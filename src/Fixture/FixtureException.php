@@ -8,9 +8,8 @@
 
 namespace Daikon\Boot\Fixture;
 
-use Daikon\Interop\DaikonException;
-use Exception;
+use Daikon\Interop\RuntimeException;
 
-class FixtureException extends Exception implements DaikonException
+class FixtureException extends RuntimeException
 {
 }

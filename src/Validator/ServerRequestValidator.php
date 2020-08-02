@@ -36,9 +36,9 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
     }
 
     /** @return array */
-    public function __invoke(ValidatorDefinition $validatorDefinition)
+    public function __invoke(ValidatorDefinition $requestValidatorDefinition)
     {
-        $request = $validatorDefinition->getArgument();
+        $request = $requestValidatorDefinition->getArgument();
         Assertion::isInstanceOf($request, ServerRequestInterface::class);
         if (!empty($payload = $request->getAttribute(ActionHandler::ATTR_PAYLOAD, []))) {
             throw new RuntimeException('Action payload already exists.');
@@ -53,7 +53,7 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
          * @var ValidatorDefinition $validatorDefinition
          */
         foreach ($this->validatorDefinitions as list($implementor, $validatorDefinition)) {
-            $name = $validatorDefinition->getName();
+            $path = $validatorDefinition->getPath();
             $severity = $validatorDefinition->getSeverity();
             $settings = $validatorDefinition->getSettings();
             try {
@@ -73,50 +73,65 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
                     }
                 }
                 // Check argument set
-                if (!array_key_exists($name, $source)) {
+                if (!array_key_exists($path, $source)) {
                     if ($settings['required'] ?? true) {
                         throw new InvalidArgumentException('Missing required input.');
                     } else {
                         $result = $settings['default'] ?? null; // Default value infers success
-                        $incident = new ValidationIncident($validatorDefinition, Severity::success());
                     }
                 } else {
                     // Run validation
                     $validator = $this->resolveValidator($this->container, $implementor, $validatorDefinition);
-                    $result = $validator($validatorDefinition->withArgument($source[$name]));
-                    $incident = new ValidationIncident($validatorDefinition, Severity::success());
+                    $result = $validator($validatorDefinition->withArgument($source[$path]));
                 }
+                // Export result
                 if ($settings['export'] ?? true) {
-                    $payload = array_merge_recursive($payload, [($settings['export'] ?? $name) => $result]);
+                    $payload = array_merge_recursive($payload, [($settings['export'] ?? $path) => $result]);
                 }
+
+                $incident = new ValidationIncident($validatorDefinition, Severity::success());
                 $this->validationReport = $this->validationReport->push($incident);
             } catch (DomainException $error) {
                 $incident = new ValidationIncident($validatorDefinition, Severity::unprocessed());
                 $this->validationReport = $this->validationReport->push($incident->addMessage($error->getMessage()));
             } catch (AssertionFailedException $error) {
-                if ($severity->isGreaterThanOrEqual(Severity::notice())) {
-                    $incident = new ValidationIncident($validatorDefinition, $severity);
-                    switch (true) {
-                        case $error instanceof LazyAssertionException:
-                            /** @var LazyAssertionException $error */
-                            foreach ($error->getErrorExceptions() as $exception) {
-                                $incident = $incident->addMessage($exception->getMessage());
-                            }
-                            break;
-                        default:
-                            $incident = $incident->addMessage($error->getMessage());
-                            break;
-                    }
-                    $this->validationReport = $this->validationReport->push($incident);
+                if ($severity->isLessThanOrEqual(Severity::silent())) {
+                    continue;
                 }
-                if ($severity->equals(Severity::critical())) {
+                $incident = new ValidationIncident($validatorDefinition, $severity);
+                switch (true) {
+                    case $error instanceof LazyAssertionException:
+                        /** @var LazyAssertionException $error */
+                        foreach ($error->getErrorExceptions() as $exception) {
+                            $incident = $incident->addMessage($exception->getMessage());
+                        }
+                        break;
+                    default:
+                        $incident = $incident->addMessage($error->getMessage());
+                }
+                $this->validationReport = $this->validationReport->push($incident);
+                if ($severity->isCritical()) {
                     break;
                 }
             }
         }
 
+        // Handle request validator reporting
         if (!$this->validationReport->getErrors()->isEmpty()) {
-            throw new InvalidArgumentException('Validation service reports errors.');
+            $severity = $requestValidatorDefinition->getSeverity();
+            if ($severity->isGreaterThanOrEqual(Severity::notice())) {
+                $incident = new ValidationIncident($requestValidatorDefinition, $severity);
+                $this->validationReport = $this->validationReport->unshift(
+                    $incident->addMessage('Request validator reports errors.')
+                );
+                if ($severity->isCritical()) {
+                    throw new InvalidArgumentException;
+                }
+            }
+        } else {
+            $this->validationReport = $this->validationReport->unshift(
+                new ValidationIncident($requestValidatorDefinition, Severity::success())
+            );
         }
 
         return $payload;
@@ -127,29 +142,29 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
         return $this->validationReport;
     }
 
-    public function critical(string $name, string $validator, array $settings = []): self
+    public function critical(string $path, string $validator, array $settings = []): self
     {
-        return $this->register(Severity::critical(), $name, $validator, $settings);
+        return $this->register(Severity::critical(), $path, $validator, $settings);
     }
 
-    public function error(string $name, string $validator, array $settings = []): self
+    public function error(string $path, string $validator, array $settings = []): self
     {
-        return $this->register(Severity::error(), $name, $validator, $settings);
+        return $this->register(Severity::error(), $path, $validator, $settings);
     }
 
-    public function notice(string $name, string $validator, array $settings = []): self
+    public function notice(string $path, string $validator, array $settings = []): self
     {
-        return $this->register(Severity::notice(), $name, $validator, $settings);
+        return $this->register(Severity::notice(), $path, $validator, $settings);
     }
 
-    public function silent(string $name, string $validator, array $settings = []): self
+    public function silent(string $path, string $validator, array $settings = []): self
     {
-        return $this->register(Severity::silent(), $name, $validator, $settings);
+        return $this->register(Severity::silent(), $path, $validator, $settings);
     }
 
-    private function register(Severity $severity, string $name, string $implementor, array $settings): self
+    private function register(Severity $severity, string $path, string $implementor, array $settings): self
     {
-        $validatorDefinition = new ValidatorDefinition($name, $severity, $settings);
+        $validatorDefinition = new ValidatorDefinition($path, $severity, $settings);
         $this->validatorDefinitions[] = [$implementor, $validatorDefinition];
         return $this;
     }

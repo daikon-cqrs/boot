@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd0a3262d655fb597fcd6fdefcfbb04f",
+    "content-hash": "931f86aaeb18deb34baa935b5c5e543c",
     "packages": [
         {
             "name": "aura/router",
@@ -808,12 +808,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/validize.git",
-                "reference": "432941f69ac79f8c8b51f8de2f134d66e2b70a24"
+                "reference": "fed4d8bc6778e3985be75b04400afdf2e7b7aa82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/validize/zipball/432941f69ac79f8c8b51f8de2f134d66e2b70a24",
-                "reference": "432941f69ac79f8c8b51f8de2f134d66e2b70a24",
+                "url": "https://api.github.com/repos/daikon-cqrs/validize/zipball/fed4d8bc6778e3985be75b04400afdf2e7b7aa82",
+                "reference": "fed4d8bc6778e3985be75b04400afdf2e7b7aa82",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "validation",
                 "value-object"
             ],
-            "time": "2020-08-01T17:12:07+00:00"
+            "time": "2020-08-01T20:56:53+00:00"
         },
         {
             "name": "daikon/value-object",

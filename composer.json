@@ -32,14 +32,14 @@
         "franzl/whoops-middleware": "master@dev",
         "middlewares/cors": "^v2.0",
         "middlewares/negotiation": "^v2.0",
+        "middlewares/payload": "^3.0",
         "middlewares/request-handler": "^v2.0",
         "monolog/monolog": "^2.0",
         "psr/container": "^1.0",
         "psr/log": "^1.0",
         "rdlowrey/auryn": "^v1.4",
         "relay/relay": "^v2.0",
-        "symfony/console": "^5.0",
-        "middlewares/payload": "^3.0"
+        "symfony/console": "^5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
