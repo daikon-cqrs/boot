@@ -267,12 +267,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/couchdb-adapter.git",
-                "reference": "037c19641de5f7edf4ec1f74729dae48be0191c6"
+                "reference": "09b2b10a90e50304bd19a8414529724bd5ecbcd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/037c19641de5f7edf4ec1f74729dae48be0191c6",
-                "reference": "037c19641de5f7edf4ec1f74729dae48be0191c6",
+                "url": "https://api.github.com/repos/daikon-cqrs/couchdb-adapter/zipball/09b2b10a90e50304bd19a8414529724bd5ecbcd5",
+                "reference": "09b2b10a90e50304bd19a8414529724bd5ecbcd5",
                 "shasum": ""
             },
             "require": {
@@ -303,7 +303,7 @@
                 "adapter",
                 "couchdb"
             ],
-            "time": "2020-07-14T22:26:48+00:00"
+            "time": "2020-08-02T01:20:33+00:00"
         },
         {
             "name": "daikon/data-structure",
@@ -360,12 +360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/dbal.git",
-                "reference": "43d44e06bb0c77f03c173e5b2644ded37f5735b1"
+                "reference": "77a103f6896cfb11f6f9942f0cf4b6118ba419c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/43d44e06bb0c77f03c173e5b2644ded37f5735b1",
-                "reference": "43d44e06bb0c77f03c173e5b2644ded37f5735b1",
+                "url": "https://api.github.com/repos/daikon-cqrs/dbal/zipball/77a103f6896cfb11f6f9942f0cf4b6118ba419c3",
+                "reference": "77a103f6896cfb11f6f9942f0cf4b6118ba419c3",
                 "shasum": ""
             },
             "require": {
@@ -398,7 +398,7 @@
                 "dbal",
                 "immutable"
             ],
-            "time": "2020-07-24T20:34:29+00:00"
+            "time": "2020-08-02T01:11:13+00:00"
         },
         {
             "name": "daikon/elasticsearch7-adapter",
@@ -406,12 +406,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch7-adapter.git",
-                "reference": "2bdf010741f92a91aaa31dfdbd0cdd66b4590814"
+                "reference": "3bb585aa84179d7f3d594052c1807f2186438b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/2bdf010741f92a91aaa31dfdbd0cdd66b4590814",
-                "reference": "2bdf010741f92a91aaa31dfdbd0cdd66b4590814",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/3bb585aa84179d7f3d594052c1807f2186438b17",
+                "reference": "3bb585aa84179d7f3d594052c1807f2186438b17",
                 "shasum": ""
             },
             "require": {
@@ -445,7 +445,7 @@
                 "elasticsearch",
                 "projection"
             ],
-            "time": "2020-07-14T22:27:21+00:00"
+            "time": "2020-08-02T01:22:28+00:00"
         },
         {
             "name": "daikon/entity",
@@ -544,12 +544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/flysystem-adapter.git",
-                "reference": "cf05c97cea31b5b988b0211d785387286963e756"
+                "reference": "97a4efc8dfce38cedd43ad623c4606d6d633aeed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/cf05c97cea31b5b988b0211d785387286963e756",
-                "reference": "cf05c97cea31b5b988b0211d785387286963e756",
+                "url": "https://api.github.com/repos/daikon-cqrs/flysystem-adapter/zipball/97a4efc8dfce38cedd43ad623c4606d6d633aeed",
+                "reference": "97a4efc8dfce38cedd43ad623c4606d6d633aeed",
                 "shasum": ""
             },
             "require": {
@@ -579,7 +579,7 @@
                 "Flysystem",
                 "adapter"
             ],
-            "time": "2020-07-14T22:31:35+00:00"
+            "time": "2020-08-02T01:23:30+00:00"
         },
         {
             "name": "daikon/interop",
@@ -713,12 +713,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/rabbitmq3-adapter.git",
-                "reference": "40871abc376088640df4e78eccdeccbe80c5fd94"
+                "reference": "dd5f4c3877a2d5564a6762d7dd6468e8f990f721"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/40871abc376088640df4e78eccdeccbe80c5fd94",
-                "reference": "40871abc376088640df4e78eccdeccbe80c5fd94",
+                "url": "https://api.github.com/repos/daikon-cqrs/rabbitmq3-adapter/zipball/dd5f4c3877a2d5564a6762d7dd6468e8f990f721",
+                "reference": "dd5f4c3877a2d5564a6762d7dd6468e8f990f721",
                 "shasum": ""
             },
             "require": {
@@ -752,7 +752,7 @@
                 "adapter",
                 "rabbitmq3"
             ],
-            "time": "2020-07-14T22:40:55+00:00"
+            "time": "2020-08-02T01:25:00+00:00"
         },
         {
             "name": "daikon/read-model",
