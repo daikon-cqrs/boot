@@ -40,7 +40,7 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
     {
         $request = $requestValidatorDefinition->getArgument();
         Assertion::isInstanceOf($request, ServerRequestInterface::class);
-        if (!empty($payload = $request->getAttribute(ActionHandler::ATTR_PAYLOAD, []))) {
+        if (!empty($payload = $request->getAttribute(ActionHandler::PAYLOAD, []))) {
             throw new RuntimeException('Action payload already exists.');
         }
 

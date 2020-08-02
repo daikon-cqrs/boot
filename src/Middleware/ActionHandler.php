@@ -27,10 +27,10 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
-    public const ATTR_ERRORS = '_errors';
-    public const ATTR_PAYLOAD = '_payload';
-    public const ATTR_STATUS_CODE = '_status_code';
-    public const ATTR_RESPONDER = '_responder';
+    public const ERRORS = '_errors';
+    public const PAYLOAD = '_payload';
+    public const STATUS_CODE = '_status_code';
+    public const RESPONDER = '_responder';
 
     protected ContainerInterface $container;
 
@@ -44,22 +44,19 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $requestHandler = $request->getAttribute(RoutingHandler::ATTR_REQUEST_HANDLER);
+        $requestHandler = $request->getAttribute(RoutingHandler::REQUEST_HANDLER);
         return $requestHandler instanceof ActionInterface
-            ? $this->executeAction($requestHandler, $request)
+            ? $this->execute($requestHandler, $request)
             : $handler->handle($request);
     }
 
-    protected function executeAction(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
+    protected function execute(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
     {
         try {
             if ($validator = $action->getValidator($request)) {
-                $validatorDefinition = new ValidatorDefinition('$', Severity::critical());
-                $request = $request->withAttribute(
-                    self::ATTR_PAYLOAD,
-                    $validator($validatorDefinition->withArgument($request))
-                );
-                Assertion::noContent($request->getAttribute(self::ATTR_ERRORS));
+                $validatorDefinition = (new ValidatorDefinition('$', Severity::critical()))->withArgument($request);
+                $request = $request->withAttribute(self::PAYLOAD, $validator($validatorDefinition));
+                Assertion::noContent($request->getAttribute(self::ERRORS));
             }
             $request = $action($request);
         } catch (Exception $error) {
@@ -72,13 +69,9 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
                     $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
             }
             $request = $action->handleError(
-                $request->withAttribute(
-                    self::ATTR_STATUS_CODE,
-                    $request->getAttribute(self::ATTR_STATUS_CODE, $statusCode)
-                )->withAttribute(
-                    self::ATTR_ERRORS,
-                    $request->getAttribute(self::ATTR_ERRORS, $error)
-                )
+                $request
+                    ->withAttribute(self::STATUS_CODE, $request->getAttribute(self::STATUS_CODE, $statusCode))
+                    ->withAttribute(self::ERRORS, $request->getAttribute(self::ERRORS, $error))
             );
         }
 
@@ -93,7 +86,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 
     protected function resolveResponder(ServerRequestInterface $request): RequestHandlerInterface
     {
-        $responder = $request->getAttribute(self::ATTR_RESPONDER);
+        $responder = $request->getAttribute(self::RESPONDER);
         if (!$responder instanceof RequestHandlerInterface) {
             /** @var RequestHandlerInterface $responder */
             $responder = $this->resolve($this->container, $responder, RequestHandlerInterface::class);

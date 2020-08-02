@@ -24,7 +24,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
 {
-    public const ATTR_REQUEST_HANDLER = '_request_handler';
+    public const REQUEST_HANDLER = '_request_handler';
 
     private RouterContainer $router;
 
@@ -52,7 +52,7 @@ final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
             : $route->handler;
 
         return $handler->handle(
-            $request->withAttribute(self::ATTR_REQUEST_HANDLER, $requestHandler)
+            $request->withAttribute(self::REQUEST_HANDLER, $requestHandler)
         );
     }
 

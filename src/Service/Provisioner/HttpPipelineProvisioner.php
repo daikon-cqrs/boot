@@ -74,24 +74,23 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                 }
                 return Analyzer::instance($corsSettings);
             })
-            // Request
+            // Routing and request
             ->share(JsonPayload::class)
             ->delegate(JsonPayload::class, fn(): JsonPayload => (new JsonPayload)->depth(8)->override(true))
             ->share(UrlEncodePayload::class)
             ->delegate(UrlEncodePayload::class, fn(): UrlEncodePayload => (new UrlEncodePayload)->override(true))
-            ->share(RequestHandler::class)
-            ->delegate(
-                RequestHandler::class,
-                function (ContainerInterface $container): RequestHandler {
-                    return (new RequestHandler($container))->handlerAttribute(RoutingHandler::ATTR_REQUEST_HANDLER);
-                }
-            )
-            // Routing
             ->share(RoutingHandler::class)
             ->delegate(
                 RoutingHandler::class,
                 function (ContainerInterface $container) use ($config): RoutingHandler {
                     return new RoutingHandler($this->routerFactory($config), $container);
+                }
+            )
+            ->share(RequestHandler::class)
+            ->delegate(
+                RequestHandler::class,
+                function (ContainerInterface $container): RequestHandler {
+                    return (new RequestHandler($container))->handlerAttribute(RoutingHandler::REQUEST_HANDLER);
                 }
             );
     }
