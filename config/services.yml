@@ -79,4 +79,4 @@ daikon:
     provisioner: Daikon\Boot\Service\Provisioner\HttpPipelineProvisioner
 
   request_validator:
-    class: Daikon\Boot\Validator\ServerRequestValidator
+    class: Daikon\Boot\Validator\DaikonRequestValidator

@@ -2,7 +2,7 @@
 
 namespace Daikon\Boot\Validator;
 
-use Daikon\Boot\Middleware\ActionHandler;
+use Daikon\Boot\Middleware\Action\DaikonRequest;
 use Daikon\Boot\Middleware\ResolvesDependency;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
@@ -17,9 +17,8 @@ use Daikon\Validize\ValueObject\Severity;
 use DomainException;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
-final class ServerRequestValidator implements ValidatorInterface, StatusCodeInterface
+final class DaikonRequestValidator implements ValidatorInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
@@ -39,8 +38,8 @@ final class ServerRequestValidator implements ValidatorInterface, StatusCodeInte
     public function __invoke(ValidatorDefinition $requestValidatorDefinition)
     {
         $request = $requestValidatorDefinition->getArgument();
-        Assertion::isInstanceOf($request, ServerRequestInterface::class);
-        if (!empty($payload = $request->getAttribute(ActionHandler::PAYLOAD, []))) {
+        Assertion::isInstanceOf($request, DaikonRequest::class);
+        if (!empty($payload = $request->getPayload([]))) {
             throw new RuntimeException('Action payload already exists.');
         }
 

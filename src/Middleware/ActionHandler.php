@@ -9,6 +9,7 @@
 namespace Daikon\Boot\Middleware;
 
 use Daikon\Boot\Middleware\Action\ActionInterface;
+use Daikon\Boot\Middleware\Action\DaikonRequest;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
 use Daikon\Interop\RuntimeException;
@@ -27,11 +28,6 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
 {
     use ResolvesDependency;
 
-    public const ERRORS = '_errors';
-    public const PAYLOAD = '_payload';
-    public const STATUS_CODE = '_status_code';
-    public const RESPONDER = '_responder';
-
     protected ContainerInterface $container;
 
     protected LoggerInterface $logger;
@@ -46,17 +42,17 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
     {
         $requestHandler = $request->getAttribute(RoutingHandler::REQUEST_HANDLER);
         return $requestHandler instanceof ActionInterface
-            ? $this->execute($requestHandler, $request)
+            ? $this->execute($requestHandler, DaikonRequest::wrap($request))
             : $handler->handle($request);
     }
 
-    protected function execute(ActionInterface $action, ServerRequestInterface $request): ResponseInterface
+    protected function execute(ActionInterface $action, DaikonRequest $request): ResponseInterface
     {
         try {
             if ($validator = $action->getValidator($request)) {
                 $validatorDefinition = (new ValidatorDefinition('$', Severity::critical()))->withArgument($request);
-                $request = $request->withAttribute(self::PAYLOAD, $validator($validatorDefinition));
-                Assertion::noContent($request->getAttribute(self::ERRORS));
+                $request = $request->withPayload($validator($validatorDefinition));
+                Assertion::noContent($request->getErrors());
             }
             $request = $action($request);
         } catch (Exception $error) {
@@ -70,8 +66,8 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
             }
             $request = $action->handleError(
                 $request
-                    ->withAttribute(self::STATUS_CODE, $request->getAttribute(self::STATUS_CODE, $statusCode))
-                    ->withAttribute(self::ERRORS, $request->getAttribute(self::ERRORS, $error))
+                    ->withStatusCode($request->getStatusCode($statusCode))
+                    ->withErrors($request->getErrors($error))
             );
         }
 
@@ -84,9 +80,9 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
         return $responder->handle($request);
     }
 
-    protected function resolveResponder(ServerRequestInterface $request): RequestHandlerInterface
+    protected function resolveResponder(DaikonRequest $request): RequestHandlerInterface
     {
-        $responder = $request->getAttribute(self::RESPONDER);
+        $responder = $request->getResponder();
         if (!$responder instanceof RequestHandlerInterface) {
             /** @var RequestHandlerInterface $responder */
             $responder = $this->resolve($this->container, $responder, RequestHandlerInterface::class);

@@ -9,13 +9,12 @@
 namespace Daikon\Boot\Middleware\Action;
 
 use Daikon\Validize\Validator\ValidatorInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 interface ActionInterface
 {
-    public function __invoke(ServerRequestInterface $request): ServerRequestInterface;
+    public function __invoke(DaikonRequest $request): DaikonRequest;
 
-    public function getValidator(ServerRequestInterface $request): ?ValidatorInterface;
+    public function getValidator(DaikonRequest $request): ?ValidatorInterface;
 
-    public function handleError(ServerRequestInterface $request): ServerRequestInterface;
+    public function handleError(DaikonRequest $request): DaikonRequest;
 }

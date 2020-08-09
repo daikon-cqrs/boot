@@ -11,16 +11,15 @@ namespace Daikon\Boot\Middleware\Action;
 use Daikon\Boot\Middleware\Action\ActionInterface;
 use Daikon\Validize\Validator\ValidatorInterface;
 use Fig\Http\Message\StatusCodeInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 abstract class Action implements ActionInterface, StatusCodeInterface
 {
-    public function getValidator(ServerRequestInterface $request): ?ValidatorInterface
+    public function getValidator(DaikonRequest $request): ?ValidatorInterface
     {
         return null;
     }
 
-    public function handleError(ServerRequestInterface $request): ServerRequestInterface
+    public function handleError(DaikonRequest $request): DaikonRequest
     {
         return $request;
     }

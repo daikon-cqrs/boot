@@ -18,6 +18,7 @@ abstract class Responder implements ResponderInterface, StatusCodeInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        Assertion::isInstanceOf($request, DaikonRequest::class);
         $contentType = $request->getHeaderLine('Accept');
         $parts = explode('/', $contentType, 2);
         Assertion::count($parts, 2, "Invalid content type '$contentType'.");
