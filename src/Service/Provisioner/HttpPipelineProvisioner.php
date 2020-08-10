@@ -54,6 +54,9 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->alias(AnalyzerInterface::class, Analyzer::class)
             ->delegate(Analyzer::class, function () use ($config): AnalyzerInterface {
                 $corsSettings = (new Settings)
+                    ->disableAddAllowedMethodsToPreFlightResponse()
+                    ->disableAddAllowedHeadersToPreFlightResponse()
+                    ->enableCheckHost()
                     ->setServerOrigin(
                         $config->get('project.cors.scheme'),
                         $config->get('project.cors.host'),
@@ -68,7 +71,10 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                         $config->get('project.cors.response.preflight_cache_max_age', 0)
                     )->setExposedHeaders(
                         $config->get('project.cors.response.exposed_headers', [])
-                    )->enableCheckHost();
+                    );
+                if ($config->get('project.cors.request.allowed_all_origins') === true) {
+                    $corsSettings = $corsSettings->enableAllOriginsAllowed();
+                }
                 if ($config->get('project.cors.request.allowed_credentials') === true) {
                     $corsSettings = $corsSettings->setCredentialsSupported();
                 }
