@@ -30,7 +30,7 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
 {
     public function provision(
         Injector $injector,
-        ConfigProviderInterface $config,
+        ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
         $serviceClass = $serviceDefinition->getServiceClass();
@@ -41,41 +41,43 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->share($serviceClass)
             ->alias(PipelineBuilderInterface::class, $serviceClass)
             // Content Negotiation
-            ->define(ContentLanguage::class, [':languages' => $config->get('project.negotiation.languages', ['en'])])
+            ->define(ContentLanguage::class, [
+                ':languages' => $configProvider->get('project.negotiation.languages', ['en'])
+            ])
             ->define(ContentEncoding::class, [':encodings' => ['gzip', 'deflate']])
-            ->delegate(ContentType::class, function () use ($config): ContentType {
-                return (new ContentType($config->get('project.negotiation.content_types')))
-                    ->charsets($config->get('project.negotiation.charsets', ['UTF-8']))
-                    ->nosniff($config->get('project.negotiation.nosniff', true))
+            ->delegate(ContentType::class, function () use ($configProvider): ContentType {
+                return (new ContentType($configProvider->get('project.negotiation.content_types')))
+                    ->charsets($configProvider->get('project.negotiation.charsets', ['UTF-8']))
+                    ->nosniff($configProvider->get('project.negotiation.nosniff', true))
                     ->errorResponse();
             })
             // Cors
             ->share(AnalyzerInterface::class)
             ->alias(AnalyzerInterface::class, Analyzer::class)
-            ->delegate(Analyzer::class, function () use ($config): AnalyzerInterface {
+            ->delegate(Analyzer::class, function () use ($configProvider): AnalyzerInterface {
                 $corsSettings = (new Settings)
                     ->disableAddAllowedMethodsToPreFlightResponse()
                     ->disableAddAllowedHeadersToPreFlightResponse()
                     ->enableCheckHost()
                     ->setServerOrigin(
-                        $config->get('project.cors.scheme'),
-                        $config->get('project.cors.host'),
-                        $config->get('project.cors.port')
+                        $configProvider->get('project.cors.scheme'),
+                        $configProvider->get('project.cors.host'),
+                        $configProvider->get('project.cors.port')
                     )->setAllowedOrigins(
-                        $config->get('project.cors.request.allowed_origins', [])
+                        $configProvider->get('project.cors.request.allowed_origins', [])
                     )->setAllowedHeaders(
-                        $config->get('project.cors.request.allowed_headers', [])
+                        $configProvider->get('project.cors.request.allowed_headers', [])
                     )->setAllowedMethods(
-                        $config->get('project.cors.request.allowed_methods', [])
+                        $configProvider->get('project.cors.request.allowed_methods', [])
                     )->setPreFlightCacheMaxAge(
-                        $config->get('project.cors.response.preflight_cache_max_age', 0)
+                        $configProvider->get('project.cors.response.preflight_cache_max_age', 0)
                     )->setExposedHeaders(
-                        $config->get('project.cors.response.exposed_headers', [])
+                        $configProvider->get('project.cors.response.exposed_headers', [])
                     );
-                if ($config->get('project.cors.request.allowed_all_origins') === true) {
+                if ($configProvider->get('project.cors.request.allowed_all_origins') === true) {
                     $corsSettings = $corsSettings->enableAllOriginsAllowed();
                 }
-                if ($config->get('project.cors.request.allowed_credentials') === true) {
+                if ($configProvider->get('project.cors.request.allowed_credentials') === true) {
                     $corsSettings = $corsSettings->setCredentialsSupported();
                 }
                 return Analyzer::instance($corsSettings);
@@ -88,8 +90,8 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             ->share(RoutingHandler::class)
             ->delegate(
                 RoutingHandler::class,
-                function (ContainerInterface $container) use ($config): RoutingHandler {
-                    return new RoutingHandler($this->routerFactory($config), $container);
+                function (ContainerInterface $container) use ($configProvider): RoutingHandler {
+                    return new RoutingHandler($this->routerFactory($configProvider), $container);
                 }
             )
             ->share(RequestHandler::class)
@@ -101,14 +103,14 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             );
     }
 
-    private function routerFactory(ConfigProviderInterface $config): RouterContainer
+    private function routerFactory(ConfigProviderInterface $configProvider): RouterContainer
     {
-        $appContext = $config->get('app.context');
-        $appEnv = $config->get('app.env');
-        $appConfigDir = $config->get('app.config_dir');
+        $appContext = $configProvider->get('app.context');
+        $appEnv = $configProvider->get('app.env');
+        $appConfigDir = $configProvider->get('app.config_dir');
         $router = new RouterContainer;
-        (new RoutingConfigLoader($router, $config))->load(
-            array_merge([$appConfigDir], (array)$config->get('crates.*.config_dir', [])),
+        (new RoutingConfigLoader($router, $configProvider))->load(
+            array_merge([$appConfigDir], (array)$configProvider->get('crates.*.config_dir', [])),
             [
                 'routing.php',
                 "routing.$appContext.php",
