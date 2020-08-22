@@ -33,8 +33,8 @@ final class ListCrates extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach ($this->crateMap as $name => $crate) {
-            $output->writeln(sprintf('Summary for crate <options=bold>%s</>', $name));
+        foreach ($this->crateMap as $crateKey => $crate) {
+            $output->writeln(sprintf('Summary for crate <options=bold>%s</>', $crateKey));
             $output->writeln('  Location: '.$crate->getLocation());
         }
 

@@ -12,6 +12,7 @@ use Auryn\Injector;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Storage\StorageAdapterMap;
+use Daikon\Interop\Assertion;
 
 final class RepositoryMapProvisioner implements ProvisionerInterface
 {
@@ -29,13 +30,17 @@ final class RepositoryMapProvisioner implements ProvisionerInterface
             $serviceClass
         ): object {
             $repositories = [];
-            foreach ($repositoryConfigs as $repositoryName => $repositoryConfig) {
-                $repositoryClass = $repositoryConfig['class'];
+            foreach ($repositoryConfigs as $repositoryKey => $repositoryConfig) {
+                Assertion::keyNotExists(
+                    $repositories,
+                    $repositoryKey,
+                    "Repository '$repositoryKey' is already defined."
+                );
                 $dependencies = [':storageAdapter' => $storageAdapterMap->get($repositoryConfig['storage_adapter'])];
                 if (isset($repositoryConfig['search_adapter'])) {
                     $dependencies[':searchAdapter'] = $storageAdapterMap->get($repositoryConfig['search_adapter']);
                 }
-                $repositories[$repositoryName] = $injector->make($repositoryClass, $dependencies);
+                $repositories[$repositoryKey] = $injector->make($repositoryConfig['class'], $dependencies);
             }
             return new $serviceClass($repositories);
         };

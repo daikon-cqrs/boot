@@ -41,14 +41,14 @@ final class ListTargets extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $target = $input->getOption('target');
-        foreach ($this->migrationTargetMap as $targetName => $migrationTarget) {
-            if ($target && $target !== $targetName) {
+        foreach ($this->migrationTargetMap as $targetKey => $migrationTarget) {
+            if ($target && $target !== $targetKey) {
                 continue;
             }
             $migrationList = $migrationTarget->getMigrationList();
             $executedMigrations = $migrationList->getExecutedMigrations();
             $pendingMigrations = $migrationList->getPendingMigrations();
-            $output->writeln('Summary for migration target <options=bold>'.$targetName.'</>');
+            $output->writeln('Summary for migration target <options=bold>'.$targetKey.'</>');
             $output->writeln('  Enabled: '.($migrationTarget->isEnabled() ? 'true' : 'false'));
             $output->writeln('  Executed Migrations: '.count($executedMigrations));
             $output->writeln('  Pending Migrations: '.count($pendingMigrations));

@@ -14,6 +14,7 @@ use Daikon\Config\ConfigProviderInterface;
 use Daikon\EventSourcing\EventStore\Storage\StreamStorageInterface;
 use Daikon\EventSourcing\EventStore\Storage\StreamStorageMap;
 use Daikon\EventSourcing\EventStore\UnitOfWork;
+use Daikon\Interop\Assertion;
 
 final class UnitOfWorkMapProvisioner implements ProvisionerInterface
 {
@@ -22,20 +23,21 @@ final class UnitOfWorkMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $mapClass = $serviceDefinition->getServiceClass();
+        $serviceClass = $serviceDefinition->getServiceClass();
         $uowConfigs = (array)$configProvider->get('databases.units_of_work', []);
-        $factory = function (StreamStorageMap $streamStorageMap) use ($uowConfigs, $mapClass): object {
+        $factory = function (StreamStorageMap $streamStorageMap) use ($uowConfigs, $serviceClass): object {
             $unitsOfWork = [];
-            foreach ($uowConfigs as $uowName => $uowConfig) {
+            foreach ($uowConfigs as $uowKey => $uowConfig) {
+                Assertion::keyNotExists($unitsOfWork, $uowKey, "Unit of work '$uowKey' is already defined.");
                 /** @var StreamStorageInterface $streamStorage */
                 $streamStorage = $streamStorageMap->get((string)$uowConfig['stream_store']);
-                $unitsOfWork[$uowName] = new UnitOfWork($uowConfig['aggregate_root'], $streamStorage);
+                $unitsOfWork[$uowKey] = new UnitOfWork($uowConfig['aggregate_root'], $streamStorage);
             }
-            return new $mapClass($unitsOfWork);
+            return new $serviceClass($unitsOfWork);
         };
 
         $injector
-            ->share($mapClass)
-            ->delegate($mapClass, $factory);
+            ->share($serviceClass)
+            ->delegate($serviceClass, $factory);
     }
 }

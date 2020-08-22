@@ -13,6 +13,7 @@ use Daikon\Config\ConfigProviderInterface;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Boot\Service\ServiceDefinitionMap;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Interop\Assertion;
 use Daikon\Interop\RuntimeException;
 use Daikon\MessageBus\EnvelopeInterface;
 use Daikon\MessageBus\Channel\Channel;
@@ -63,8 +64,9 @@ final class MessageBusProvisioner implements ProvisionerInterface
             $transportMap = $this->buildTransportMap($injector, $serviceDefinition, $connectorMap);
             $channelSubs = $this->collectChannelSubscriptions($injector, $serviceDefinitionMap, $transportMap);
             $channels = [];
-            foreach ($channelSubs as $channelName => $subscriptions) {
-                $channels[$channelName] = new Channel($channelName, new SubscriptionMap($subscriptions));
+            foreach ($channelSubs as $channelKey => $subscriptions) {
+                Assertion::keyNotExists($channels, $channelKey, "Channel '$channelKey' is already defined.");
+                $channels[$channelKey] = new Channel($channelKey, new SubscriptionMap($subscriptions));
             }
             $serviceClass = $serviceDefinition->getServiceClass();
             return new $serviceClass(new ChannelMap($channels));
@@ -78,13 +80,13 @@ final class MessageBusProvisioner implements ProvisionerInterface
     ): TransportMap {
         $transports = [];
         $settings = $serviceDefinition->getSettings();
-        foreach ($settings['transports'] as $transportName => $transportConfig) {
-            $transportClass = $transportConfig['class'];
-            $arguments = [':key' => $transportName];
+        foreach ($settings['transports'] as $transportKey => $transportConfig) {
+            Assertion::keyNotExists($transports, $transportKey, "Transport '$transportKey' is already defined.");
+            $arguments = [':key' => $transportKey];
             if (isset($transportConfig['dependencies']['connector'])) {
                 $arguments[':connector'] = $connectorMap->get($transportConfig['dependencies']['connector']);
             }
-            $transports[$transportName] = $injector->make($transportClass, $arguments);
+            $transports[$transportKey] = $injector->make($transportConfig['class'], $arguments);
         }
         return new TransportMap($transports);
     }
@@ -107,18 +109,21 @@ final class MessageBusProvisioner implements ProvisionerInterface
         TransportMap $transportMap,
         array &$channelSubs
     ): void {
-        foreach ($serviceDefinition->getSubscriptions() as $subscriptionName => $subscriptionConfig) {
-            $channelName = $subscriptionConfig['channel'];
-            $transportName = $subscriptionConfig['transport'];
-            if (!$transportMap->has($transportName)) {
-                throw new RuntimeException(
-                    sprintf('Message bus transport "%s" has not been configured.', $transportName)
-                );
+        foreach ($serviceDefinition->getSubscriptions() as $subscriptionKey => $subscriptionConfig) {
+            $channelKey = $subscriptionConfig['channel'];
+            Assertion::keyNotExists(
+                $channelSubs[$channelKey],
+                $subscriptionKey,
+                "Subscription '$subscriptionKey' is already defined on channel '$channelKey'."
+            );
+            $transportKey = $subscriptionConfig['transport'];
+            if (!$transportMap->has($transportKey)) {
+                throw new RuntimeException("Message bus transport '$transportKey' has not been configured.");
             }
-            $channelSubs[$channelName][] = $this->buildLazySubscription(
+            $channelSubs[$channelKey][$subscriptionKey] = $this->buildLazySubscription(
                 $injector,
                 $serviceDefinition->getServiceClass(),
-                $subscriptionName,
+                $subscriptionKey,
                 $subscriptionConfig,
                 $transportMap
             );
@@ -128,19 +133,19 @@ final class MessageBusProvisioner implements ProvisionerInterface
     private function buildLazySubscription(
         Injector $injector,
         string $serviceFqcn,
-        string $subscriptionName,
+        string $subscriptionKey,
         array $subscriptionConfig,
         TransportMap $transportMap
     ): LazySubscription {
-        $transportName = $subscriptionConfig['transport'];
+        $transportKey = $subscriptionConfig['transport'];
         $guards = (array)($subscriptionConfig['guards'] ?? []);
         return new LazySubscription(
-            $subscriptionName,
+            $subscriptionKey,
             /**
              * @psalm-suppress InvalidNullableReturnType
              * @psalm-suppress NullableReturnStatement
              */
-            fn(): TransportInterface => $transportMap->get($transportName),
+            fn(): TransportInterface => $transportMap->get($transportKey),
             fn(): MessageHandlerList => new MessageHandlerList([$injector->make($serviceFqcn)]),
             function (EnvelopeInterface $envelope) use ($guards): bool {
                 $message = $envelope->getMessage();
@@ -155,9 +160,8 @@ final class MessageBusProvisioner implements ProvisionerInterface
             function () use ($injector, $subscriptionConfig): MetadataEnricherList {
                 $enrichers = [];
                 foreach ($subscriptionConfig['enrichers'] ?? [] as $enricherConfig) {
-                    $enricherClass = $enricherConfig['class'];
                     $enrichers[] = $injector->make(
-                        $enricherClass,
+                        $enricherConfig['class'],
                         [':settings' => $enricherConfig['settings'] ?? []]
                     );
                 }

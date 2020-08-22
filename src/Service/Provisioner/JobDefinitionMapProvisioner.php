@@ -15,6 +15,7 @@ use Daikon\AsyncJob\Worker\WorkerMap;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Interop\Assertion;
 
 final class JobDefinitionMapProvisioner implements ProvisionerInterface
 {
@@ -36,8 +37,9 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
     {
         $factory = function (JobStrategyMap $strategyMap) use ($injector, $jobConfigs): JobDefinitionMap {
             $jobs = [];
-            foreach ($jobConfigs as $jobName => $jobConfig) {
-                $jobs[$jobName] = $injector->make(
+            foreach ($jobConfigs as $jobKey => $jobConfig) {
+                Assertion::keyNotExists($jobs, $jobKey, "Job definition '$jobKey' is already defined.");
+                $jobs[$jobKey] = $injector->make(
                     $jobConfig['class'],
                     [
                         ':jobStrategy' => $strategyMap->get($jobConfig['job_strategy']),
@@ -55,19 +57,11 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
     {
         $factory = function () use ($injector, $strategyConfigs): JobStrategyMap {
             $strategies = [];
-            foreach ($strategyConfigs as $strategyName => $strategyConfig) {
-                $strategies[$strategyName] = $injector->make(
+            foreach ($strategyConfigs as $strategyKey => $strategyConfig) {
+                Assertion::keyNotExists($strategies, $strategyKey, "Job strategy '$strategyKey' is already defined.");
+                $strategies[$strategyKey] = $injector->make(
                     $strategyConfig['class'],
-                    [
-                        ':retryStrategy' => $injector->make(
-                            $strategyConfig['retry']['class'],
-                            [':settings' => $strategyConfig['retry']['settings'] ?? []]
-                        ),
-                        ':failureStrategy' => $injector->make(
-                            $strategyConfig['failure']['class'],
-                            [':settings' => $strategyConfig['failure']['settings'] ?? []]
-                        )
-                    ]
+                    [':settings' => $strategyConfig['settings'] ?? []]
                 );
             }
             return new JobStrategyMap($strategies);
@@ -86,8 +80,9 @@ final class JobDefinitionMapProvisioner implements ProvisionerInterface
             $workerConfigs
         ): WorkerMap {
             $workers = [];
-            foreach ($workerConfigs as $workerName => $workerConfig) {
-                $workers[$workerName] = $injector->make(
+            foreach ($workerConfigs as $workerKey => $workerConfig) {
+                Assertion::keyNotExists($workers, $workerKey, "Worker '$workerKey' is already defined.");
+                $workers[$workerKey] = $injector->make(
                     $workerConfig['class'],
                     [
                         ':connector' => $connectorMap->get($workerConfig['dependencies']['connector']),

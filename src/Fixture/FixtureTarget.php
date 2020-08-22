@@ -13,7 +13,7 @@ use Daikon\MessageBus\MessageBusInterface;
 
 final class FixtureTarget implements FixtureTargetInterface
 {
-    private string $name;
+    private string $key;
 
     private bool $enabled;
 
@@ -24,12 +24,12 @@ final class FixtureTarget implements FixtureTargetInterface
     private ?FixtureList $fixtureList;
 
     public function __construct(
-        string $name,
+        string $key,
         bool $enabled,
         FixtureLoaderInterface $fixtureLoader,
         MessageBusInterface $messageBus
     ) {
-        $this->name = $name;
+        $this->key = $key;
         $this->enabled = $enabled;
         $this->fixtureLoader = $fixtureLoader;
         $this->messageBus = $messageBus;
@@ -48,9 +48,9 @@ final class FixtureTarget implements FixtureTargetInterface
         return $index !== false;
     }
 
-    public function getName(): string
+    public function getKey(): string
     {
-        return $this->name;
+        return $this->key;
     }
 
     public function isEnabled(): bool

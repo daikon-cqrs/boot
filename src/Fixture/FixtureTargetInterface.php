@@ -12,7 +12,7 @@ interface FixtureTargetInterface
 {
     public function import(FixtureInterface $fixture): bool;
 
-    public function getName(): string;
+    public function getKey(): string;
 
     public function isEnabled(): bool;
 

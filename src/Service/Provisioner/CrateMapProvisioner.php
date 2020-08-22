@@ -24,8 +24,8 @@ final class CrateMapProvisioner implements ProvisionerInterface
         $crateConfigs = (array)$configProvider->get('crates', []);
         $factory = function () use ($crateConfigs): CrateMap {
             $crates = [];
-            foreach ($crateConfigs as $crateName => $crateConfig) {
-                $crates[$crateName] = new Crate($crateConfig);
+            foreach ($crateConfigs as $crateKey => $crateConfig) {
+                $crates[$crateKey] = new Crate($crateConfig);
             }
             return new CrateMap($crates);
         };

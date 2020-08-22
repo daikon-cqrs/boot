@@ -50,11 +50,11 @@ final class MigrateUp extends Command
         $target = $input->getOption('target');
         $version = intval($input->getOption('to'));
 
-        foreach ($this->migrationTargetMap->getEnabledTargets() as $targetName => $migrationTarget) {
-            if ($target && $target !== $targetName) {
+        foreach ($this->migrationTargetMap->getEnabledTargets() as $targetKey => $migrationTarget) {
+            if ($target && $target !== $targetKey) {
                 continue;
             }
-            $output->writeln(sprintf('Executing migrations for target <options=bold>%s</>', $targetName));
+            $output->writeln(sprintf('Executing migrations for target <options=bold>%s</>', $targetKey));
             $executedMigrations = $migrationTarget->migrate(MigrationInterface::MIGRATE_UP, $version);
             if ($executedMigrations->count() > 0) {
                 foreach ($executedMigrations as $migration) {

@@ -12,6 +12,7 @@ use Auryn\Injector;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Interop\Assertion;
 
 final class ConnectorMapProvisioner implements ProvisionerInterface
 {
@@ -33,18 +34,18 @@ final class ConnectorMapProvisioner implements ProvisionerInterface
     {
         return function () use ($injector, $connectorConfigs): ConnectorMap {
             $connectors = [];
-            foreach ($connectorConfigs as $connectorName => $connectorConfig) {
+            foreach ($connectorConfigs as $connectorKey => $connectorConfig) {
                 if (isset($connectorConfig['connector'])) {
                     $connectorConfig = array_replace_recursive(
                         $connectorConfigs[$connectorConfig['connector']],
                         $connectorConfig
                     );
                 }
-                $connectorClass = $connectorConfig['class'];
-                $connectors[$connectorName] = $injector->define(
-                    $connectorClass,
+                Assertion::keyNotExists($connectors, $connectorKey, "Connector '$connectorKey' is already defined.");
+                $connectors[$connectorKey] = $injector->make(
+                    $connectorConfig['class'],
                     [':settings' => $connectorConfig['settings'] ?? []]
-                )->make($connectorClass);
+                );
             }
             return new ConnectorMap($connectors);
         };

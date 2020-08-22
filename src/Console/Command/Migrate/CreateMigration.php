@@ -60,18 +60,18 @@ final class CreateMigration extends Command
             exit;
         }
 
-        if (!is_string($crateName = $input->getArgument('crate'))) {
-            $crateName = $this->promptCrate($input, $output);
+        if (!is_string($crateKey = $input->getArgument('crate'))) {
+            $crateKey = $this->promptCrate($input, $output);
         }
 
-        if (!$this->crateMap->has($crateName)) {
-            $output->writeln("<error>Crate '$crateName' does not exist.</error>");
+        if (!$this->crateMap->has($crateKey)) {
+            $output->writeln("<error>Crate '$crateKey' does not exist.</error>");
             $output->writeln('');
             exit;
         }
 
         /** @var CrateInterface $crate */
-        $crate = $this->crateMap->get($crateName);
+        $crate = $this->crateMap->get($crateKey);
         $crateSettings = $crate->getSettings();
         $targetDir = $this->promptDir($crateSettings['migration_dir'], $input, $output);
 
@@ -82,7 +82,7 @@ final class CreateMigration extends Command
         $migration = str_replace("[CLASSNAME]", $className, $migrationTpl);
         $migrationDir = implode('', [
             $crateSettings['migration_dir'],
-            "/$targetDir/$timestamp-$name",
+            "/$targetDir/$timestamp"."_$name",
         ]);
 
         if (!is_dir($migrationDir)) {
@@ -108,7 +108,7 @@ final class CreateMigration extends Command
     {
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
-            'Please select a migration-target dir: ',
+            'Please select a migration target dir: ',
             array_map(function (SplFileInfo $fileInfo): string {
                 return $fileInfo->getBasename();
             }, array_values(iterator_to_array(
@@ -129,15 +129,29 @@ final class CreateMigration extends Command
     private function migrationTemplate(): string
     {
         return <<<MIGRATION
-<?php
+<?php declare(strict_types=1);
 
 namespace Change\Me\Migration\MyTarget;
 
-use Daikon\Dbal\Migration\MigrationInterface;
+use Daikon\Dbal\Migration\Migration;
 
-final class [CLASSNAME] implements MigrationInterface
+final class [CLASSNAME] extends Migration
 {
+    public function getDescription(string \$direction = self::MIGRATE_UP): string
+    {
+    }
 
+    public function isReversible(): bool
+    {
+    }
+
+    protected function up(): void
+    {
+    }
+
+    protected function down(): void
+    {
+    }
 }
 
 MIGRATION;

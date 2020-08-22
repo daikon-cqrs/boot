@@ -16,6 +16,7 @@ use Daikon\Dbal\Migration\MigrationAdapterMap;
 use Daikon\Dbal\Migration\MigrationLoaderMap;
 use Daikon\Dbal\Migration\MigrationTarget;
 use Daikon\Dbal\Migration\MigrationTargetMap;
+use Daikon\Interop\Assertion;
 
 final class MigrationTargetMapProvisioner implements ProvisionerInterface
 {
@@ -39,18 +40,18 @@ final class MigrationTargetMapProvisioner implements ProvisionerInterface
             $injector,
             $loaderConfigs
         ): MigrationLoaderMap {
-            $migrationLoaders = [];
-            foreach ($loaderConfigs as $loaderName => $loaderConfig) {
-                $migrationLoader = $injector->make(
+            $loaders = [];
+            foreach ($loaderConfigs as $loaderKey => $loaderConfig) {
+                Assertion::keyNotExists($loaders, $loaderKey, "Migration loader '$loaderKey' is already defined.");
+                $loaders[$loaderKey] = $injector->make(
                     $loaderConfig['class'],
                     [
                         ':connector' => $connectorMap->get($loaderConfig['connector']),
                         ':settings' => $loaderConfig['settings'] ?? []
                     ]
                 );
-                $migrationLoaders[$loaderName] = $migrationLoader;
             }
-            return new MigrationLoaderMap($migrationLoaders);
+            return new MigrationLoaderMap($loaders);
         };
 
         $injector->delegate(MigrationLoaderMap::class, $factory)->share(MigrationLoaderMap::class);
@@ -59,18 +60,18 @@ final class MigrationTargetMapProvisioner implements ProvisionerInterface
     private function delegateAdapterMap(Injector $injector, array $adapterConfigs): void
     {
         $factory = function (ConnectorMap $connectorMap) use ($injector, $adapterConfigs): MigrationAdapterMap {
-            $migrationAdapters = [];
-            foreach ($adapterConfigs as $adapterName => $adapterConfig) {
-                $migrationAdapter = $injector->make(
+            $adapters = [];
+            foreach ($adapterConfigs as $adapterKey => $adapterConfig) {
+                Assertion::keyNotExists($adapters, $adapterKey, "Migration adapter '$adapterKey' is already defined.");
+                $adapters[$adapterKey] = $injector->make(
                     $adapterConfig['class'],
                     [
                         ':connector' => $connectorMap->get($adapterConfig['connector']),
                         ':settings' => $adapterConfig['settings'] ?? []
                     ]
                 );
-                $migrationAdapters[$adapterName] = $migrationAdapter;
             }
-            return new MigrationAdapterMap($migrationAdapters);
+            return new MigrationAdapterMap($adapters);
         };
 
         $injector->delegate(MigrationAdapterMap::class, $factory)->share(MigrationAdapterMap::class);
@@ -85,20 +86,20 @@ final class MigrationTargetMapProvisioner implements ProvisionerInterface
             $injector,
             $targetConfigs
         ): MigrationTargetMap {
-            $migrationTargets = [];
-            foreach ($targetConfigs as $targetName => $targetConfig) {
-                $migrationTarget = $injector->make(
+            $targets = [];
+            foreach ($targetConfigs as $targetKey => $targetConfig) {
+                Assertion::keyNotExists($targets, $targetKey, "Migration target '$targetKey' is already defined.");
+                $targets[$targetKey] = $injector->make(
                     MigrationTarget::class,
                     [
-                        ':name' => $targetName,
+                        ':key' => $targetKey,
                         ':enabled' => $targetConfig['enabled'],
                         ':migrationAdapter' => $adapterMap->get($targetConfig['migration_adapter']),
                         ':migrationLoader' => $loaderMap->get($targetConfig['migration_loader'])
                     ]
                 );
-                $migrationTargets[$targetName] = $migrationTarget;
             }
-            return new MigrationTargetMap($migrationTargets);
+            return new MigrationTargetMap($targets);
         };
 
         $injector->delegate(MigrationTargetMap::class, $factory)->share(MigrationTargetMap::class);

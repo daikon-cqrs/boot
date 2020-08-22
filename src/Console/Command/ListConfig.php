@@ -44,15 +44,15 @@ final class ListConfig extends Command
             //@todo improve root scope config listing
             $scopes = [
                 'app',
-                'crates',
-                'services',
                 'connectors',
-                'secrets',
-                'project',
+                'crates',
                 'databases',
-                'migrations',
                 'fixtures',
-                'jobs'
+                'jobs',
+                'migrations',
+                'project',
+                'secrets',
+                'services',
             ];
             $path = $this->getHelper('question')->ask(
                 $input,

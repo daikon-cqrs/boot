@@ -13,6 +13,7 @@ use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
 use Daikon\Dbal\Storage\StorageAdapterMap;
+use Daikon\Interop\Assertion;
 
 final class StorageAdapterMapProvisioner implements ProvisionerInterface
 {
@@ -24,10 +25,10 @@ final class StorageAdapterMapProvisioner implements ProvisionerInterface
         $adapterConfigs = (array)$configProvider->get('databases.storage_adapters', []);
         $factory = function (ConnectorMap $connectorMap) use ($injector, $adapterConfigs): StorageAdapterMap {
             $adapters = [];
-            foreach ($adapterConfigs as $adapterName => $adapterConfigs) {
-                $adapterClass = $adapterConfigs['class'];
-                $adapters[$adapterName] = $injector->make(
-                    $adapterClass,
+            foreach ($adapterConfigs as $adapterKey => $adapterConfigs) {
+                Assertion::keyNotExists($adapters, $adapterKey, "Storage adapter '$adapterKey' is already defined.");
+                $adapters[$adapterKey] = $injector->make(
+                    $adapterConfigs['class'],
                     [
                         ':connector' => $connectorMap->get($adapterConfigs['connector']),
                         ':settings' => $adapterConfigs['settings'] ?? []

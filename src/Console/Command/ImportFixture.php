@@ -54,17 +54,17 @@ final class ImportFixture extends Command
         $loadedTargets = new FixtureTargetMap;
         $enabledTargets = $this->fixtureTargetMap->getEnabledTargets();
         /** @var FixtureTargetInterface $fixtureTarget */
-        foreach ($enabledTargets as $targetName => $fixtureTarget) {
-            if ($target && $target !== $targetName) {
+        foreach ($enabledTargets as $targetKey => $fixtureTarget) {
+            if ($target && $target !== $targetKey) {
                 continue;
             }
             $fixtureList = $fixtureTarget->getFixtureList();
             $output->writeln(sprintf(
                 'Found <options=bold>%d</> fixtures for target <options=bold>%s</>',
                 $fixtureList->count(),
-                $targetName
+                $targetKey
             ));
-            $loadedTargets = $loadedTargets->with($targetName, $fixtureTarget);
+            $loadedTargets = $loadedTargets->with($targetKey, $fixtureTarget);
             $availableFixtures = $availableFixtures->append($fixtureList);
         }
 

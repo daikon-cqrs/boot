@@ -44,11 +44,11 @@ final class EventProjectorMapProvisioner implements ProvisionerInterface
             $settings = $serviceDefinition->getSettings();
             $defaultMatcher = $settings['matcher'] ?? EventProjector::class;
             $eventMatchers = [];
-            foreach ($projectorConfigs as $projectorName => $projectorConfig) {
+            foreach ($projectorConfigs as $projectorKey => $projectorConfig) {
                 $projectorClass = $projectorConfig['class'];
                 $projectorEvents = $projectorConfig['events'];
                 $eventMatcher = $projectorConfig['matcher'] ?? $defaultMatcher;
-                $eventMatchers[$projectorName] = $injector->make($eventMatcher, [
+                $eventMatchers[$projectorKey] = $injector->make($eventMatcher, [
                     ':eventExpressions' => $projectorEvents,
                     ':projector' => $injector->make(
                         $projectorClass,

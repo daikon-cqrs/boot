@@ -15,6 +15,7 @@ use Daikon\Boot\Fixture\FixtureTargetMap;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Connector\ConnectorMap;
+use Daikon\Interop\Assertion;
 
 final class FixtureTargetMapProvisioner implements ProvisionerInterface
 {
@@ -36,18 +37,18 @@ final class FixtureTargetMapProvisioner implements ProvisionerInterface
             $injector,
             $loaderConfigs
         ): FixtureLoaderMap {
-            $fixtureLoaders = [];
-            foreach ($loaderConfigs as $loaderName => $loaderConfig) {
-                $fixtureLoader = $injector->make(
+            $loaders = [];
+            foreach ($loaderConfigs as $loaderKey => $loaderConfig) {
+                Assertion::keyNotExists($loaders, $loaderKey, "Fixture loader '$loaderKey' is already defined.");
+                $loaders[$loaderKey] = $injector->make(
                     $loaderConfig['class'],
                     [
                         ':connector' => $connectorMap->get($loaderConfig['connector']),
                         ':settings' => $loaderConfig['settings'] ?? []
                     ]
                 );
-                $fixtureLoaders[$loaderName] = $fixtureLoader;
             }
-            return new FixtureLoaderMap($fixtureLoaders);
+            return new FixtureLoaderMap($loaders);
         };
 
         $injector
@@ -61,19 +62,19 @@ final class FixtureTargetMapProvisioner implements ProvisionerInterface
             $injector,
             $targetConfigs
         ): FixtureTargetMap {
-            $fixtureTargets = [];
-            foreach ($targetConfigs as $targetName => $targetConfig) {
-                $fixtureTarget = $injector->make(
+            $targets = [];
+            foreach ($targetConfigs as $targetKey => $targetConfig) {
+                Assertion::keyNotExists($targets, $targetKey, "Fixture target '$targetKey' is already defined.");
+                $targets[$targetKey] = $injector->make(
                     FixtureTarget::class,
                     [
-                        ':name' => $targetName,
+                        ':key' => $targetKey,
                         ':enabled' => $targetConfig['enabled'],
                         ':fixtureLoader' => $loaderMap->get($targetConfig['fixture_loader'])
                     ]
                 );
-                $fixtureTargets[$targetName] = $fixtureTarget;
             }
-            return new FixtureTargetMap($fixtureTargets);
+            return new FixtureTargetMap($targets);
         };
 
         $injector

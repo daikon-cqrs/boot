@@ -12,6 +12,7 @@ use Auryn\Injector;
 use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Dbal\Storage\StorageAdapterMap;
+use Daikon\Interop\Assertion;
 
 final class StreamStorageMapProvisioner implements ProvisionerInterface
 {
@@ -20,28 +21,28 @@ final class StreamStorageMapProvisioner implements ProvisionerInterface
         ConfigProviderInterface $configProvider,
         ServiceDefinitionInterface $serviceDefinition
     ): void {
-        $mapClass = $serviceDefinition->getServiceClass();
+        $serviceClass = $serviceDefinition->getServiceClass();
         $adapterConfigs = (array)$configProvider->get('databases.stream_stores', []);
         $factory = function (
             StorageAdapterMap $storageAdapterMap
         ) use (
             $injector,
-            $mapClass,
+            $serviceClass,
             $adapterConfigs
         ): object {
             $adapters = [];
-            foreach ($adapterConfigs as $adapterName => $adapterConfigs) {
-                $adapterClass = $adapterConfigs['class'];
-                $adapters[$adapterName] = $injector->make(
-                    $adapterClass,
+            foreach ($adapterConfigs as $adapterKey => $adapterConfigs) {
+                Assertion::keyNotExists($adapters, $adapterKey, "Stream adapter '$adapterKey' is already defined.");
+                $adapters[$adapterKey] = $injector->make(
+                    $adapterConfigs['class'],
                     [':storageAdapter' => $storageAdapterMap->get($adapterConfigs['storage_adapter'])]
                 );
             }
-            return new $mapClass($adapters);
+            return new $serviceClass($adapters);
         };
 
         $injector
-            ->share($mapClass)
-            ->delegate($mapClass, $factory);
+            ->share($serviceClass)
+            ->delegate($serviceClass, $factory);
     }
 }

@@ -1,10 +1,6 @@
 job_strategies:
   daikon.no_retry:
-    class: Daikon\AsyncJob\Strategy\JobStrategy
-    retry:
-      class: Daikon\AsyncJob\Strategy\Retry\NoRetry
-    failure:
-      class: Daikon\AsyncJob\Strategy\Retry\NoRetry
+    class: Daikon\AsyncJob\Strategy\NoRetry
 
 job_workers:
   daikon.message_queue:

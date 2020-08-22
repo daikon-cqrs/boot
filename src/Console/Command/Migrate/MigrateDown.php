@@ -51,11 +51,11 @@ final class MigrateDown extends Command
         $target = $input->getOption('target');
         $version = intval($input->getOption('to'));
 
-        foreach ($this->migrationTargetMap->getEnabledTargets() as $targetName => $migrationTarget) {
-            if ($target && $target !== $targetName) {
+        foreach ($this->migrationTargetMap->getEnabledTargets() as $targetKey => $migrationTarget) {
+            if ($target && $target !== $targetKey) {
                 continue;
             }
-            $output->writeln(sprintf('Reversing migrations for target <options=bold>%s</>', $targetName));
+            $output->writeln(sprintf('Reversing migrations for target <options=bold>%s</>', $targetKey));
             try {
                 $reversedMigrations = $migrationTarget->migrate(MigrationInterface::MIGRATE_DOWN, $version);
                 if ($reversedMigrations->count() > 0) {
