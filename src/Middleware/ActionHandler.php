@@ -61,7 +61,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
                     $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
                     break;
                 default:
-                    $this->logger->error($error->getMessage(), ['trace' => $error->getTrace()]);
+                    $this->logger->error($error->getMessage(), ['exception' => $error->getTrace()]);
                     $statusCode = self::STATUS_INTERNAL_SERVER_ERROR;
             }
             $request = $action->handleError(
