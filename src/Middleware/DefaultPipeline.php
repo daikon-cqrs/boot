@@ -9,7 +9,6 @@
 namespace Daikon\Boot\Middleware;
 
 use Daikon\Config\ConfigProviderInterface;
-use Franzl\Middleware\Whoops\WhoopsMiddleware;
 use Middlewares\ContentEncoding;
 use Middlewares\ContentLanguage;
 use Middlewares\ContentType;
@@ -17,6 +16,7 @@ use Middlewares\Cors;
 use Middlewares\JsonPayload;
 use Middlewares\RequestHandler;
 use Middlewares\UrlEncodePayload;
+use Middlewares\Whoops;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -54,7 +54,7 @@ final class DefaultPipeline implements PipelineBuilderInterface
     public function __invoke(): RequestHandlerInterface
     {
         $middlewares = [];
-        $this->addDebug($middlewares, $this->container->get(WhoopsMiddleware::class));
+        $this->addDebug($middlewares, $this->container->get(Whoops::class));
 
         if ($this->configProvider->get('project.cors.enabled', false)) {
             $this->add($middlewares, $this->container->get(Cors::class));

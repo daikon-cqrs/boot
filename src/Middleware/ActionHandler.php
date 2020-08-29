@@ -12,10 +12,10 @@ use Daikon\Boot\Middleware\Action\ActionInterface;
 use Daikon\Boot\Middleware\Action\DaikonRequest;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\AssertionFailedException;
+use Daikon\Interop\DaikonException;
 use Daikon\Interop\RuntimeException;
 use Daikon\Validize\Validation\ValidatorDefinition;
 use Daikon\Validize\ValueObject\Severity;
-use Exception;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -55,7 +55,7 @@ class ActionHandler implements MiddlewareInterface, StatusCodeInterface
                 Assertion::noContent($request->getErrors());
             }
             $request = $action($request);
-        } catch (Exception $error) {
+        } catch (DaikonException $error) {
             switch (true) {
                 case $error instanceof AssertionFailedException:
                     $statusCode = self::STATUS_UNPROCESSABLE_ENTITY;
