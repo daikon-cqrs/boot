@@ -23,6 +23,7 @@
         "daikon/value-object": "master@dev",
         "danielstjules/stringy": "^3.1",
         "fig/http-message-util": "^1.1",
+        "jms/serializer": "^3.0",
         "middlewares/cors": "^2.0",
         "middlewares/negotiation": "^2.0",
         "middlewares/payload": "^3.0",
@@ -55,8 +56,7 @@
     },
     "suggest": {
         "daikon/security-interop": "Authentication and access control components for Daikon projects",
-        "doctrine/cache": "Supports caching for JMS serializer",
-        "jms/serializer": "Supports JMS de/serialization"
+        "doctrine/cache": "Supports caching for JMS serializer"
     },
     "scripts": {
         "build": [ "@sniff", "@tests" ],
