@@ -406,12 +406,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/elasticsearch7-adapter.git",
-                "reference": "2e84244740e6e6a5a191309007c1c63fa508f830"
+                "reference": "1e99721ba7df413b7888bd0b30010d7270fe0305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/2e84244740e6e6a5a191309007c1c63fa508f830",
-                "reference": "2e84244740e6e6a5a191309007c1c63fa508f830",
+                "url": "https://api.github.com/repos/daikon-cqrs/elasticsearch7-adapter/zipball/1e99721ba7df413b7888bd0b30010d7270fe0305",
+                "reference": "1e99721ba7df413b7888bd0b30010d7270fe0305",
                 "shasum": ""
             },
             "require": {
@@ -445,7 +445,7 @@
                 "elasticsearch",
                 "projection"
             ],
-            "time": "2020-08-29T19:53:58+00:00"
+            "time": "2020-09-02T17:55:02+00:00"
         },
         {
             "name": "daikon/entity",
@@ -498,12 +498,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/event-sourcing.git",
-                "reference": "c77955f3c353d2b459a58bc84a58891f90ebbe34"
+                "reference": "78b9d103d6e55b2ff9ea2117e623c1db6b4adc46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/c77955f3c353d2b459a58bc84a58891f90ebbe34",
-                "reference": "c77955f3c353d2b459a58bc84a58891f90ebbe34",
+                "url": "https://api.github.com/repos/daikon-cqrs/event-sourcing/zipball/78b9d103d6e55b2ff9ea2117e623c1db6b4adc46",
+                "reference": "78b9d103d6e55b2ff9ea2117e623c1db6b4adc46",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +536,7 @@
                 "event-sourcing",
                 "immutable"
             ],
-            "time": "2020-08-29T19:00:08+00:00"
+            "time": "2020-09-02T17:46:30+00:00"
         },
         {
             "name": "daikon/flysystem-adapter",
@@ -760,12 +760,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/read-model.git",
-                "reference": "07d639cb9e966ce84a28a59222f6435ddb58b221"
+                "reference": "9792fbae02492b2f7b61f208e204628f1a333920"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/07d639cb9e966ce84a28a59222f6435ddb58b221",
-                "reference": "07d639cb9e966ce84a28a59222f6435ddb58b221",
+                "url": "https://api.github.com/repos/daikon-cqrs/read-model/zipball/9792fbae02492b2f7b61f208e204628f1a333920",
+                "reference": "9792fbae02492b2f7b61f208e204628f1a333920",
                 "shasum": ""
             },
             "require": {
@@ -800,7 +800,7 @@
                 "read-model",
                 "repository"
             ],
-            "time": "2020-08-29T19:10:57+00:00"
+            "time": "2020-09-02T17:30:50+00:00"
         },
         {
             "name": "daikon/validize",
@@ -3546,16 +3546,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "51ff337ce194bdc3d8db12b20ce8cd54ac9f71e9"
+                "reference": "186f395b256065ba9b890c0a4e48a91d598fa2cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/51ff337ce194bdc3d8db12b20ce8cd54ac9f71e9",
-                "reference": "51ff337ce194bdc3d8db12b20ce8cd54ac9f71e9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/186f395b256065ba9b890c0a4e48a91d598fa2cf",
+                "reference": "186f395b256065ba9b890c0a4e48a91d598fa2cf",
                 "shasum": ""
             },
             "require": {
@@ -3635,7 +3635,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-17T13:51:41+00:00"
+            "time": "2020-09-02T07:07:40+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3703,7 +3703,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -4545,7 +4545,7 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
@@ -4630,7 +4630,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",

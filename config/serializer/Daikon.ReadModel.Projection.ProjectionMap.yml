@@ -1,0 +1,5 @@
+Daikon\ReadModel\Projection\ProjectionMap:
+  exclusion_policy: ALL
+  virtual_properties:
+    toNative:
+      inline: true
