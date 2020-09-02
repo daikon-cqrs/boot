@@ -53,6 +53,11 @@
             "/vendor"
         ]
     },
+    "suggest": {
+        "daikon/security-interop": "Authentication and access control components for Daikon projects",
+        "doctrine/cache": "Supports caching for JMS serializer",
+        "jms/serializer": "Supports JMS de/serialization"
+    },
     "scripts": {
         "build": [ "@sniff", "@tests" ],
         "code-sniffer": "phpcs -p -s --extensions=php --standard='PSR1,PSR2' src tests",
