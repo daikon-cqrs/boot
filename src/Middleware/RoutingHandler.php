@@ -35,27 +35,27 @@ final class RoutingHandler implements MiddlewareInterface, StatusCodeInterface
         $this->router = $router;
         $this->container = $container;
     }
-
+    
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $matcher = $this->router->getMatcher();
         if (!$route = $matcher->match($request)) {
             return $this->errorResponse($matcher->getFailedRoute());
         }
-
+        
         foreach ($route->attributes as $name => $value) {
             $request = $request->withAttribute($name, $value);
         }
-
+        
         $requestHandler = is_string($route->handler)
-            ? $this->container->get($route->handler)
-            : $route->handler;
-
+        ? $this->container->get($route->handler)
+        : $route->handler;
+        
         return $handler->handle(
             $request->withAttribute(self::REQUEST_HANDLER, $requestHandler)
         );
     }
-
+    
     private function errorResponse(Route $failedRoute = null): ResponseInterface
     {
         if (!$failedRoute) {

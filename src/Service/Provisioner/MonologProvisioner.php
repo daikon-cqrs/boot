@@ -13,6 +13,7 @@ use Daikon\Boot\Service\ServiceDefinitionInterface;
 use Daikon\Config\ConfigProviderInterface;
 use Daikon\Interop\RuntimeException;
 use Monolog\Logger;
+use Monolog\Handler\ErrorLogHandler;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
 
@@ -28,7 +29,7 @@ final class MonologProvisioner implements ProvisionerInterface
         if (!isset($settings['location'])) {
             throw new RuntimeException('Please provide a logging service output location.');
         }
-        $settings['level'] = $settings['level'] ?? Logger::INFO;
+        $settings['level'] = $settings['level'] ?? Logger::DEBUG;
         $settings['name'] = $settings['name'] ?? 'default-logger';
 
         $injector
@@ -39,9 +40,10 @@ final class MonologProvisioner implements ProvisionerInterface
                 function () use ($className, $settings): Logger {
                     /** @var Logger $logger */
                     $logger = new $className($settings['name']);
-                    $logger->pushHandler(
+                    $logger->setHandlers([
+                        new ErrorLogHandler(ErrorLogHandler::SAPI, $settings['level']),
                         new StreamHandler($settings['location'], $settings['level'])
-                    );
+                    ]);
                     return $logger;
                 }
             );

@@ -25,6 +25,7 @@ use Neomerx\Cors\Analyzer;
 use Neomerx\Cors\Contracts\AnalyzerInterface;
 use Neomerx\Cors\Strategies\Settings;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 final class HttpPipelineProvisioner implements ProvisionerInterface
 {
@@ -54,11 +55,13 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
             // Cors
             ->share(AnalyzerInterface::class)
             ->alias(AnalyzerInterface::class, Analyzer::class)
-            ->delegate(Analyzer::class, function () use ($configProvider): AnalyzerInterface {
+            ->delegate(Analyzer::class, function () use ($injector, $configProvider): AnalyzerInterface {
                 $corsSettings = (new Settings)
+                    // skipping ->init() because it doesn't look good
+                    ->disableCheckHost()
                     ->disableAddAllowedMethodsToPreFlightResponse()
                     ->disableAddAllowedHeadersToPreFlightResponse()
-                    ->enableCheckHost()
+                    ->setCredentialsNotSupported()
                     ->setServerOrigin(
                         $configProvider->get('project.cors.scheme'),
                         $configProvider->get('project.cors.host'),
@@ -74,12 +77,16 @@ final class HttpPipelineProvisioner implements ProvisionerInterface
                     )->setExposedHeaders(
                         $configProvider->get('project.cors.response.exposed_headers', [])
                     );
+                if ($configProvider->get('project.cors.request.enable_check_host') === true) {
+                    $corsSettings = $corsSettings->enableCheckHost();
+                }
                 if ($configProvider->get('project.cors.request.allowed_all_origins') === true) {
                     $corsSettings = $corsSettings->enableAllOriginsAllowed();
                 }
                 if ($configProvider->get('project.cors.request.allowed_credentials') === true) {
                     $corsSettings = $corsSettings->setCredentialsSupported();
                 }
+                $corsSettings->setLogger($injector->make(LoggerInterface::class));
                 return Analyzer::instance($corsSettings);
             })
             // Routing and request
