@@ -21,19 +21,17 @@ final class Container implements ContainerInterface
     }
 
     /**
-     * @param string $fqcn
      * @return object
      */
-    public function get($fqcn)
+    public function get(string $fqcn)
     {
         return $this->injector->make($fqcn);
     }
 
     /**
-     * @param string $fqcn
      * @return boolean
      */
-    public function has($fqcn)
+    public function has(string $fqcn): bool
     {
         return class_exists($fqcn);
     }

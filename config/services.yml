@@ -3,6 +3,7 @@ daikon:
     class: Monolog\Logger
     provisioner: Daikon\Boot\Service\Provisioner\MonologProvisioner
     settings:
+      level: Info
       location: ${app.log_dir}/daikon.log
 
   crate_map:
